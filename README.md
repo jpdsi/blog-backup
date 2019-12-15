@@ -3,6 +3,9 @@
 
 チームの担当製品である Azure Bot Service / Internet Information Services / Internet Explorer / Microsoft Edge の情報を中心にお届けします。
 
+## General
+- [ようこそ！](./articles/general/welcome.md)
+
 ## Azure Bot Service
 
 <!--
