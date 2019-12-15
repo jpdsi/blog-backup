@@ -1,0 +1,44 @@
+# Header
+menu:
+  Home: /
+  Archives: archives
+rss: /blog/atom.xml
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+# Sidebar
+sidebar: right
+widgets:
+# - category
+- recent_posts
+- tag
+- archive
+- tagcloud
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+# - category
+# - tagcloud
+# - archive
+
+# widget behavior
+archive_type: 'monthly'
+show_count: false
+
+# Miscellaneous
+google_analytics:
+gauges_analytics:
+# favicon links are in header.ejs
+# favicon: /favicon.png
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
+
+# use hexo.config instead of  theme.config
+# root_tag_option:
+#   root_tag_names: 'all'
+#   sub_tag_limit: 20
+#   sub_tag_sort: 'name' # 未実装
