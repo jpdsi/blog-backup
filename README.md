@@ -8,6 +8,7 @@
 
 ## Azure Bot Service
 
+- [Azure Bot Service の IP 制限について](./articles/azure-bot-service/ip-limitation.md)
 <!--
 - [Azure Bot Service](./articles/azure-bot-service/sample.md)
 -->
