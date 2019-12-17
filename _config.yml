@@ -23,10 +23,10 @@ timezone: 'asia/Tokyo'
 
 root_tag_generator:
   root_tag_names:
-    - Bot
-    - IIS
-    - IE
-    - Edge
+    - Azure Bot Service
+    - Internet Information Services
+    - Internet Explorer
+    - Microsoft Edge
   sub_tag_limit: 20
   sub_tag_sort: 'name' # not implement
 

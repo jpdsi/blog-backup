@@ -49,15 +49,15 @@ Internet Explorer 8 および 9 では 32 ビット版と 64 ビット版が明�
 最近はお問い合わせをいただくことは少なくなりましたが、過去にはこの機能の影響により、ブラウザー ヘルパー オブジェクト (BHO) や ActiveX などのアドオンに影響が生じることがありました。
 LCIE は下記のレジストリ値やグループ ポリシーを設定することにより無効にすることができるため、このような状況の場合にはお試しください。
 
-```
-< レジストリ >
+```レジストリ
 キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main
 名前：TabProcGrowth
 種類：REG_DWORD
 値：0
 ※ 既定では存在しません
+```
 
-< グループ ポリシー >
+```グループ ポリシー
 [ユーザーの構成] または [コンピューターの構成]
  + [管理用テンプレート]
  + [Windows コンポーネント]
@@ -97,7 +97,7 @@ LCIE 機能が有効な Internet Explorer 8 以降では、すでに起動済み
 > https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes
 
 ## 方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする
-```
+```レジストリ
 キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main
 名前：FrameMerging
 種類：REG_DWORD
