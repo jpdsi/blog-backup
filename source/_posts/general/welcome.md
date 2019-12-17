@@ -1,13 +1,13 @@
 ---
 title: Developer Support Internet チームのブログへようこそ
-date: 2019-12-16
+date: 2019-12-15
 tags:
 ---
 
 > 本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。
 > 元の記事の最新の更新情報については、本内容をご参照ください。
 
-# Developer Support Internet チームのブログへようこそ
+
 
 こんにちは。Developer Support Internet チームのブログです。
 

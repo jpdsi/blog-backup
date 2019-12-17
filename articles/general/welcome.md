@@ -1,6 +1,6 @@
 ---
 title: Developer Support Internet チームのブログへようこそ
-date: 2019-12-16
+date: 2019-12-15
 tags:
 ---
 

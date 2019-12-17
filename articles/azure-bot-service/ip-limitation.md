@@ -18,7 +18,7 @@ tags:
 というのも、Azure Bot Service (Web アプリボット) は Node.js などの Bot Builder SDK を基に実装される Bot アプリをホストする Azure App Service と、Bot アプリとクライアントの接続を弊社側で管理している各チャネルのコネクタにより構成されます。
 (Web アプリボット ではなく、Bot Channel Registration の利用の場合は Bot アプリのホスト先はご自身で用意します)
 
-Azure Bot Service (Web アプリボット) を利用したBot アプリケーション全体像は大まかな流れを示すと、以下のような構成です。
+Azure Bot Service (Web アプリボット) を利用した Bot アプリケーション全体像は大まかな流れを示すと、以下のような構成です。
 (括弧書きしているように QnA Maker などの外部 API や DB をボットでご利用の場合には Bot アプリからそちらにアクセスします)
 
 > Web Chat 等の各チャネルのクライアントアプリケーション <-> 弊社で管理する各チャネルのコネクタ <-> Azure App Service 上で動作するお客様の Bot アプリ (<-> QnA Maker などの外部 API や DB など)
