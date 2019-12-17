@@ -14,13 +14,13 @@
 -->
 
 ## Internet Information Services
-
-- [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md)
 <!--
 - [Internet Information Services](./articles/web-apps/sample.md)
 -->
 
 ## Internet Explorer / Microsoft Edge
+
+- [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md)
 
 <!--
 - [Internet Explorer / Microsoft Edge](./articles/internet-explorer-microsoft-edge/sample.md)
