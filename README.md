@@ -15,6 +15,7 @@
 
 ## Internet Information Services
 
+- [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md")
 <!--
 - [Internet Information Services](./articles/web-apps/sample.md)
 -->
