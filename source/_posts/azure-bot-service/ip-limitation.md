@@ -61,5 +61,8 @@ Web App Bot と同様、QnA Maker 作成時には QnA Maker 用の Azure App Ser
 
 QnA Maker の管理サービスの送信元 IP アドレスは公開されておらず、予告なく変更される可能性がございますので、QnA Maker ランタイムの Azure App Service は基本的にパブリックなインターネットからアクセスできる状態である必要があり、Azure Bot Service 付随の Azure App Service と同様に、こちらも IP 制限をかけることはできません。
 
-
 それではまた。
+
+なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
+もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。
+
