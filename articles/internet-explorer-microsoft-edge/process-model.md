@@ -4,6 +4,7 @@ date: 2019-12-17
 tags: 
   - Internet Explorer
   - IE
+  - LCIE
 ---
 
 > 本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。

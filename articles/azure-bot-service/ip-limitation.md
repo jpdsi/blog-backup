@@ -5,6 +5,8 @@ tags:
   - Azure Bot Service
   - Bot Service
   - Bot
+  - IP
+  - アクセス制限
 ---
 
 こんにちは。今回は “Azure Bot Service (Web App Bot) をご利用時にボットアプリケーションの Azure App Service 側に IP 制限をかけることができるの？” という疑問に答えます。
