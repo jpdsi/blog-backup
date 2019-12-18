@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Japan Developer Support Internet Blog
+title: Japan Developer Support Internet Team Blog
 subtitle: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。'
 description: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。'
 keywords:
@@ -25,6 +25,8 @@ root_tag_generator:
   root_tag_names:
     - Azure Bot Service
     - Internet Information Services
+    - ASP.NET
+    - ASP.NET Core
     - Internet Explorer
     - Microsoft Edge
   sub_tag_limit: 20
