@@ -3,8 +3,6 @@ title: Azure Bot Service の IP 制限について
 date: 2019-12-16
 tags: 
   - Azure Bot Service
-  - Bot Service
-  - Bot
   - IP
   - アクセス制限
 ---

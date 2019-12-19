@@ -21,6 +21,7 @@
 ## Internet Explorer / Microsoft Edge
 
 - [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md)
+- [保護モードと拡張保護モード](./articles/internet-explorer-microsoft-edge/protected-mode.md)
 
 <!--
 - [Internet Explorer / Microsoft Edge](./articles/internet-explorer-microsoft-edge/sample.md)
