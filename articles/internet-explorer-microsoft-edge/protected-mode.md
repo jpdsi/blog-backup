@@ -161,5 +161,6 @@ Windows 7 や Windows Server 2008 R2 の場合は、Windows OS 自体が AppCont
 長文となりましたがいかがでしたでしょうか。
 上述の内容が少しでもお役に立ちましたら幸いです。
 
+---
 なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
 もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。
