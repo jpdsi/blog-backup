@@ -13,7 +13,7 @@ tags:
 
 ![FAQ ボット アプリケーション](/articles/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-1.png)
 
-# 環境構築
+## 環境構築
 
 以下の記事に沿って Visual Studio Code + C# 拡張機能 (または Visual Studio 2017 以降)、.NET Core SDK (最新)、Bot Framework Emulator をインストールします。
 
@@ -27,7 +27,7 @@ tags:
 > https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md
 
 
-# サンプルを作成して Azure 上に公開するまでの流れ
+## サンプルを作成して Azure 上に公開するまでの流れ
 
 1. QnA Maker のリソースを作成し、任意の Question、Answer を登録します。  
 チュートリアル:QnA Maker ポータルでナレッジ ベースを作成する  
@@ -62,7 +62,7 @@ https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-l
 https://docs.microsoft.com/ja-jp/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0
 
 
-# ご参考
+## ご参考
 サンプルではユーザーからの質問に複数該当しそうな QnA Maker の回答 (Question と Answer のペア) がある場合には、以下の画像のように近い内容の質問を複数選択肢で提示します。
 
 ![FAQ ボット アプリケーション](/articles/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-2.png)

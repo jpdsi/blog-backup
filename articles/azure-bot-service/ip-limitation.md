@@ -9,12 +9,12 @@ tags:
 
 こんにちは。今回は “Azure Bot Service (Web App Bot) をご利用時にボットアプリケーションの Azure App Service 側に IP 制限をかけることができるの？” という疑問に答えます。
 
-# 上記の回答
+## 上記の回答
 結論としては、Azure Bot Service の構成上、Bot アプリケーションをホストする Azure App Service のエンドポイントに IP 制限を行った場合、Web Chat を含む各チャネルのコネクタ部分と正常に接続ができなくなってしまうため、Bot 本体をホストする App Service 側で IP 制限を行うことはできません。
 
 もし IP 制限を実施した場合は正常に Bot と会話を行うことができなくなります。
 
-# 詳細
+## 詳細
 というのも、Azure Bot Service (Web アプリボット) は Node.js などの Bot Builder SDK を基に実装される Bot アプリをホストする Azure App Service と、Bot アプリとクライアントの接続を弊社側で管理している各チャネルのコネクタにより構成されます。
 (Web アプリボット ではなく、Bot Channel Registration の利用の場合は Bot アプリのホスト先はご自身で用意します)
 
@@ -30,7 +30,7 @@ Bot アプリとクライアントの接続を仲介する弊社側で管理す�
 
 補足ですが、Web Chat チャネルをご利用の場合には下記のような回避案が考えられます。
 
-## 参考 1 : Web チャット利用時の回避案について
+### 参考 1 : Web チャット利用時の回避案について
 チャンネルにて以下の Web Chat チャネルをクライアントにご利用の場合、クライアント側である Web Chat の HTML リソースを配置する場所に IP 制限をかけることは可能です。
 
 > 参考 : Web チャットの概要
@@ -52,7 +52,7 @@ Bot アプリとクライアントの接続を仲介する弊社側で管理す�
 そのため、Bot アプリ側に設定している App ID および App Password を適切に管理していただければ、Bot アプリへの不正なアクセスを防ぐことが可能ですので、ご安心いただければと思います。
 
 
-## 参考 2 : QnA Maker 側の IP 制限について
+### 参考 2 : QnA Maker 側の IP 制限について
 Azure Bot Service とよく一緒に利用されるサービスとして、QnA Maker が挙げられます。
 Web App Bot と同様、QnA Maker 作成時には QnA Maker 用の Azure App Service が別途自動作成されます。
 

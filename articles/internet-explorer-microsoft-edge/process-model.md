@@ -12,7 +12,7 @@ tags:
 こんにちは。
 いくつか記事が分かれてしまっていたことにより分かりづらくなってしまっていたため、改めて Internet Explorer 11 のプロセス モデルについてまとめます。
 
-# Loosely-Coupled IE (LCIE) によるプロセス分離
+## Loosely-Coupled IE (LCIE) によるプロセス分離
 Internet Explorer 7 以前のバージョンではプロセス iexplore.exe が一つだけ起動し Web ページの処理などを行っていました。
 しかしながら、このプロセス モデルの場合、閲覧中の Web ページのどれかで問題が生じた場合、ほかの Web ページへの閲覧にも影響が生じていました。
 例えば、何等かの問題によりプロセスがクラッシュしてしまう状況の場合、すべての Web ページが閉じられてしまいます。
@@ -28,7 +28,7 @@ UI フレーム ウィンドウの役割を持つプロセスを "**マネージ
 なお、コンテンツ プロセスは、使用可能なメモリー量、表示中のタブ数、表示中の整合性レベルなどから総合的に判断をし増減します。
 このため、任意の Web ページを別ウィンドウで表示する場合に、新しくコンテンツ プロセスが起動することもあれば、既存のコンテンツ プロセス内で処理が行われる場合もあります。
 
-## プロセスのビット数
+### プロセスのビット数
 Internet Explorer 8 および 9 では 32 ビット版と 64 ビット版が明確に分かれていたため、64 ビット OS には「64 ビット版の Internet Explorer」と「32 ビット版の Internet Explorer」がそれぞれ独立していました。
 しかしながら Internet Explorer 10 以降では 32 ビット版と 64 ビット版は区別されなくなりました。
 マネージャー プロセスは常に 64 ビット プロセスとして動作し、コンテンツ プロセスは 32 ビット プロセス (例外あり) として動作するよう変更されています。
@@ -45,7 +45,7 @@ Internet Explorer 8 および 9 では 32 ビット版と 64 ビット版が明�
 > https://blogs.msdn.microsoft.com/askie/2009/03/09/opening-a-new-tab-may-launch-a-new-process-with-internet-explorer-8-0/
 
 
-# LCIE を制御するレジストリ値
+## LCIE を制御するレジストリ値
 最近はお問い合わせをいただくことは少なくなりましたが、過去にはこの機能の影響により、ブラウザー ヘルパー オブジェクト (BHO) や ActiveX などのアドオンに影響が生じることがありました。
 LCIE は下記のレジストリ値やグループ ポリシーを設定することにより無効にすることができるため、このような状況の場合にはお試しください。
 
@@ -61,7 +61,7 @@ LCIE は下記のレジストリ値やグループ ポリシーを設定する�
 >  \+ [Internet Explorer]
 >    \- [タブ プロセスの増加率を設定] を "有効" に設定し、増加率に 0 を指定します。
 
-### ※ 影響範囲 ※
+#### ※ 影響範囲 ※
 上記のいずれかの方法で LCIE 機能を無効化すると、マネージャー プロセスのみで動作するようになります。
 この結果、Internet Explorer 7 以前と同様に単一のプロセスで動作するようになります。
 しかしながら、64 ビット OS 環境の場合は常に 64 ビット プロセスとして動作するようになるため、32 ビットにのみ対応した BHO や ActiveX などは利用することができません。
@@ -75,7 +75,7 @@ LCIE は下記のレジストリ値やグループ ポリシーを設定する�
 > https://support.microsoft.com/en-us/help/2716529/32-bit-browser-applications-may-not-work-as-expected-in-internet-explo
 
 
-# セッション共有
+## セッション共有
 LCIE 機能がもたらす機能の一つとして、フレーム マージによる "セッション" (資格情報、非永続的な Cookie) の共有があります。
 
 従来の Internet Explorer では、異なるプロセスとして iexplore.exe が起動するとそれぞれが独立して動作するため、"セッション" は共有されませんでした。
@@ -86,13 +86,13 @@ LCIE 機能が有効な Internet Explorer 8 以降では、すでに起動済み
 下記のいずれかの方法で、セッションを共有しない状態で Internet Explorer を起動することができます。
 何等かの問題が発生した場合にはお試しください。
 
-## 方法 1) -noframemerging オプションを指定する
+### 方法 1) -noframemerging オプションを指定する
 [ファイル名を指定して実行] (Windows キー + R キー) などから iexplore.exe -noframemerging を実行することで、明示的にセッションを共有しない状態で起動することができます。
 
 > Internet Explorer Setup command-line options and return codes
 > https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes
 
-## 方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする
+### 方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする
 > キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main
 > 名前：FrameMerging
 > 種類：REG_DWORD
