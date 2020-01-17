@@ -1,5 +1,4 @@
-# blog
-日本マイクロソフト デベロッパー サポート インターネット チームのブログです。
+# 日本マイクロソフト デベロッパー サポート インターネット チームのブログです。
 
 チームの担当製品である Azure Bot Service / Internet Information Services / Internet Explorer / Microsoft Edge の情報を中心にお届けします。
 
