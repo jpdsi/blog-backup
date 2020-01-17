@@ -2,7 +2,7 @@
 title: IIS の調査に必要な基本的なログ情報について
 date: 2020-01-14
 tags: 
-  - Internet Information Services
+  - Internet Information Services
   - ログ採取
 ---
 
@@ -58,7 +58,7 @@ tags:
 
 4. 任意の名前を入力し、.evtx および .txt 形式で保存します。
 
-   ![step](/articles/web-apps/IIS-LogCollection1/step.png)
+   ![step](/articles/web-apps/LogCollection1/step.png)
  
 
 ## 2. IIS ログ
@@ -71,7 +71,7 @@ IIS ログは、既定で以下のフォルダに u_exYYMMDD.log として保存
 サイト識別子は、インターネット サービス マネージャの左側ペインから
 [サイト] を選択し、[機能ビュー] の [ID] 列にて確認できます。
 
-   ![Reference](/articles/web-apps/IIS-LogCollection1/reference.png)
+   ![Reference](/articles/web-apps/LogCollection1/reference.png)
 
 
 対象となるサイトの ID を把握できましたら、現象を再現させた状態で、
@@ -112,6 +112,8 @@ HTTPERR ログは %SystemRoot%\system32\LogFiles\HTTPERR フォルダー配下�
 
 今回は以上です。
 それでは、また次回！
+
+
 ---
 なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
 もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。
