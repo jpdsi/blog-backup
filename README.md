@@ -13,6 +13,7 @@
 ## Internet Information Services
 - [ASP.NET における SameSite Cookie について](./articles/web-apps/aspdotnet-samesitecookie.md)
 - [IIS の調査に必要な基本的なログ情報について](./articles/web-apps/LogCollection1.md)
+- [IIS の調査に必要な通信系のログ情報について](./articles/web-apps/LogCollection2.md)
 
 ## Internet Explorer / Microsoft Edge
 - [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md)
