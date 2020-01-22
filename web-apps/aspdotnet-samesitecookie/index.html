@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ASP.NET における SameSite Cookie について | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは。 今回は 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップで導入された、ASP.NET の SameSite Cookie に関する動作変更により、Session や Form 認証の Cookie に発生しうる現象について記載します。  .NET Framework December 2019 Security and Quality Ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ASP.NET における SameSite Cookie について">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;web-apps&#x2F;aspdotnet-samesitecookie&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="こんにちは。 今回は 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップで導入された、ASP.NET の SameSite Cookie に関する動作変更により、Session や Form 認証の Cookie に発生しうる現象について記載します。  .NET Framework December 2019 Security and Quality Ro">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2019-12-22T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-22T22:15:40.168Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="ASP.NET">
+<meta property="article:tag" content="Cookie">
+<meta property="article:tag" content="SameSite">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-web-apps/aspdotnet-samesitecookie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ASP.NET における SameSite Cookie について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2019-12-22T15:00:00.000Z" itemprop="datePublished">2019-12-23</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+c826bb92-1e36-5e31-9a23-933570c7226a%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BASP.NET+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B+SameSite+Cookie+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Faspdotnet-samesitecookie%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Faspdotnet-samesitecookie.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Fweb-apps%2Faspdotnet-samesitecookie.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/web-apps/aspdotnet-samesitecookie/" data-id="ck5pv94ay000iz0vlceyxcxdv" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは。</p>
+<p>今回は 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップで導入された、ASP.NET の SameSite Cookie に関する動作変更により、Session や Form 認証の Cookie に発生しうる現象について記載します。</p>
+<blockquote>
+<p>.NET Framework December 2019 Security and Quality Rollup<br><a href="https://devblogs.microsoft.com/dotnet/net-framework-december-2019-security-and-quality-rollup/" target="_blank" rel="noopener">https://devblogs.microsoft.com/dotnet/net-framework-december-2019-security-and-quality-rollup/</a></p>
+<p>.NET Framework での SameSite をサポートするサポート技術情報の記事<br><a href="https://docs.microsoft.com/ja-jp/aspnet/samesite/kbs-samesite" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/samesite/kbs-samesite</a></p>
+</blockquote>
+<p>詳細は以下のページもご参照ください。</p>
+<blockquote>
+<p>ASP.NET で SameSite cookie を使用する<br><a href="https://docs.microsoft.com/ja-jp/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/samesite/system-web-samesite</a></p>
+</blockquote>
+<h2 id="現象"><a href="#現象" class="headerlink" title="現象"></a>現象</h2><p>2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを IIS/ASP.NET アプリケーションが動作するサーバーに適用した際に、ASP.NET の Session や Form 認証を利用してログインを管理しているサイトでこれまでと動作が異なる場合があります。<br>具体的には、外部のサイトから (クロスドメインで) 以下のようなパターンで該当の ASP.NET アプリケーションにアクセスしようとすると、ブラウザーから Session や Form 認証で使用している Cookie がサーバーに送られず、再認証が必要になる等の動作が発生する可能性があります。</p>
+<ul>
+<li>POST メソッドでリクエストする</li>
+<li>iframe 内からリクエストする</li>
+<li>XMLHttpRequest を使ってリクエストする</li>
+</ul>
+<h2 id="要因"><a href="#要因" class="headerlink" title="要因"></a>要因</h2><p>2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップにて、<a href="https://developers-jp.googleblog.com/2019/11/cookie-samesitenone-secure.html" target="_blank" rel="noopener">Chrome における SameSite cookie の扱いの変更</a>に対応するために行われた変更により、サーバーから発行される ASP.NET の Session Cookie および Form 認証 Cookie に対して、SameSite = Lax 属性が自動的に付与されるように変更されています。</p>
+<p>以下は Session Cookie および Form 認証 Cookie が発行された際の HTTP ヘッダーの例ですが、2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを適用する前は SameSite 属性自体が付与されない動作となっていました。</p>
+<h4 id="出力例"><a href="#出力例" class="headerlink" title="出力例)"></a>出力例)</h4><h6 id="Session-Cookie"><a href="#Session-Cookie" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><blockquote>
+<p>set-cookie: ASP.NET_SessionId=nqmz1oeyemsnpmqmzq5vjkzz; path=/; HttpOnly; SameSite=Lax</p>
+</blockquote>
+<h6 id="Form-認証-Cookie"><a href="#Form-認証-Cookie" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><blockquote>
+<p>set-cookie: .ASPXAUTH=025097FC125A24EB1EE247AF15F4E318407E54DEE920EA7AAA3288F73D12701974C8715372B1809280EEA100E89F0C1C1F8354CF1CE4D2ED7C8FB83491DFC033B3643665C631A04BD6C0A60D02239DFC8D14B685A4633C2995BB9E42175E92A7; path=/; HttpOnly; SameSite=Lax</p>
+</blockquote>
+<p>Cookie の SameSite 属性が Lax が設定されている場合、下記のページ等にも記載がありますが、上述のような方法でのクロス ドメインでのリクエスト時にブラウザーから Cookie が送付されなくなります。</p>
+<blockquote>
+<p>HTTP cookies<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p>
+</blockquote>
+<p>結果、ログイン状態を保持するために利用している Session Cookie や Form 認証 Cookie がブラウザーから送られないことで、認証が求められる等の Web アプリケーションの動作に影響が出る可能性があります。</p>
+<h2 id="対処方法"><a href="#対処方法" class="headerlink" title="対処方法"></a>対処方法</h2><p>サーバーが発行する Cookie の SameSite 属性を None にすることで、クロス ドメインでのリクエスト時にもブラウザーから Cookie を送られるようになります。<br>具体的には、ASP.NET の Session Cookie および Form 認証 Cookie に対して、それぞれ以下のような設定を行うことで、サーバーが各 Cookie の SameSite 属性を None に設定して発行するようになります。</p>
+<h6 id="Session-Cookie-1"><a href="#Session-Cookie-1" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sessionState</span> … <span class="attr">cookieSameSite</span>=<span class="string">"None"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Form-認証-Cookie-1"><a href="#Form-認証-Cookie-1" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">forms</span> … <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>なお、この変更は上述の通り <a href="https://developers-jp.googleblog.com/2019/11/cookie-samesitenone-secure.html" target="_blank" rel="noopener">Chrome における SameSite cookie の扱いの変更</a>に対応するための変更となりますが、該当の変更のドキュメントにも記載の通り、SameSite 属性を None に設定した場合は Secure 属性も設定する必要があります。<br>以下の設定等で各 Cookie に Secure 属性も付与して発行するようにする設定も合わせて実施し、かつ、HTTPS で Web サイトにアクセスさせるように構成することもご検討ください。</p>
+<h6 id="Session-Cookie-2"><a href="#Session-Cookie-2" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpCookies</span> … <span class="attr">requireSSL</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Form-認証-Cookie-2"><a href="#Form-認証-Cookie-2" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">forms</span> … <span class="attr">requireSSL</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>もし 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを適用後に、ASP.NET の Session や Form 認証を利用しているサイトで予期しない動作が発生するようになりましたら、上記のような SameSite 属性が付与された Cookie が発行され、ASP.NET の Session や Form 認証に関する Cookie が現象が発生時に送付されない状況に変わっていないか、ブラウザーの開発者ツールや <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler ツール</a>等で確認してみてください。</p>
+<p>それでは、また。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/web-apps/aspdotnet-samesitecookie.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../azure-bot-service/bot-monitoring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Bot Service の監視
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../internet-explorer-microsoft-edge/protected-mode/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">保護モードと拡張保護モード</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/Deploy-Edge/">新しい Microsoft Edge の展開について</a>
+          </li>
+        
+          <li>
+            <a href="../LogCollection2/">IIS の調査に必要な通信系のログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../LogCollection1/">IIS の調査に必要な基本的なログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/New-Edge-via-WU/">Windows Update による新しい Microsoft Edge の配信について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/new-microsoft-edge/">新しい Microsoft Edge 向け Blog 始めました</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">3</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 20px;">Azure Bot Service</a> <a href="../../tags/C/" style="font-size: 10px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 20px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 15px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 15px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 20px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

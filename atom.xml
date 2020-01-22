@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Japan Developer Support Internet Team Blog</title>
+  
+  <subtitle>日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</subtitle>
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="https://jpdsi.github.io/blog/"/>
+  <updated>2020-01-22T22:15:39.957Z</updated>
+  <id>https://jpdsi.github.io/blog/</id>
+  
+  <author>
+    <name>Developer Support Internet Japan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新しい Microsoft Edge の展開について</title>
+    <link href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/Deploy-Edge/"/>
+    <id>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/Deploy-Edge/</id>
+    <published>2020-01-22T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:39.957Z</updated>
+    
+    <content type="html"><![CDATA[<p>こんにちは。</p><p>Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版) チャネル ビルド (Microsoft Edge 79 stable) のリリースから一週間が経ちました。</p><p><a href="https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/" target="_blank" rel="noopener">公式ブログ</a> にて下記の引用のとおりお伝えしていますが、Windows Update 経由での配信 (※1) までは、<a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">こちらからインストーラーをダウンロード</a> いただく他には、<a href="https://docs.microsoft.com/en-us/configmgr/apps/deploy-use/deploy-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json" target="_blank" rel="noopener">SCCMで展開</a> 、<a href="https://docs.microsoft.com/en-us/intune/apps/apps-windows-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json" target="_blank" rel="noopener">Intuneで展開</a> などで新しい Microsoft Edge をご利用いただくことができます。</p><blockquote><p>日本のお客様に対しては、確定申告への影響を考慮し、Windows Updateを通じた新しいMicrosoft Edgeの配信は令和２年４月１日以降、順次開始される予定です。</p></blockquote><p>新しい Microsoft Edge のリリース前からも、多くのユーザー、IT Pro のみなさまから、Microsoft Edge についての様々なご質問をいただいております。<br><a href="https://docs.microsoft.com/ja-jp/DeployEdge/faqs-edge-in-the-enterprise" target="_blank" rel="noopener">エンタープライズ環境の Microsoft Edge についてよく寄せられる質問</a> ではすでにいくつかの QA を掲載していますのでご覧ください。<br>随時こちらの公式ドキュメントへの追記も進めていきますが、以下に 3 つ QA を載せました。ご参考になるとうれしいです。</p><hr><h2 id="Q1-インストーラーが-exe-形式-と-msi-形式-のふたつがありますが、違いはなんですか？"><a href="#Q1-インストーラーが-exe-形式-と-msi-形式-のふたつがありますが、違いはなんですか？" class="headerlink" title="Q1:インストーラーが exe 形式 と msi 形式 のふたつがありますが、違いはなんですか？"></a>Q1:インストーラーが <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">exe 形式</a> と <a href="https://www.microsoft.com/en-us/edge/business/download" target="_blank" rel="noopener">msi 形式</a> のふたつがありますが、違いはなんですか？</h2><p><u>Answer</u></p><ul><li>exe 形式はインストール時にインターネットからファイルをダウンロードしながらインストールします。</li><li>msi 形式はインターネット接続は不要なフルパッケージです。インターネット非接続環境などで、組織内の Web サーバーやファイル サーバーに msi パッケージを格納し、組織内の端末に展開するといったシナリオにご利用いただけます。</li><li>exe 形式はその時点での最新の Stable (安定版) チャネル ビルドがインストールできます。</li><li>msi 形式は Stable チャネルのほか、Beta チャネル、Dev チャネルのフルパッケージがダウンロードできます。</li></ul><hr><h2 id="Q2-今後の-Windows-Update-での展開に備えて、展開を抑止する構成をしておきたいのですが…"><a href="#Q2-今後の-Windows-Update-での展開に備えて、展開を抑止する構成をしておきたいのですが…" class="headerlink" title="Q2:今後の Windows Update での展開に備えて、展開を抑止する構成をしておきたいのですが…"></a>Q2:今後の Windows Update での展開に備えて、展開を抑止する構成をしておきたいのですが…</h2><p><u>Answer</u><br><a href="https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit" target="_blank" rel="noopener">こちら</a> に沿って、<strong>Blocker Toolkit</strong>　をインストールします。<br>なお、Blocker Toolkit は Windows Update でのインストールを抑止するものであり、ユーザーによる手動インストールは制御できません。手動でのインストールやインストール後の自動更新の制御をする場合は <a href="https://docs.microsoft.com/ja-jp/DeployEdge/microsoft-edge-update-policies" target="_blank" rel="noopener">更新ポリシー</a> を構成します。</p><hr><h2 id="Q3-古い-Microsoft-Edge-EdgeHTML-と新しい-Microsoft-Edge-Chromium-ベース-の両方を使いたいときはどうすればいいですか？"><a href="#Q3-古い-Microsoft-Edge-EdgeHTML-と新しい-Microsoft-Edge-Chromium-ベース-の両方を使いたいときはどうすればいいですか？" class="headerlink" title="Q3:古い Microsoft Edge (EdgeHTML) と新しい Microsoft Edge (Chromium ベース) の両方を使いたいときはどうすればいいですか？"></a>Q3:古い Microsoft Edge (EdgeHTML) と新しい Microsoft Edge (Chromium ベース) の両方を使いたいときはどうすればいいですか？</h2><p><u>Answer</u><br><a href="https://docs.microsoft.com/en-us/deployedge/microsoft-edge-sysupdate-access-old-edge" target="_blank" rel="noopener">こちら</a> に沿って、<strong>“Microsoft Edge でのブラウザーの同時実行エクスペリエンスを許可する”</strong> ポリシーを <strong>新しい Microsoft Edge のインストール前に</strong> 有効にします。<br>後日、実際の設定の様子について記事を作りたいと思います。</p><hr><p>(※1)<br>Windows Update による新しい Microsoft Edge の配信に関する <a href="https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit" target="_blank" rel="noopener">公式の情報</a>がありますが、以下に要点を簡単にまとめます。</p><ul><li>Windows Update での自動配信は、<u><strong>Windows 10 バージョン 1803 以上の Home または Pro エディションのみが対象</strong></u>です</li><li><u><strong>上記以外のすべての Windows バージョン (またはエディション) は自動更新の対象外</strong></u>です</li><li>Windows 10 バージョン 1803 以上の Home または Pro エディションであっても、<u><strong>以下のケースでは自動更新の対象外</strong></u>です<ul><li>Active Directory ドメインに参加している場合</li><li>組織の環境が Windows Server Update Services (WSUS) や System Center Configuration Manager (SCCM) などの更新管理ソリューションにより管理されている場合</li></ul></li><li>新しい Microsoft Edge は、Windows の累積的な更新プログラムに含められた形ではなく、<u><strong>個別の更新パッケージとして配信</strong></u>されます</li></ul><p>以上のとおり、エンタープライズの多くの環境については、Windows Update による新しい Microsoft Edge の配信の対象外になるかと想定されますが、不明点などがありましたら私共サポートまでお問い合わせください。</p><p>今回は以上です。<br>それでは、また次回！</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;こんにちは。&lt;/p&gt;
+&lt;p&gt;Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版) チャネル ビルド (Microsoft Edge 79 stable) のリリースから一週間が経ちました。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;ht
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Microsoft Edge" scheme="https://jpdsi.github.io/blog/tags/Microsoft-Edge/"/>
+    
+      <category term="Chromium" scheme="https://jpdsi.github.io/blog/tags/Chromium/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IIS の調査に必要な通信系のログ情報について</title>
+    <link href="https://jpdsi.github.io/blog/web-apps/LogCollection2/"/>
+    <id>https://jpdsi.github.io/blog/web-apps/LogCollection2/</id>
+    <published>2020-01-20T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.268Z</updated>
+    
+    <content type="html"><![CDATA[<p>こんにちは。</p><p>IIS サポート チームです！</p><p>以前、IIS 上でのトラブル シューティングに役立つ 4 つのログの採取方法について以下の記事を書いてますが、現象の性質によってはこの 4 つのログ + α で調査の前進が見込まれるログがございます。</p><p>　IIS の調査に必要な基本的なログ情報について<br>　<a href="https://github.com/jpdsi/blog/blob/master/articles/web-apps/LogCollection1.md" target="_blank" rel="noopener">https://github.com/jpdsi/blog/blob/master/articles/web-apps/LogCollection1.md</a></p><p>今回は、IIS の通信に関する現象の調査に役立つログをご紹介いたします。</p><ol><li><strong>失敗した要求トレース（事前準備が必要）</strong></li><li><strong>ネットワーク トレース（現象再現前に、OS 標準のコマンドにて実行）</strong></li></ol><p>通信に関する現象と言っても多岐にわたるのですが、以下の様な現象の場合には通信に関する現象として捉えて問題はないと言えますので、「もしかしてクライアントとサーバー間の通信に問題があるのかも」と疑われるような場合に有効なログとなります。</p><ul><li><strong>IIS にアクセスしたクライアントがエラー ページを表示する</strong></li><li><strong>IIS へのアクセスに成功はするものの、アクセスに時間を要する</strong></li><li><strong>IIS ログにエラーを示す出力がある等</strong></li></ul><p>また、再現性の有無により、採取出来るログが異なりますので、いずれのパターンに該当するかを確認した上でログを採取してください。</p><h5 id="再現性がある場合"><a href="#再現性がある場合" class="headerlink" title="再現性がある場合:"></a>再現性がある場合:</h5><p> 　　　<strong>上記記事の 4 つのログ + 1. 失敗した要求トレース + 2. ネットワーク トレース</strong></p><h5 id="再現性がない場合"><a href="#再現性がない場合" class="headerlink" title="再現性がない場合:"></a>再現性がない場合:</h5><p> 　　　<strong>上記記事の 4 つのログ + 1. 失敗した要求トレース</strong></p><hr><h1 id="1-失敗した要求トレース"><a href="#1-失敗した要求トレース" class="headerlink" title="1. 失敗した要求トレース"></a><u>1. 失敗した要求トレース</u></h1><p>採取手順を含む、このログについては以下の公開情報に整理されております。<br>一言で言うと、後述する「ネットワーク トレース」とは異なり、事前に構成することで、IIS 上で失敗した通信について記録しておいてくれるログです。</p><p>　Troubleshooting Failed Requests Using Tracing in IIS 8.5<br>　<a href="https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis-85" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis-85</a></p><p>　Troubleshooting IIS request performance slowness issues using FREB tracing<br>　<a href="https://blogs.msdn.microsoft.com/docast/2016/04/28/troubleshooting-iis-request-performance-slowness-issues-using-freb-tracing/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/docast/2016/04/28/troubleshooting-iis-request-performance-slowness-issues-using-freb-tracing/</a></p><p>　FREB | Failed Requests Tracing in IIS 7<br>　<a href="https://blogs.msdn.microsoft.com/amol/2009/04/01/freb-failed-requests-tracing-in-iis-7/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/amol/2009/04/01/freb-failed-requests-tracing-in-iis-7/</a></p><p>このログは、事前に構成しておくことで、現象発生時にログが出力されますので、問題が発生していない場合でも、これを構成しておくことで仮に将来通信に関する現象が発生した時に、このログを採取して解析することで原因究明につなげられます。</p><h2 id="Windows-Server-での事前準備-1-3"><a href="#Windows-Server-での事前準備-1-3" class="headerlink" title="Windows Server での事前準備 (1 ~ 3)"></a>Windows Server での事前準備 (1 ~ 3)</h2><p>※文面の都合上、画面ショットの貼り付けはいたしませんが、上記に紹介したリンクでも同様の手順 + 画面ショットがございますのでご参照ください。</p><h3 id="事前準備-1"><a href="#事前準備-1" class="headerlink" title="事前準備 1"></a>事前準備 1</h3><p><strong>※ IIS の再起動が発生します OS の再起動は必要ありません</strong><br> 　<strong>[Web サーバー (IIS)] の役割サービス “トレース” がインストールされていない場合、以下の手順でインストールします。</strong></p><ol><li>サーバー マネージャーを開きます</li><li>サーバー マネージャー のツリー表示で、[役割] を展開して [Web サーバー (IIS)] をクリックします </li><li>[Web サーバー (IIS)] ウィンドウで、[役割サービス] セクションまでスクロールして、[役割サービスの追加] をクリックします </li><li>役割サービスの追加ウィザードの [役割サービスの選択] ページで [トレース] を選択し、[次へ] をクリックします</li><li>[インストール オプションの確認] ページで [インストール] をクリックします </li><li>[結果] ページで [閉じる] をクリックします</li><li>管理者権限でコマンド プロンプトを起動し、以下のコマンドを実行します<br>下記を実施することで、取得される失敗した要求トレース ログの 1 ファイルの最大サイズが 1MB になります</li></ol><blockquote><p>%windir%\system32\inetsrv\appcmd.exe set config -section:system.applicationHost/sites “/[name=’Default Web Site].traceFailedRequestsLogging.maxLogFileSizeKB:1024” /commit:apphost<br> ※サイト名 (name= の値) として Default Web Site を指定していますが、ご利用の Web サイト名に適宜ご変更ください。</p></blockquote><h3 id="事前準備-2"><a href="#事前準備-2" class="headerlink" title="事前準備 2"></a>事前準備 2</h3><p>以下の手順で、”失敗した要求トレース” を有効に設定します。</p><ol><li>IIS マネージャーを開きます</li><li>[接続] ウィンドウで、対象の Web サイトを選択します </li><li>[操作] ウィンドウで、[失敗した要求トレース…] をクリックします </li><li>[Web サイトの失敗した要求トレース設定の編集] ダイアログ ボックスで、次のオプションを構成します</li></ol><ul><li>[有効にする] チェック ボックスをオンにして、トレースを有効にします</li><li>[ディレクトリ] ボックスで、失敗した要求のログ ファイルを格納する場所として既定値をそのまま使用するか、新しいディレクトリを入力します</li><li>[トレース ファイルの最大数] ボックスに、格納する失敗した要求トレース ファイルの数を入力します</li></ul><p><strong>※ファイルは 1 リクエストにつき 1 ファイル作成されます。設定したファイル数を上限として、</strong><br>　<strong>古いものから順に削除されるため、現象発生後に長い時間をおくと必要なファイルが削除される場合があります</strong></p><p>　<strong>このため、同時アクセスがある場合にはそれを考慮した値を設定していただき、</strong><br>　<strong>現象発生後には早い段階で [有効にする] チェックボックスを外し、キャプチャを停止いただければと存じます</strong></p><ol start="5"><li>[OK] をクリックします</li></ol><h3 id="事前準備-3"><a href="#事前準備-3" class="headerlink" title="事前準備 3"></a>事前準備 3</h3><p>以下の手順で、”失敗した要求トレースの規則” を作成します。</p><ol><li>IIS マネージャーを開きます</li><li>[接続] ウィンドウで、対象の Web サイトを選択します</li><li>[機能] ウィンドウで、[失敗した要求トレースの規則] をダブルクリックします</li><li>[操作] ウィンドウで、[追加] をクリックします </li><li>[失敗した要求トレース規則の追加] ウィザードの [トレースするコンテンツの指定] で、”すべてのコンテンツ (*)(A)” を選択し、[次へ] をクリックします</li><li>[トレース条件の定義] ページで、[トレース条件の定義] で、[状態コード] に 401.3-999 と入力、[所要時間（秒）] に 30 と入力して [次へ] をクリックします</li><li>[トレース プロバイダーの選択] ページで、既定値をそのまま使用し、[終了] をクリックします</li></ol><h2 id="Windows-Server-での採取手順"><a href="#Windows-Server-での採取手順" class="headerlink" title="Windows Server での採取手順"></a>Windows Server での採取手順</h2><p>現象再現後、以下に作成されるトレース ログすべてを採取します。</p><p>　%SystemDrive%\inetpub\logs\FailedReqLogFiles</p><h1 id="2-ネットワーク-トレース"><a href="#2-ネットワーク-トレース" class="headerlink" title="2. ネットワーク トレース"></a><u>2. ネットワーク トレース</u></h1><p>このログについては、弊社でも多くの情報を公開しておりますが、一言で言うと、OS の標準機能の netsh コマンドを使用して現象発生時に通信ログを取得できるログです。</p><p>IIS 上で ARR を動かしている場合は、ARR は内部で winhttp というモジュールを使用して通信をしているため、このモジュールの動作もキャプチャすることが出来るように、”senario=internetclient_dbg” というオプションを付与するとより多くの情報の解析が出来ます。</p><p>　Troubleshooting 502 Errors in ARR<br>　<a href="https://docs.microsoft.com/en-us/iis/extensions/troubleshooting-application-request-routing/troubleshooting-502-errors-in-arr" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/iis/extensions/troubleshooting-application-request-routing/troubleshooting-502-errors-in-arr</a></p><p>なお、このログは現象発生直前にコマンドを実行した上で、現象の再現を試み、現象発生後にコマンドを実行してログの採取を停止いたします。<br>つまり、再現性がある時に採取を試みますので、この点、上記「失敗した要求トレース」とは異なりますのでご注意ください。</p><h2 id="Windows-Server-での採取手順-1"><a href="#Windows-Server-での採取手順-1" class="headerlink" title="Windows Server での採取手順"></a>Windows Server での採取手順</h2><ol><li>管理者権限でコマンド プロンプトを開きます </li><li>次のコマンドを実行し、キャプチャを開始します</li></ol><p>　netsh trace start scenario=internetclient_dbg capture=yes maxSize=1000MB</p><ol start="3"><li>現象が発生する操作を行います</li><li>次のコマンドを実行して、キャプチャを停止します (しばらく時間がかかります)</li></ol><p>　netsh trace stop</p><ol start="5"><li>作成される cab と etl ファイルを採取します</li></ol><p>今回は以上です。 それでは、また次回！</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。 もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;こんにちは。&lt;/p&gt;
+&lt;p&gt;IIS サポート チームです！&lt;/p&gt;
+&lt;p&gt;以前、IIS 上でのトラブル シューティングに役立つ 4 つのログの採取方法について以下の記事を書いてますが、現象の性質によってはこの 4 つのログ + α で調査の前進が見込まれるログがございます。
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Internet Information Services" scheme="https://jpdsi.github.io/blog/tags/Internet-Information-Services/"/>
+    
+      <category term="ログ採取" scheme="https://jpdsi.github.io/blog/tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IIS の調査に必要な基本的なログ情報について</title>
+    <link href="https://jpdsi.github.io/blog/web-apps/LogCollection1/"/>
+    <id>https://jpdsi.github.io/blog/web-apps/LogCollection1/</id>
+    <published>2020-01-13T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.233Z</updated>
+    
+    <content type="html"><![CDATA[<p>こんにちは。IIS サポート チームです！</p><p>弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てるのではないかということで、今回の記事の執筆に至っています。</p><p>さて、IIS 上でのトラブル シューティングをスムーズにするためには、ログをご提供いただき、すぐに IIS の構成や生じている問題を把握することが重要です。<br>場合によっては、ログを見て、即日で解決というケースもあります。</p><p>お問い合わせいただいた後、これらの把握のために複数のログを採取いただくようお願いしておりますが、今回の記事で、その採取方法についてご紹介いたします！<br>この手順にて採取した情報を、お問い合わせと同時に弊社にご提供いただければよりスムーズなご支援をお約束いたします！</p><p>現象により採取するべきログは異なりますが、ほとんどの現象の調査に対して有効なログ 4 つの採取方法を以下にご紹介いたします。</p><ol><li><strong>イベント ログ</strong></li><li><strong>IIS ログ</strong></li><li><strong>IIS の構成ファイル</strong></li><li><strong>HTTPERR ログ</strong></li></ol><p>また、ログをご提供いただきましたら、まずは現象発生時刻周辺を確認するため、ログのご提供と同時に、以下を併せてお知らせいただけますと嬉しいです！</p><ul><li><strong>現象発生時刻（時分秒）</strong></li><li><strong>現象が発生する URL</strong></li><li><strong>現象発生時の画面キャプチャ</strong></li><li><strong>アプリ内で発生した例外の抜粋</strong></li></ul><hr><h2 id="1-イベント-ログ"><a href="#1-イベント-ログ" class="headerlink" title="1. イベント ログ"></a>1. イベント ログ</h2><p>イベント ログはイベント ビューアーの起動が必要なため、以下の手順で採取ください。</p><ol><li>Windows Server 上にてイベント ビューアーを起動します（コマンド: eventvwr）</li><li>[Windows ログ] を展開します</li><li>以下をそれぞれ右クリックし、[すべてのイベントを名前をつけて保存] を選択します    </li></ol><ul><li>Application（アプリケーション）</li><li>システム</li><li>セキュリティ</li></ul><ol start="4"><li><p>任意の名前を入力し、.evtx および .txt 形式で保存します。</p><img src="/blog/web-apps/LogCollection1/step.png" class=""></li></ol><h2 id="2-IIS-ログ"><a href="#2-IIS-ログ" class="headerlink" title="2. IIS ログ"></a>2. IIS ログ</h2><p>IIS ログは、既定で以下のフォルダーに u_exYYMMDD.log として保存されます。</p><p>　　%SystemDrive%\inetpub\logs\LogFiles\W3SVCn (n はサイト識別子) </p><p>サイト識別子は、インターネット サービス マネージャーの左側ペインから [サイト] を選択し、[機能ビュー] の [ID] 列にて確認できます。</p>   <img src="/blog/web-apps/LogCollection1/reference.png" class=""><p>対象となるサイトの ID を把握できましたら、現象を再現させた状態で、管理者権限のコマンド プロンプトで以下のコマンドを実行の上、現象発生日時を含む IIS ログをコピーしてご提供ください。</p><p>　　netsh http flush logbuffer</p><p>なお、ログは UTC 時間で記録されますので、日本時間から + 9 時間ずれて記録されます</p><h2 id="3-IIS-の構成ファイル"><a href="#3-IIS-の構成ファイル" class="headerlink" title="3. IIS の構成ファイル"></a>3. IIS の構成ファイル</h2><p>IIS の構成情報は %SystemRoot%\system32\inetsrv\config\applicationHost.config、および、各アプリケーションの物理ディレクトリ以下にある web.config に保存されています。</p><p>applicationHost.config および web.config をコピーしてご提供ください。</p><p>※固有の設定がない場合には、web.config は存在しない可能性もございます<br>　web.config が存在する場合は、その格納パスもお知らせください</p><h2 id="4-HTTPERR-ログ"><a href="#4-HTTPERR-ログ" class="headerlink" title="4. HTTPERR ログ"></a>4. HTTPERR ログ</h2><p>HTTPERR ログは %SystemRoot%\system32\LogFiles\HTTPERR フォルダー配下に保存されます。<br>[更新日時] が、現象発生日時の前後１日を含んでいる HTTPERR ログをコピーしてご提供ください。</p><p>例えば、現象が発生したのが 2019/11/11 の場合は、[更新日時] が 2019/11/10, 2019/11/12 と表示されているものをご提供ください。</p><p>なお、HTTPERR ログに記録される時刻は UTC となり、日本時間はログに記載の日時に +9 時間となります。</p><p>今回は以上です。<br>それでは、また次回！</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;こんにちは。IIS サポート チームです！&lt;/p&gt;
+&lt;p&gt;弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てるのではないかということで、今回の記事の執筆に至っています。&lt;/p&gt;
+&lt;p&gt;さて、IIS 上でのトラブル シューティングをスムーズにするた
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Internet Information Services" scheme="https://jpdsi.github.io/blog/tags/Internet-Information-Services/"/>
+    
+      <category term="ログ採取" scheme="https://jpdsi.github.io/blog/tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows Update による新しい Microsoft Edge の配信について</title>
+    <link href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-via-WU/"/>
+    <id>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-via-WU/</id>
+    <published>2020-01-09T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.023Z</updated>
+    
+    <content type="html"><![CDATA[<p>皆様、こんにちわ！</p><p>新しい Microsoft Edge のリリースが、来週に迫ってまいりました！<br>また、エンタープライズの皆様におかれましては、新しい Microsoft Edge が Windows Update から自動配信されるって噂があるけど、実際どうなる予定なんだ？？？と、ヤキモキされていることと思います。<br>Windows Update による新しい Microsoft Edge の配信に関しては、やっと<a href="https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit" target="_blank" rel="noopener">公式の情報</a>が公開されましたが、まだ翻訳されていない状況ですので、要点を以下に簡単にまとめました。</p><ul><li>Windows Update での自動配信は、<u><strong>Windows 10 バージョン 1803 以上の Home または Pro エディションのみが対象</strong></u>です</li><li><u><strong>上記以外のすべての Windows バージョン (またはエディション) は自動更新の対象外</strong></u>です</li><li>Windows 10 バージョン 1803 以上の Home または Pro エディションであっても、<u><strong>以下のケースでは自動更新の対象外</strong></u>です<ul><li>Active Directory ドメインに参加している場合</li><li>組織の環境が Windows Server Update Services (WSUS) や System Center Configuration Manager (SCCM) などの更新管理ソリューションにより管理されている場合</li></ul></li><li>新しい Microsoft Edge は、Windows の累積的な更新プログラムに含められた形ではなく、<u><strong>個別の更新パッケージとして配信される予定</strong></u>です</li></ul><p>以上のとおり、エンタープライズの多くの環境については、Windows Update による新しい Microsoft Edge の配信の対象外になるかと想定されますが、少しでも参考となれば嬉しいです。</p><p>なお、Windows Update により新しい Microsoft Edge に更新された場合でも、既定のブラウザーの設定は変更されません。(既定のブラウザーを Internet Explorer 11 や Google Chrome に設定してる場合は、既定のブラウザーが新しい Microsoft Edge に変更されることはないです。)</p><p>今回は以上です。<br>それでは、また次回！</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;皆様、こんにちわ！&lt;/p&gt;
+&lt;p&gt;新しい Microsoft Edge のリリースが、来週に迫ってまいりました！&lt;br&gt;また、エンタープライズの皆様におかれましては、新しい Microsoft Edge が Windows Update から自動配信されるって噂があるけど、
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Microsoft Edge" scheme="https://jpdsi.github.io/blog/tags/Microsoft-Edge/"/>
+    
+      <category term="Chromium" scheme="https://jpdsi.github.io/blog/tags/Chromium/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新しい Microsoft Edge 向け Blog 始めました</title>
+    <link href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/new-microsoft-edge/"/>
+    <id>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/new-microsoft-edge/</id>
+    <published>2020-01-06T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.053Z</updated>
+    
+    <content type="html"><![CDATA[<p>Chromium ベースの <a href="https://www.microsoftedgeinsider.com/ja-jp/" target="_blank" rel="noopener"><strong>新しい Microsoft Edge</strong></a> のリリースがいよいよ近づいていることもあり、多くのユーザー、IT Pro の皆様におかれましては、新しい Microsoft Edge について注目、期待されていると思います。<br>そこで、もうリリース間近ではありますが、Microsoft Japan のブラウザー サポート チームより、日本のユーザー、IT Pro の皆様向けに新しい Microsoft Edge に関する情報や Tips などを発信していきたいと思います！</p><p>第一弾は、既に知ってるよ！という内容かとは思いますが、新しい Microsoft Edge を利用いただく上でのお勧めポイントの一つである <strong>IE モード</strong> に関する情報について、大事なポイントもあるので先ず最初に紹介いたします。</p><p>新しい Microsoft Edge で IE モードを使用するには、現状では最新の Beta 版または Dev 版をインストールします。<br>さらに、IE モードを使用するためには、ご利用のオペレーティング システムにおいて更新プログラムを適用しておく必要があります。<br>基本的には、最新の更新プログラムを適用していれば問題はありませんが、適用しておく必要のある最小バージョンの更新プログラムについては、<a href="https://docs.microsoft.com/ja-jp/deployedge/edge-ie-mode" target="_blank" rel="noopener">こちらの公開情報</a> を参考ください。<br>この <a href="https://docs.microsoft.com/ja-jp/deployedge/edge-ie-mode" target="_blank" rel="noopener">公開情報</a> には、IE モードの概要や IE モードを使用する手順、FAQ なども記載されていますので、本情報をご参考いただいて是非 IE モードをお試しください。<br>また、何か問題や要望などがありましたら、お気兼ねなくサポートにお問い合わせください！</p><p>それでは、また次回！</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Chromium ベースの &lt;a href=&quot;https://www.microsoftedgeinsider.com/ja-jp/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;新しい Microsoft Edge&lt;/strong&gt;&lt;/a
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Microsoft Edge" scheme="https://jpdsi.github.io/blog/tags/Microsoft-Edge/"/>
+    
+      <category term="Chromium" scheme="https://jpdsi.github.io/blog/tags/Chromium/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FAQ ボット アプリケーションの作成方法 (C#)</title>
+    <link href="https://jpdsi.github.io/blog/azure-bot-service/how-to-create-faq-bot/"/>
+    <id>https://jpdsi.github.io/blog/azure-bot-service/how-to-create-faq-bot/</id>
+    <published>2019-12-25T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:39.790Z</updated>
+    
+    <content type="html"><![CDATA[<p>質問と回答を登録、検索するサービスである QnA Maker、ユーザーとの会話を行うボットアプリと実行基盤である Bot Service を使って、FQA ボットアプリを作成する方法です。<br>環境構築、QnA Maker のリソース作成、Bot Service のリソース作成を行い、最後に Azure 上に公開するところまでおまとめしています。</p><img src="/blog/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-1.png" class=""><h2 id="環境構築"><a href="#環境構築" class="headerlink" title="環境構築"></a>環境構築</h2><p>以下の記事に沿って Visual Studio Code + C# 拡張機能 (または Visual Studio 2017 以降)、.NET Core SDK (最新)、Bot Framework Emulator をインストールします。</p><blockquote><p>(Visual Studio Code) C# および Visual Studio Code の使用を開始する<br><a href="https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code</a></p><p>(Visual Studio 2017 以降) チュートリアル:基本的なボットを作成してデプロイする<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp</a></p><p>Bot Framework Emulator<br><a href="https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md" target="_blank" rel="noopener">https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md</a></p></blockquote><h2 id="サンプルを作成して-Azure-上に公開するまでの流れ"><a href="#サンプルを作成して-Azure-上に公開するまでの流れ" class="headerlink" title="サンプルを作成して Azure 上に公開するまでの流れ"></a>サンプルを作成して Azure 上に公開するまでの流れ</h2><ol><li><p>QnA Maker のリソースを作成し、任意の Question、Answer を登録します。<br>チュートリアル:QnA Maker ポータルでナレッジ ベースを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-publish-query-in-portal" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-publish-query-in-portal</a></p></li><li><p>以下のチュートリアルに沿って QnA Maker ポータルより Knowledge Base を作成し、それを利用するボットを Azure ポータルより作成します。<br>チュートリアル:Azure Bot Service v4 を使用して QnA ボットを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-qna-bot" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-qna-bot</a></p></li><li><p>作成した Web App Bot の “ビルド” より zip ファイルでソースコードをダウンロードし、Visual Studio Code または Visual Studio でソースコードをお好みに合わせて編集します。<br>(Visual Studio Code) C# および Visual Studio Code の使用を開始する<br><a href="https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code</a><br>(Visual Studio 2017 以降) チュートリアル:基本的なボットを作成してデプロイする<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp</a></p></li><li><p>Bot Framework Emulator でローカルデバッグします。<br>Bot Framework Samples<br><a href="https://github.com/microsoft/BotBuilder-Samples" target="_blank" rel="noopener">https://github.com/microsoft/BotBuilder-Samples</a></p></li><li><p>Azure 上に公開します。<br>(Visual Studio Code) Visual Studio Code で ASP.NET Core アプリを Azure に公開する<br><a href="https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1</a><br>(Visual Studio 2017 以降) Visual Studio を使用して Azure App Service に Web アプリを発行する<br><a href="https://docs.microsoft.com/ja-jp/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019</a></p></li><li><p>Web App Bot の “チャネル” より、ブラウザー (Web チャット) や LINE、Microsoft Teams で利用できるよう設定ができます。<br>ボットを Web チャットに接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0</a><br>ボットを LINE に接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-line?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-line?view=azure-bot-service-4.0</a><br>ボットを Teams に接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0</a></p></li></ol><h2 id="ご参考"><a href="#ご参考" class="headerlink" title="ご参考"></a>ご参考</h2><p>サンプルではユーザーからの質問に複数該当しそうな QnA Maker の回答 (Question と Answer のペア) がある場合には、以下の画像のように近い内容の質問を複数選択肢で提示します。</p><img src="/blog/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-2.png" class=""><p>この仕組みは QnA Maker にて表示する Confidence Score を元にしています。<br>Dialog\QnAMakerBaseDialog.cs にはボットアプリが QnA Maker に問い合わせをしたときに回答 (Question と Answer のペア) として受け取る最少スコア (ScoreTheashold)、回答の数 (Top) が指定されています。<br>サンプルの例では Confidence Score が 10 以上の QA ペアを 3 つ受け取るよう指定されていますので、値を変更することで複数選択肢の表示を調整することができます。</p><figure class="highlight c#"><figcaption><span>Dialog\QnAMakerBaseDialog.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> <span class="keyword">float</span> DefaultThreshold = <span class="number">0.1F</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> <span class="keyword">int</span> DefaultTopN = <span class="number">3</span>;</span><br></pre></td></tr></table></figure><blockquote><p>QnA Maker ナレッジ ベースの信頼度スコア<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/concepts/confidence-score" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/concepts/confidence-score</a></p></blockquote><p>以上です。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;質問と回答を登録、検索するサービスである QnA Maker、ユーザーとの会話を行うボットアプリと実行基盤である Bot Service を使って、FQA ボットアプリを作成する方法です。&lt;br&gt;環境構築、QnA Maker のリソース作成、Bot Service のリソー
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Azure Bot Service" scheme="https://jpdsi.github.io/blog/tags/Azure-Bot-Service/"/>
+    
+      <category term="QnA Maker" scheme="https://jpdsi.github.io/blog/tags/QnA-Maker/"/>
+    
+      <category term="C#" scheme="https://jpdsi.github.io/blog/tags/C/"/>
+    
+      <category term="作成方法" scheme="https://jpdsi.github.io/blog/tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bot Service の監視</title>
+    <link href="https://jpdsi.github.io/blog/azure-bot-service/bot-monitoring/"/>
+    <id>https://jpdsi.github.io/blog/azure-bot-service/bot-monitoring/</id>
+    <published>2019-12-22T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:39.762Z</updated>
+    
+    <content type="html"><![CDATA[<p>Web App Bot の監視は App Service (開発された Bot アプリケーションが動作するサーバー) と Bot Service (コネクター) の観点で行います。</p><p>App Service 側の異常については基盤として動作しているか、アプリとして想定の動作をしているのか 2 点確認するポイントがあります。<br>基盤として動作しているのかという点については、以下のように Application Insights で対象の App Service の URL (<a href="https://xxxx.azurewebisites.net" target="_blank" rel="noopener">https://xxxx.azurewebisites.net</a>) をテストをするよう設定します。<br>アラートはルールとアクションの設定が必要です。</p><ol><li><p>テストを追加します (ルール)<br>Application Insights インスタンスより “URL の ping テスト” を追加します。URL には監視したい App Service の URL を入力します。  </p><img src="/blog/azure-bot-service/bot-monitoring/bot-monitoring-step1.png" class=""></li><li><p>作成したテストについて、アラートの編集を行います<br>手順 1 で作成されたテストの “…” から、”アラートの編集” を選択します。  </p><img src="/blog/azure-bot-service/bot-monitoring/bot-monitoring-step2.png" class=""></li><li><p>“アクション グループの作成” を行います (アクション)<br>表示されたルールの管理画面で “アクション グループの作成” を選択します。  </p><img src="/blog/azure-bot-service/bot-monitoring/bot-monitoring-step3.png" class=""></li><li><p>メールで通知を行うためのアクションを追加します<br>アクションタイプ “電信メール/SMS/プッシュ/音声” のアクションを追加し、電子メールに送信したいメールアドレスを追加します。  </p><img src="/blog/azure-bot-service/bot-monitoring/bot-monitoring-step4.png" class=""></li><li><p>作成したアクショングループとテストを紐づけます<br>作成したアクショングループを “アクショングループの選択” より設定します </p><img src="/blog/azure-bot-service/bot-monitoring/bot-monitoring-step5.png" class=""></li><li><p>編集内容を保存します<br>保存ボタンをクリックします。</p></li></ol><blockquote><p>URL の Ping テストを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test</a></p><p>Azure Portal でのアクション グループの作成および管理<br><a href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/azure-monitor/platform/action-groups</a></p></blockquote><p>一方、アプリとして想定の動作をしているのか (常にボットがエラーを返さずに動作しているか) を確認するには、Bot Service の仕組み上、クライアントがコネクターを介してリクエストを行う必要があるため監視はできません。<br>ただ、実際にクライアントからのリクエストでエラーが発生した場合には、以下のように例外 (exception) を検知するようログ検索を仕掛けることが有効と考えられます。</p><blockquote><p>カスタム ログ検索を使用して例外アラートを設定する方法<br><a href="https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/alerts#how-to-set-an-exception-alert-using-custom-log-search" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/azure-monitor/app/alerts#how-to-set-an-exception-alert-using-custom-log-search</a></p></blockquote><p>また、Bot Service (コネクター) の観点では、以下のように Bot Service というサービス自体で異常が発生していないかを以下の方法で監視することができます。(Azure Portal -&gt; すべてのサービス -&gt; サービス正常性 -&gt; ルールの作成 -&gt; サービスで “Azure Bot Service” を選択)</p><blockquote><p>サービス通知のアクティビティ ログ アラートを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/service-health/alerts-activity-log-service-notifications</a></p></blockquote><p>以上です。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Web App Bot の監視は App Service (開発された Bot アプリケーションが動作するサーバー) と Bot Service (コネクター) の観点で行います。&lt;/p&gt;
+&lt;p&gt;App Service 側の異常については基盤として動作しているか、アプリとし
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Azure Bot Service" scheme="https://jpdsi.github.io/blog/tags/Azure-Bot-Service/"/>
+    
+      <category term="Monitoring" scheme="https://jpdsi.github.io/blog/tags/Monitoring/"/>
+    
+      <category term="監視" scheme="https://jpdsi.github.io/blog/tags/%E7%9B%A3%E8%A6%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ASP.NET における SameSite Cookie について</title>
+    <link href="https://jpdsi.github.io/blog/web-apps/aspdotnet-samesitecookie/"/>
+    <id>https://jpdsi.github.io/blog/web-apps/aspdotnet-samesitecookie/</id>
+    <published>2019-12-22T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.168Z</updated>
+    
+    <content type="html"><![CDATA[<p>こんにちは。</p><p>今回は 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップで導入された、ASP.NET の SameSite Cookie に関する動作変更により、Session や Form 認証の Cookie に発生しうる現象について記載します。</p><blockquote><p>.NET Framework December 2019 Security and Quality Rollup<br><a href="https://devblogs.microsoft.com/dotnet/net-framework-december-2019-security-and-quality-rollup/" target="_blank" rel="noopener">https://devblogs.microsoft.com/dotnet/net-framework-december-2019-security-and-quality-rollup/</a></p><p>.NET Framework での SameSite をサポートするサポート技術情報の記事<br><a href="https://docs.microsoft.com/ja-jp/aspnet/samesite/kbs-samesite" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/samesite/kbs-samesite</a></p></blockquote><p>詳細は以下のページもご参照ください。</p><blockquote><p>ASP.NET で SameSite cookie を使用する<br><a href="https://docs.microsoft.com/ja-jp/aspnet/samesite/system-web-samesite" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/samesite/system-web-samesite</a></p></blockquote><h2 id="現象"><a href="#現象" class="headerlink" title="現象"></a>現象</h2><p>2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを IIS/ASP.NET アプリケーションが動作するサーバーに適用した際に、ASP.NET の Session や Form 認証を利用してログインを管理しているサイトでこれまでと動作が異なる場合があります。<br>具体的には、外部のサイトから (クロスドメインで) 以下のようなパターンで該当の ASP.NET アプリケーションにアクセスしようとすると、ブラウザーから Session や Form 認証で使用している Cookie がサーバーに送られず、再認証が必要になる等の動作が発生する可能性があります。</p><ul><li>POST メソッドでリクエストする</li><li>iframe 内からリクエストする</li><li>XMLHttpRequest を使ってリクエストする</li></ul><h2 id="要因"><a href="#要因" class="headerlink" title="要因"></a>要因</h2><p>2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップにて、<a href="https://developers-jp.googleblog.com/2019/11/cookie-samesitenone-secure.html" target="_blank" rel="noopener">Chrome における SameSite cookie の扱いの変更</a>に対応するために行われた変更により、サーバーから発行される ASP.NET の Session Cookie および Form 認証 Cookie に対して、SameSite = Lax 属性が自動的に付与されるように変更されています。</p><p>以下は Session Cookie および Form 認証 Cookie が発行された際の HTTP ヘッダーの例ですが、2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを適用する前は SameSite 属性自体が付与されない動作となっていました。</p><h4 id="出力例"><a href="#出力例" class="headerlink" title="出力例)"></a>出力例)</h4><h6 id="Session-Cookie"><a href="#Session-Cookie" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><blockquote><p>set-cookie: ASP.NET_SessionId=nqmz1oeyemsnpmqmzq5vjkzz; path=/; HttpOnly; SameSite=Lax</p></blockquote><h6 id="Form-認証-Cookie"><a href="#Form-認証-Cookie" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><blockquote><p>set-cookie: .ASPXAUTH=025097FC125A24EB1EE247AF15F4E318407E54DEE920EA7AAA3288F73D12701974C8715372B1809280EEA100E89F0C1C1F8354CF1CE4D2ED7C8FB83491DFC033B3643665C631A04BD6C0A60D02239DFC8D14B685A4633C2995BB9E42175E92A7; path=/; HttpOnly; SameSite=Lax</p></blockquote><p>Cookie の SameSite 属性が Lax が設定されている場合、下記のページ等にも記載がありますが、上述のような方法でのクロス ドメインでのリクエスト時にブラウザーから Cookie が送付されなくなります。</p><blockquote><p>HTTP cookies<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p></blockquote><p>結果、ログイン状態を保持するために利用している Session Cookie や Form 認証 Cookie がブラウザーから送られないことで、認証が求められる等の Web アプリケーションの動作に影響が出る可能性があります。</p><h2 id="対処方法"><a href="#対処方法" class="headerlink" title="対処方法"></a>対処方法</h2><p>サーバーが発行する Cookie の SameSite 属性を None にすることで、クロス ドメインでのリクエスト時にもブラウザーから Cookie を送られるようになります。<br>具体的には、ASP.NET の Session Cookie および Form 認証 Cookie に対して、それぞれ以下のような設定を行うことで、サーバーが各 Cookie の SameSite 属性を None に設定して発行するようになります。</p><h6 id="Session-Cookie-1"><a href="#Session-Cookie-1" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sessionState</span> … <span class="attr">cookieSameSite</span>=<span class="string">"None"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure><h6 id="Form-認証-Cookie-1"><a href="#Form-認証-Cookie-1" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">forms</span> … <span class="attr">cookieSameSite</span>=<span class="string">"None"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure><p>なお、この変更は上述の通り <a href="https://developers-jp.googleblog.com/2019/11/cookie-samesitenone-secure.html" target="_blank" rel="noopener">Chrome における SameSite cookie の扱いの変更</a>に対応するための変更となりますが、該当の変更のドキュメントにも記載の通り、SameSite 属性を None に設定した場合は Secure 属性も設定する必要があります。<br>以下の設定等で各 Cookie に Secure 属性も付与して発行するようにする設定も合わせて実施し、かつ、HTTPS で Web サイトにアクセスさせるように構成することもご検討ください。</p><h6 id="Session-Cookie-2"><a href="#Session-Cookie-2" class="headerlink" title="Session Cookie"></a>Session Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">httpCookies</span> … <span class="attr">requireSSL</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure><h6 id="Form-認証-Cookie-2"><a href="#Form-認証-Cookie-2" class="headerlink" title="Form 認証 Cookie"></a>Form 認証 Cookie</h6><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">system.web</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">forms</span> … <span class="attr">requireSSL</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">system.web</span>&gt;</span></span><br></pre></td></tr></table></figure><p>もし 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップを適用後に、ASP.NET の Session や Form 認証を利用しているサイトで予期しない動作が発生するようになりましたら、上記のような SameSite 属性が付与された Cookie が発行され、ASP.NET の Session や Form 認証に関する Cookie が現象が発生時に送付されない状況に変わっていないか、ブラウザーの開発者ツールや <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler ツール</a>等で確認してみてください。</p><p>それでは、また。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;こんにちは。&lt;/p&gt;
+&lt;p&gt;今回は 2019 年 12 月の .NET Framework のセキュリティおよび品質ロールアップで導入された、ASP.NET の SameSite Cookie に関する動作変更により、Session や Form 認証の Cookie に発
+      
+    
+    </summary>
+    
+    
+    
+      <category term="ASP.NET" scheme="https://jpdsi.github.io/blog/tags/ASP-NET/"/>
+    
+      <category term="Cookie" scheme="https://jpdsi.github.io/blog/tags/Cookie/"/>
+    
+      <category term="SameSite" scheme="https://jpdsi.github.io/blog/tags/SameSite/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>保護モードと拡張保護モード</title>
+    <link href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/"/>
+    <id>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/</id>
+    <published>2019-12-18T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.150Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p></blockquote><p>こんにちは。<br>今回は Internet Explorer の保護モードって何だっけ？拡張保護モードって何だっけ？という点について改めてご紹介いたします。</p><h2 id="そもそも保護モードおよび拡張保護モードはなぜ必要なの？"><a href="#そもそも保護モードおよび拡張保護モードはなぜ必要なの？" class="headerlink" title="そもそも保護モードおよび拡張保護モードはなぜ必要なの？"></a>そもそも保護モードおよび拡張保護モードはなぜ必要なの？</h2><p>保護モードの登場は、日々進化したインターネット ビジネスと日々深刻なってくるセキュリティ保護の重要性と深い関係があります。</p><p>Windows XP / 2003 以前の OS はログインしたユーザーが起動したプロセスなら、プロセス内にそのユーザーの権限をフルに使うことができました。<br>管理者権限でログインして、インターネット サーフィンをするときどうなるかを想像してみたことがありますか？<br>Internet Explorer を立ち上げて、管理者権限でプロセス (iexplore.exe) が起動されて、その中で Web ページが動いています。<br>ページ内の ActiveX コントロールなどの実行を許可してしまうと、管理者権限でプロセスが動作しているため何の制限もなく自由にローカル ファイルなどへのアクセスができてしまいます。<br>今となってはとても恐ろしい状態と言えます。</p><p>そこで Windows Vista で OS レベルでプロセス整合性レベルという新機能が登場しました。<br>この機能のおかげでユーザーの権限を一部だけ許可できるようになり、Internet Explorer もこの機能を活用することで安全性を向上させる機能が登場しました。<br>この機能こそが「保護モード」です。</p><p>「保護モード」が有効である場合、整合性レベルが低いプロセスで動かすことにより、危険性が高いサイトを閲覧したとしてもセキュリティ上のリスクを軽減することができるようになりました。</p><p>更に Windows 8 での Windows ストア アプリケーションの登場により、同じく整合性レベルが低いプロセスでも、更なる厳しい権限制限やデーターアクセスの分離の必要性が生じ AppContainer というさらに低い整合性レベルが追加されました。<br>Internet Explorer もこの追加された権限を利用し、従来よりもさらに安全性を向上させる機能が登場しました。<br>この機能こそが「拡張保護モード」です。</p><p>保護モード、拡張保護モードについて詳しく紹介していきます。</p><h2 id="保護モードとは？"><a href="#保護モードとは？" class="headerlink" title="保護モードとは？"></a>保護モードとは？</h2><p>保護モードが最初に登場したのは、Windows Vista 上の Internet Explorer 7 です。<br>下記のように、インターネット オプションで各ゾーンのセキュリティ設定を行うタブに [保護モードを有効にする] というオプションが追加されました。</p><img src="/blog/internet-explorer-microsoft-edge/protected-mode/protected-mode.png" class=""><h4 id="保護モードの既定値"><a href="#保護モードの既定値" class="headerlink" title="保護モードの既定値:"></a>保護モードの既定値:</h4><table><thead><tr><th align="center">インターネット</th><th align="center">ローカル イントラネット</th><th align="center">信頼済みサイト</th><th align="center">制限付きサイト</th></tr></thead><tbody><tr><td align="center">有効</td><td align="center">無効</td><td align="center">無効</td><td align="center">有効</td></tr></tbody></table><h4 id="保護モードの本質"><a href="#保護モードの本質" class="headerlink" title="保護モードの本質:"></a>保護モードの本質:</h4><p>保護モードは、Windows OS のプロセス整合性モデル (Integrity Level、以下 IL) を利用したセキュリティを強化するための機能です。</p><p>IL とは簡単に言うと、OS 上のプロセスを [高] (High) - [中] (Medium) - [低] (Low) の三段階でレベル付けし、レベルが高ければ高いほど OS での読み込み・書き込み権限が強い、低ければ低いほど権限が弱いという仕組みです。<br>Internet Explorer は保護モードが有効のサイトを表示する際時は IL が [低] のプロセス (コンテンツ プロセス) で処理し、保護モードが無効のサイトは IL が [中] のプロセス (コンテンツ プロセス) で処理します。<br>こうして、インターネット上のサイトを権限の低いプロセスでホストして、仮にサイト内に OS への意図しない箇所への書き込みもしくは読み込み処理が実装されていても、この操作は権限制限によって失敗するため悪意のあるサイトから OS のデータを保護できます。</p><h4 id="保護モードが効かないパターン"><a href="#保護モードが効かないパターン" class="headerlink" title="保護モードが効かないパターン:"></a>保護モードが効かないパターン:</h4><p>この IL という仕組みは、ユーザー アカウント制御 (UAC) を前提としているため、この機能が有効である OS でのみ対応しています。<br>以下のシナリオで起動した Internet Explorer は IL=Low とならないため保護モードは実質無効です。</p><ul><li>OS の UAC 機能を無効に設定している場合 (IL=High)</li><li>ビルトインの管理者 (ユーザー名: Administrator) でログオンした場合 (IL=High)</li><li>Internet Explorer を右クリックして [管理者として起動] で起動する場合 (IL=High)</li><li>Internet Explorer の LCIE プロセス モデルを無効 (TabProcGrowth=0) にした場合 (IL=Medium)</li></ul><h2 id="拡張保護モードとは？"><a href="#拡張保護モードとは？" class="headerlink" title="拡張保護モードとは？"></a>拡張保護モードとは？</h2><p>Windows 8 以降 [低] よりも権限が制限された IL レベル:  AppContainer が追加されました。<br>この AppContainer は Windows ストア アプリケーション (Windows 8 でタイル状のアイコンから起動するアプリケーション) が動作するセキュリティ基盤となります。<br>Windows 10 における ユニバーサル Windows プラットフォーム (UWP) アプリケーションも同様です。</p><p>Internet Explorer においてもこの新しい IL レベルに対応する機能が追加されました。<br>これが [拡張保護モード] であり、Windows 8 上の Internet Explorer 10 で初めて実装されました。</p><h4 id="拡張保護モードの設定箇所"><a href="#拡張保護モードの設定箇所" class="headerlink" title="拡張保護モードの設定箇所:"></a>拡張保護モードの設定箇所:</h4><p>Windows 8.1 に実装されているモダン UI 版の Internet Explorer (タイル アイコンから起動する Internet Explorer) は常に拡張保護モードが有効です。<br>モダン UI 版においては設定変更することはできません。</p><p>Windows 10 などのデスクトップで利用する Internet Explorer は、インターネット オプションの [詳細設定] タブで設定が可能です。</p><img src="/blog/internet-explorer-microsoft-edge/protected-mode/enhanced-protected-mode.png" class=""><p>上記を見てお気付きかと思いますが、64 ビット OS 環境においては [拡張保護モードで 64 ビット プロセッサを有効にする] という項目が追加されています。<br>この設定は、拡張保護モードが有効である場合に、コンテンツ プロセスを 64 ビットにするかどうかを設定する項目です。<br>Internet Explorer のプロセス モデルの投稿で “例外” と記載した点はこの項目が関係します。</p><p>なお、この項目は Internet Explorer 11 で新たに追加された項目です。<br>はじめて拡張保護モードに対応した Internet Explorer 10 では拡張保護モードを有効にすると、必ずコンテンツ プロセスも 64 ビットで動作します。<br>Internet Explorer 11 ではコンテンツ プロセスのビット数をユーザーが自由に選択できるようにするために本項目が追加されました。</p><h4 id="拡張保護モードの既定値"><a href="#拡張保護モードの既定値" class="headerlink" title="拡張保護モードの既定値:"></a>拡張保護モードの既定値:</h4><p>Internet Explorer 11 がサポートされているクライアント OS / サーバー OS いずれの環境においても両項目とも無効化されています。</p><ul><li>拡張保護モードを有効にする</li><li>拡張保護モードで 64 ビット プロセッサを有効にする</li></ul><p>Internet Explorer 11 をサポートしている環境は下記のとおりです。</p><blockquote><p>クライアント OS : Windows 7 / Windows 8.1 / Windows 10<br>サーバー OS : Windows Server 2008 R2 / Windows Server 2012 / Windows Server 2012 R2 / Windows Server 2016 / Windows Server 2019</p></blockquote><h5 id="補足-Windows-Server-2012-と-OS-のビット数について"><a href="#補足-Windows-Server-2012-と-OS-のビット数について" class="headerlink" title="補足 : Windows Server 2012 と OS のビット数について"></a>補足 : Windows Server 2012 と OS のビット数について</h5><p>Windows Server 2012 は、2020 年 1 月より Internet Explorer 11 のみがサポートされます。<br>“拡張保護モードで 64 ビット プロセッサを有効にする” の設定項目は、Windows 8.1 / Windows Server 2012 以降の 64 ビット OS 環境のみ存在します。</p><h4 id="拡張保護モードの本質"><a href="#拡張保護モードの本質" class="headerlink" title="拡張保護モードの本質:"></a>拡張保護モードの本質:</h4><p>まず拡張保護モードは、保護モードが有効であることを前提としています。<br>このため、保護モードが無効な状態の場合や保護モードが効かないパターンに記載したような方法で Internet Explorer を起動した場合は、拡張保護モードも無効です。</p><p>保護モードかつ拡張保護モードのいずれも有効である場合、IL は [Low] よりも低い [AppContainer] でコンテンツ プロセスが動作します。<br>したがって、[Low] よりもさらに厳しい制限のもとでプロセスが動作するため、従来の保護モードよりも安全性が向上しています。</p><h4 id="整合性レベル-IL-とコンテンツ-プロセスのビット数"><a href="#整合性レベル-IL-とコンテンツ-プロセスのビット数" class="headerlink" title="整合性レベル (IL) とコンテンツ プロセスのビット数:"></a>整合性レベル (IL) とコンテンツ プロセスのビット数:</h4><p>コンテンツ プロセスの整合性レベル (IL) は、閲覧対象のサイトがどのゾーンに含まれるか、そのゾーンにおいて保護モードが有効となっているか、がまずは影響します。<br>保護モードが有効となっている状態で、かつ、”拡張保護モードを有効にする” が有効となっている場合のみ、コンテンツ プロセスの IL が AppContainer となります。<br>いずれか条件に合致しない場合にはコンテンツ プロセスの IL は Low もしくは Medium となります。</p><p>“拡張保護モードで 64 ビット プロセッサを有効にする” が有効となっている場合のみ、コンテンツ プロセスのビット数が 64 ビットとなります。<br>下記の場合にはコンテンツ プロセスのビット数は 32 ビットです。</p><ul><li>本設定項目が無効となっている場合</li><li>32 ビット OS 環境の場合 (本設定項目がそもそも存在しない)</li></ul><h5 id="補足-Windows-7-および-Windows-Server-2008-R2-について"><a href="#補足-Windows-7-および-Windows-Server-2008-R2-について" class="headerlink" title="補足 : Windows 7 および Windows Server 2008 R2 について"></a>補足 : Windows 7 および Windows Server 2008 R2 について</h5><p>Windows 7 や Windows Server 2008 R2 の場合は、Windows OS 自体が AppContainer の IL に非対応です。<br>拡張保護モードを有効としても IL は AppContainer にはならず Low のままとなるため、64 ビット OS の場合にはコンテンツ プロセスのビット数を 64 ビットとして動作させることで、拡張保護モードに一部対応しています。<br>32 ビット OS (Windows 7) の場合には、プロセス自体を 64 ビットとすることができないため拡張保護モード自体に対応しておらず設定項目も存在しません。</p><p>上記をまとめると下記のとおりです。</p><h6 id="64-ビット-OS-環境の場合"><a href="#64-ビット-OS-環境の場合" class="headerlink" title="64 ビット OS 環境の場合"></a>64 ビット OS 環境の場合</h6><table>  <tr><th>&nbsp;</th><th>保護モード</th><th>拡張保護モードを<br/>有効にする</th><th>拡張保護モードで<br/>64 ビット プロセッサを<br/>有効にする</th><th>結果</th></tr>  <tr><td rowspan="3">Windows 7<br/>および<br/>Windows Server 2008 R2</td><td rowspan="2">有効</td><td>有効</td><td>(項目なし)</td><td>Low<br/>64 ビット</td></tr>  <tr><td>無効</td><td>(項目なし)</td><td>Low<br/>32 ビット</td></tr>  <tr><td>無効</td><td>―</td><td>(項目なし)</td><td>Medium<br/>32 ビット</td></tr>  <tr><td rowspan="5">Windows 8.1 以降<br/>および<br/>Windows Server 2012 以降</td><td rowspan="4">有効</td><td rowspan="2">有効</td><td>有効</td><td>AppContainer<br/>64 ビット</td></tr>  <tr><td>無効</td><td>AppContainer<br/>32 ビット</td></tr>  <tr><td rowspan="2">無効</td><td>有効</td><td>Low<br/>64 ビット</td></tr>  <tr><td>無効</td><td>Low<br/>32 ビット</td></tr>  <tr><td>無効</td><td>―</td><td>―</td><td>Medium<br/>32 ビット</td></tr></table><h6 id="32-ビット-OS-環境の場合-32-ビット版のサーバー-OS-は存在しません"><a href="#32-ビット-OS-環境の場合-32-ビット版のサーバー-OS-は存在しません" class="headerlink" title="32 ビット OS 環境の場合 (32 ビット版のサーバー OS は存在しません)"></a>32 ビット OS 環境の場合 (32 ビット版のサーバー OS は存在しません)</h6><table>  <tr><th>&nbsp;</th><th>保護モード</th><th>拡張保護モードを有効にする</th><th>結果</th></tr>  <tr><td rowspan="2">Windows 7</td><td>有効</td><td>(項目なし)</td><td>Low<br/>32 ビット</td></tr>  <tr><td>無効</td><td>(項目なし)</td><td>Medium<br/>32 ビット</td></tr>  <tr><td rowspan="3">Windows 8.1 以降</td><td rowspan="2">有効</td><td>有効</td><td>AppContainer<br/>32 ビット</td></tr>  <tr><td>無効</td><td>Low<br/>32 ビット</td></tr>  <tr><td>無効</td><td>―</td><td>Medium<br/>32 ビット</td></tr></table><h4 id="拡張保護モードが効かないパターン"><a href="#拡張保護モードが効かないパターン" class="headerlink" title="拡張保護モードが効かないパターン:"></a>拡張保護モードが効かないパターン:</h4><p>重複しますが、保護モード機能が無効な場合は拡張保護モードも無効となります。<br>したがって、”保護モードが効かないパターン” に記載の条件下においては拡張保護モードも無効となります。<br>また、Windows 7 および Windows Server 2008 R2 環境においては、コンテンツ プロセスのビット数が変化するだけで本物の「拡張保護モードではない」ことも念頭においてください。</p><h4 id="拡張保護モード時の注意点"><a href="#拡張保護モード時の注意点" class="headerlink" title="拡張保護モード時の注意点:"></a>拡張保護モード時の注意点:</h4><p>拡張保護モードが有効に動作している場合、当該 Web ページ上で ActiveX コントロールが利用されている場合は注意が必要です。<br>拡張保護モードが有効である場合、上述のとおり IL=AppContainer で動作しますが、ActiveX 自体が AppContainer 内で動作できるようにデザインされている必要があります。<br>下記の資料を参考に AppContainer で動作できるようにご対応をご検討ください。</p><blockquote><p>Supporting enhanced protected mode (EPM)<br><a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/internet-explorer/ie-developer/compatibility/dn519894(v%3dvs.85)" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/previous-versions/windows/internet-explorer/ie-developer/compatibility/dn519894(v%3dvs.85)</a></p></blockquote><p>長文となりましたがいかがでしたでしょうか。<br>上述の内容が少しでもお役に立ちましたら幸いです。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。&lt;br&gt;元の記事の最新の更新情報については、本内容をご参照ください。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;こんにち
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Internet Explorer" scheme="https://jpdsi.github.io/blog/tags/Internet-Explorer/"/>
+    
+      <category term="保護モード" scheme="https://jpdsi.github.io/blog/tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/"/>
+    
+      <category term="拡張保護モード" scheme="https://jpdsi.github.io/blog/tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Internet Explorer のプロセス モデル</title>
+    <link href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/process-model/"/>
+    <id>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/process-model/</id>
+    <published>2019-12-16T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:40.087Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p></blockquote><p>こんにちは。<br>いくつか記事が分かれてしまっていたことにより分かりづらくなってしまっていたため、改めて Internet Explorer 11 のプロセス モデルについてまとめます。</p><h2 id="Loosely-Coupled-IE-LCIE-によるプロセス分離"><a href="#Loosely-Coupled-IE-LCIE-によるプロセス分離" class="headerlink" title="Loosely-Coupled IE (LCIE) によるプロセス分離"></a>Loosely-Coupled IE (LCIE) によるプロセス分離</h2><p>Internet Explorer 7 以前のバージョンではプロセス iexplore.exe が一つだけ起動し Web ページの処理などを行っていました。<br>しかしながら、このプロセス モデルの場合、閲覧中の Web ページのどれかで問題が生じた場合、ほかの Web ページへの閲覧にも影響が生じていました。<br>例えば、何等かの問題によりプロセスがクラッシュしてしまう状況の場合、すべての Web ページが閉じられてしまいます。</p><p>ユーザビリティを考慮した場合このような動作は好ましいものではないため、Internet Explorer 8 以降のバージョンでは、新しく <strong>Loosely-Coupled IE (LCIE)</strong> という新しいプロセス モデルを採用しています。<br>このモデルの下では、各タブ ウィンドウをホストする UI フレーム ウィンドウ (ウィンドウのアドレス バーやお気に入りバーが表示されている部分) と Web ページを実際に表示するタブ ウィンドウとが、別々のプロセス (プロセスとしてはいずれも iexplore.exe です) として動作します。</p><p>UI フレーム ウィンドウの役割を持つプロセスを “<strong>マネージャー プロセス</strong>“ (従来は “フレーム プロセス” と呼んでいました)、タブ ウィンドウの役割を持つプロセスを “<strong>コンテンツ プロセス</strong>“ (従来は “タブ プロセス” と呼んでいました) とそれぞれ呼んでいます。<br>一つのマネージャー プロセスに複数のコンテンツ プロセスが子プロセスとして紐づき、動作しています。<br>このような構成とすることにより、ある Web ページで問題が発生した場合でも、問題が発生したコンテンツ プロセスのみを切り離すことにより、影響を最小限に抑えることができます。<br>これによって、ブラウザーとしての信頼性、パフォーマンス、スケーラビリティの向上を図っています。</p><p>なお、コンテンツ プロセスは、使用可能なメモリー量、表示中のタブ数、表示中の整合性レベルなどから総合的に判断をし増減します。<br>このため、任意の Web ページを別ウィンドウで表示する場合に、新しくコンテンツ プロセスが起動することもあれば、既存のコンテンツ プロセス内で処理が行われる場合もあります。</p><h3 id="プロセスのビット数"><a href="#プロセスのビット数" class="headerlink" title="プロセスのビット数"></a>プロセスのビット数</h3><p>Internet Explorer 8 および 9 では 32 ビット版と 64 ビット版が明確に分かれていたため、64 ビット OS には「64 ビット版の Internet Explorer」と「32 ビット版の Internet Explorer」がそれぞれ独立していました。<br>しかしながら Internet Explorer 10 以降では 32 ビット版と 64 ビット版は区別されなくなりました。<br>マネージャー プロセスは常に 64 ビット プロセスとして動作し、コンテンツ プロセスは 32 ビット プロセス (例外あり) として動作するよう変更されています。</p><p>なお、32 ビット OS 環境の場合、いずれのプロセスも 32 ビット プロセスとして動作します。<br>また、64 ビット OS 環境の場合、マネージャー プロセスを 32 ビット プロセスとして動作させる方法はありません。</p><blockquote><p>参考資料 (2019 年 12 月 17 日現在記事が存在することを確認しています)</p><p>IE8 and Loosely-Coupled IE (LCIE)<br><a href="https://blogs.msdn.microsoft.com/ie/2008/03/11/ie8-and-loosely-coupled-ie-lcie/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/ie/2008/03/11/ie8-and-loosely-coupled-ie-lcie/</a></p><p>Opening a New Tab may launch a New Process with Internet Explorer 8.0<br><a href="https://blogs.msdn.microsoft.com/askie/2009/03/09/opening-a-new-tab-may-launch-a-new-process-with-internet-explorer-8-0/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/askie/2009/03/09/opening-a-new-tab-may-launch-a-new-process-with-internet-explorer-8-0/</a></p></blockquote><h2 id="LCIE-を制御するレジストリ値"><a href="#LCIE-を制御するレジストリ値" class="headerlink" title="LCIE を制御するレジストリ値"></a>LCIE を制御するレジストリ値</h2><p>最近はお問い合わせをいただくことは少なくなりましたが、過去にはこの機能の影響により、ブラウザー ヘルパー オブジェクト (BHO) や ActiveX などのアドオンに影響が生じることがありました。<br>LCIE は下記のレジストリ値やグループ ポリシーを設定することにより無効にすることができるため、このような状況の場合にはお試しください。</p><blockquote><p>キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main<br>名前：TabProcGrowth<br>種類：REG_DWORD<br>値：0<br>※ 既定では存在しません</p></blockquote><blockquote><p>[ユーザーの構成] または [コンピューターの構成]<br> + [管理用テンプレート]<br> + [Windows コンポーネント]<br> + [Internet Explorer]<br>   - [タブ プロセスの増加率を設定] を “有効” に設定し、増加率に 0 を指定します。</p></blockquote><h4 id="※-影響範囲-※"><a href="#※-影響範囲-※" class="headerlink" title="※ 影響範囲 ※"></a>※ 影響範囲 ※</h4><p>上記のいずれかの方法で LCIE 機能を無効化すると、マネージャー プロセスのみで動作するようになります。<br>この結果、Internet Explorer 7 以前と同様に単一のプロセスで動作するようになります。<br>しかしながら、64 ビット OS 環境の場合は常に 64 ビット プロセスとして動作するようになるため、32 ビットにのみ対応した BHO や ActiveX などは利用することができません。</p><p>また、LCIE 機能を無効にすることにより、保護モードや拡張保護モード機能が無効となるためセキュリティが低下します。<br>さらに、ここでは詳しく触れませんが、クラッシュ回復機能やハング回復機能といった信頼性を向上させるための仕組みも同様に無効化されます。</p><p>このように、LCIE の無効化はデメリットの方が多いため、無効化しない状態での利用をお勧めします。</p><blockquote><p>32-bit browser applications may not work as expected in Internet Explorer 10<br><a href="https://support.microsoft.com/en-us/help/2716529/32-bit-browser-applications-may-not-work-as-expected-in-internet-explo" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/2716529/32-bit-browser-applications-may-not-work-as-expected-in-internet-explo</a></p></blockquote><h2 id="セッション共有"><a href="#セッション共有" class="headerlink" title="セッション共有"></a>セッション共有</h2><p>LCIE 機能がもたらす機能の一つとして、フレーム マージによる “セッション” (資格情報、非永続的な Cookie) の共有があります。</p><p>従来の Internet Explorer では、異なるプロセスとして iexplore.exe が起動するとそれぞれが独立して動作するため、”セッション” は共有されませんでした。<br>LCIE 機能が有効な Internet Explorer 8 以降では、すでに起動済みの Internet Explorer が存在している場合にはその起動済みの Internet Explorer にマージされて動作します。<br>したがって “セッション” も共有されるため、例えば、すでにログオン済みなのに再度ログオンを求められる・・・というようなことがなくなり、利便性が向上しています。</p><p>ただ、このような動作が問題となる場合もあります。<br>下記のいずれかの方法で、セッションを共有しない状態で Internet Explorer を起動することができます。<br>何等かの問題が発生した場合にはお試しください。</p><h3 id="方法-1-noframemerging-オプションを指定する"><a href="#方法-1-noframemerging-オプションを指定する" class="headerlink" title="方法 1) -noframemerging オプションを指定する"></a>方法 1) -noframemerging オプションを指定する</h3><p>[ファイル名を指定して実行] (Windows キー + R キー) などから iexplore.exe -noframemerging を実行することで、明示的にセッションを共有しない状態で起動することができます。</p><blockquote><p>Internet Explorer Setup command-line options and return codes<br><a href="https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes</a></p></blockquote><h3 id="方法-2-FrameMarging-のレジストリ値を設定しフレーム-マージを無効にする"><a href="#方法-2-FrameMarging-のレジストリ値を設定しフレーム-マージを無効にする" class="headerlink" title="方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする"></a>方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする</h3><blockquote><p>キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main<br>名前：FrameMerging<br>種類：REG_DWORD<br>値：0<br>※ 既定では存在しません</p></blockquote><blockquote><p>Session management within Internet Explorer 8.0<br><a href="https://blogs.msdn.microsoft.com/askie/2009/05/08/session-management-within-internet-explorer-8-0/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/askie/2009/05/08/session-management-within-internet-explorer-8-0/</a></p></blockquote><p>今日の記事はここまで！<br>いかがでしたでしょうか。改めて Internet Explorer のプロセス モデルを理解するきっかけになりましたら幸いです。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。&lt;br&gt;元の記事の最新の更新情報については、本内容をご参照ください。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;こんにち
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Internet Explorer" scheme="https://jpdsi.github.io/blog/tags/Internet-Explorer/"/>
+    
+      <category term="LCIE" scheme="https://jpdsi.github.io/blog/tags/LCIE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Azure Bot Service の IP 制限について</title>
+    <link href="https://jpdsi.github.io/blog/azure-bot-service/ip-limitation/"/>
+    <id>https://jpdsi.github.io/blog/azure-bot-service/ip-limitation/</id>
+    <published>2019-12-15T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:39.910Z</updated>
+    
+    <content type="html"><![CDATA[<p>こんにちは。今回は “Azure Bot Service (Web App Bot) をご利用時にボットアプリケーションの Azure App Service 側に IP 制限をかけることができるの？” という疑問に答えます。</p><h2 id="上記の回答"><a href="#上記の回答" class="headerlink" title="上記の回答"></a>上記の回答</h2><p>結論としては、Azure Bot Service の構成上、Bot アプリケーションをホストする Azure App Service のエンドポイントに IP 制限を行った場合、Web Chat を含む各チャネルのコネクタ部分と正常に接続ができなくなってしまうため、Bot 本体をホストする App Service 側で IP 制限を行うことはできません。</p><p>もし IP 制限を実施した場合は正常に Bot と会話を行うことができなくなります。</p><h2 id="詳細"><a href="#詳細" class="headerlink" title="詳細"></a>詳細</h2><p>というのも、Azure Bot Service (Web アプリボット) は Node.js などの Bot Builder SDK を基に実装される Bot アプリをホストする Azure App Service と、Bot アプリとクライアントの接続を弊社側で管理している各チャネルのコネクタにより構成されます。<br>(Web アプリボット ではなく、Bot Channel Registration の利用の場合は Bot アプリのホスト先はご自身で用意します)</p><p>Azure Bot Service (Web アプリボット) を利用した Bot アプリケーション全体像は大まかな流れを示すと、以下のような構成です。<br>(括弧書きしているように QnA Maker などの外部 API や DB をボットでご利用の場合には Bot アプリからそちらにアクセスします)</p><blockquote><p>Web Chat 等の各チャネルのクライアントアプリケーション &lt;-&gt; 弊社で管理する各チャネルのコネクタ &lt;-&gt; Azure App Service 上で動作するお客様の Bot アプリ (&lt;-&gt; QnA Maker などの外部 API や DB など)</p></blockquote><p>Bot アプリとクライアントの接続を仲介する弊社側で管理する Web Chat を含む各チャネルのコネクタサーバーについてはグローバルなリソースであり、IP アドレスを含むホスト先等の明確な情報については通常公開しておりません。</p><p>そのため、上記の右側部分の Azure App Service 上で何らかの IP アドレス制限をかけると、<br>コネクタを介してアクセスが出来なくなり、正常に応答ができなくなる状況になることが想定されます。</p><p>補足ですが、Web Chat チャネルをご利用の場合には下記のような回避案が考えられます。</p><h3 id="参考-1-Web-チャット利用時の回避案について"><a href="#参考-1-Web-チャット利用時の回避案について" class="headerlink" title="参考 1 : Web チャット利用時の回避案について"></a>参考 1 : Web チャット利用時の回避案について</h3><p>チャンネルにて以下の Web Chat チャネルをクライアントにご利用の場合、クライアント側である Web Chat の HTML リソースを配置する場所に IP 制限をかけることは可能です。</p><blockquote><p>参考 : Web チャットの概要<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-webchat-overview?view=azure-bot-service-4.0#how-to-use" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-webchat-overview?view=azure-bot-service-4.0#how-to-use</a></p></blockquote><p>具体的には、Web Chat の HTML ファイル等のクライアント側のリソースを、Web App Bot の Azure App Service とは別の Azure App Service 等でホストし、そこに IP 制限をかけることで、ご要望に近い形で IP 制限をかけることが可能と存じます。</p><p>構成のイメージ : </p><ul><li>別途 Azure App Service を新たに作成する</li><li>Web Chat の HTML ファイルをシークレット キー変更の上、上記の App Service にホストする</li><li>上記の App Service でご要望の IP 制限を設定する</li><li>クライアントは上記の Azure App Service のエンドポイントにアクセスし、その Web Chat (HTML) を介して Bot と会話する</li></ul><p>ただ、その場は Bot アプリに直接アクセスできてしまうのではないか、と心配される方もいらっしゃかもしれませんが、Bot Framework を利用して開発した Bot には各チャンネルのコネクタと連携して自動的に認証を行う仕組みがあり、Bot アプリ側に設定している App ID および App Password を知らないユーザーからは Bot にアクセスできないよう保護されています。</p><blockquote><p>Authentication<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-4.0</a></p></blockquote><p>そのため、Bot アプリ側に設定している App ID および App Password を適切に管理していただければ、Bot アプリへの不正なアクセスを防ぐことが可能ですので、ご安心いただければと思います。</p><h3 id="参考-2-QnA-Maker-側の-IP-制限について"><a href="#参考-2-QnA-Maker-側の-IP-制限について" class="headerlink" title="参考 2 : QnA Maker 側の IP 制限について"></a>参考 2 : QnA Maker 側の IP 制限について</h3><p>Azure Bot Service とよく一緒に利用されるサービスとして、QnA Maker が挙げられます。<br>Web App Bot と同様、QnA Maker 作成時には QnA Maker 用の Azure App Service が別途自動作成されます。</p><p>この QnA Maker に付随する Azure App Service では QnA Maker のランタイムが動作しており、Microsoft 側の QnA Maker の管理サービスがこのランタイムにアクセスすることで KB の管理を行っています。<br>管理サービスからランタイムへのアクセスは管理 API の直接呼び出しや QnA Maker のポータルの操作に伴い発生します。</p><p>QnA Maker の管理サービスの送信元 IP アドレスは公開されておらず、予告なく変更される可能性がございますので、QnA Maker ランタイムの Azure App Service は基本的にパブリックなインターネットからアクセスできる状態である必要があり、Azure Bot Service 付随の Azure App Service と同様に、こちらも IP 制限をかけることはできません。</p><p>それではまた。</p><hr><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;こんにちは。今回は “Azure Bot Service (Web App Bot) をご利用時にボットアプリケーションの Azure App Service 側に IP 制限をかけることができるの？” という疑問に答えます。&lt;/p&gt;
+&lt;h2 id=&quot;上記の回答&quot;&gt;&lt;a h
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Azure Bot Service" scheme="https://jpdsi.github.io/blog/tags/Azure-Bot-Service/"/>
+    
+      <category term="IP" scheme="https://jpdsi.github.io/blog/tags/IP/"/>
+    
+      <category term="アクセス制限" scheme="https://jpdsi.github.io/blog/tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Developer Support Internet チームのブログへようこそ</title>
+    <link href="https://jpdsi.github.io/blog/general/welcome/"/>
+    <id>https://jpdsi.github.io/blog/general/welcome/</id>
+    <published>2019-12-14T15:00:00.000Z</published>
+    <updated>2020-01-22T22:15:39.702Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p></blockquote><p>こんにちは。<br>Developer Support Internet チームのブログです。</p><p>わたしたちサポートチームでは下記の製品のサポートを行っており、それぞれの製品に関する情報を本ブログで発信していきたいと考えています。</p><ul><li>Azure Bot Service</li><li>Internet Information Services と ASP.NET (Core)</li><li>Internet Explorer と Microsoft Edge (EdgeHTML / Chromium)</li></ul><p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p><p>それでは、本情報が少しでも皆様のお役に立てば幸いです 😊</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。&lt;br&gt;元の記事の最新の更新情報については、本内容をご参照ください。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;こんにち
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>

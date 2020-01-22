@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Internet Explorer のプロセス モデル | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。元の記事の最新の更新情報については、本内容をご参照ください。  こんにちは。いくつか記事が分かれてしまっていたことにより分かりづらくなってしまっていたため、改めて Internet Explorer 11 のプロセス モデルについてまとめます。 Loosely-Coup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Internet Explorer のプロセス モデル">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;process-model&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。元の記事の最新の更新情報については、本内容をご参照ください。  こんにちは。いくつか記事が分かれてしまっていたことにより分かりづらくなってしまっていたため、改めて Internet Explorer 11 のプロセス モデルについてまとめます。 Loosely-Coup">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2019-12-16T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-22T22:15:40.087Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="LCIE">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/process-model" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Internet Explorer のプロセス モデル
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2019-12-16T15:00:00.000Z" itemprop="datePublished">2019-12-17</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+88880a99-db8b-5734-95e5-70d9ba759b20%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BInternet+Explorer+%E3%81%AE%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9+%E3%83%A2%E3%83%87%E3%83%AB%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2Fprocess-model%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2Fprocess-model.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2Fprocess-model.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/process-model/" data-id="ck5pv94aq000az0vlekxycy39" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p>
+</blockquote>
+<p>こんにちは。<br>いくつか記事が分かれてしまっていたことにより分かりづらくなってしまっていたため、改めて Internet Explorer 11 のプロセス モデルについてまとめます。</p>
+<h2 id="Loosely-Coupled-IE-LCIE-によるプロセス分離"><a href="#Loosely-Coupled-IE-LCIE-によるプロセス分離" class="headerlink" title="Loosely-Coupled IE (LCIE) によるプロセス分離"></a>Loosely-Coupled IE (LCIE) によるプロセス分離</h2><p>Internet Explorer 7 以前のバージョンではプロセス iexplore.exe が一つだけ起動し Web ページの処理などを行っていました。<br>しかしながら、このプロセス モデルの場合、閲覧中の Web ページのどれかで問題が生じた場合、ほかの Web ページへの閲覧にも影響が生じていました。<br>例えば、何等かの問題によりプロセスがクラッシュしてしまう状況の場合、すべての Web ページが閉じられてしまいます。</p>
+<p>ユーザビリティを考慮した場合このような動作は好ましいものではないため、Internet Explorer 8 以降のバージョンでは、新しく <strong>Loosely-Coupled IE (LCIE)</strong> という新しいプロセス モデルを採用しています。<br>このモデルの下では、各タブ ウィンドウをホストする UI フレーム ウィンドウ (ウィンドウのアドレス バーやお気に入りバーが表示されている部分) と Web ページを実際に表示するタブ ウィンドウとが、別々のプロセス (プロセスとしてはいずれも iexplore.exe です) として動作します。</p>
+<p>UI フレーム ウィンドウの役割を持つプロセスを “<strong>マネージャー プロセス</strong>“ (従来は “フレーム プロセス” と呼んでいました)、タブ ウィンドウの役割を持つプロセスを “<strong>コンテンツ プロセス</strong>“ (従来は “タブ プロセス” と呼んでいました) とそれぞれ呼んでいます。<br>一つのマネージャー プロセスに複数のコンテンツ プロセスが子プロセスとして紐づき、動作しています。<br>このような構成とすることにより、ある Web ページで問題が発生した場合でも、問題が発生したコンテンツ プロセスのみを切り離すことにより、影響を最小限に抑えることができます。<br>これによって、ブラウザーとしての信頼性、パフォーマンス、スケーラビリティの向上を図っています。</p>
+<p>なお、コンテンツ プロセスは、使用可能なメモリー量、表示中のタブ数、表示中の整合性レベルなどから総合的に判断をし増減します。<br>このため、任意の Web ページを別ウィンドウで表示する場合に、新しくコンテンツ プロセスが起動することもあれば、既存のコンテンツ プロセス内で処理が行われる場合もあります。</p>
+<h3 id="プロセスのビット数"><a href="#プロセスのビット数" class="headerlink" title="プロセスのビット数"></a>プロセスのビット数</h3><p>Internet Explorer 8 および 9 では 32 ビット版と 64 ビット版が明確に分かれていたため、64 ビット OS には「64 ビット版の Internet Explorer」と「32 ビット版の Internet Explorer」がそれぞれ独立していました。<br>しかしながら Internet Explorer 10 以降では 32 ビット版と 64 ビット版は区別されなくなりました。<br>マネージャー プロセスは常に 64 ビット プロセスとして動作し、コンテンツ プロセスは 32 ビット プロセス (例外あり) として動作するよう変更されています。</p>
+<p>なお、32 ビット OS 環境の場合、いずれのプロセスも 32 ビット プロセスとして動作します。<br>また、64 ビット OS 環境の場合、マネージャー プロセスを 32 ビット プロセスとして動作させる方法はありません。</p>
+<blockquote>
+<p>参考資料 (2019 年 12 月 17 日現在記事が存在することを確認しています)</p>
+<p>IE8 and Loosely-Coupled IE (LCIE)<br><a href="https://blogs.msdn.microsoft.com/ie/2008/03/11/ie8-and-loosely-coupled-ie-lcie/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/ie/2008/03/11/ie8-and-loosely-coupled-ie-lcie/</a></p>
+<p>Opening a New Tab may launch a New Process with Internet Explorer 8.0<br><a href="https://blogs.msdn.microsoft.com/askie/2009/03/09/opening-a-new-tab-may-launch-a-new-process-with-internet-explorer-8-0/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/askie/2009/03/09/opening-a-new-tab-may-launch-a-new-process-with-internet-explorer-8-0/</a></p>
+</blockquote>
+<h2 id="LCIE-を制御するレジストリ値"><a href="#LCIE-を制御するレジストリ値" class="headerlink" title="LCIE を制御するレジストリ値"></a>LCIE を制御するレジストリ値</h2><p>最近はお問い合わせをいただくことは少なくなりましたが、過去にはこの機能の影響により、ブラウザー ヘルパー オブジェクト (BHO) や ActiveX などのアドオンに影響が生じることがありました。<br>LCIE は下記のレジストリ値やグループ ポリシーを設定することにより無効にすることができるため、このような状況の場合にはお試しください。</p>
+<blockquote>
+<p>キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main<br>名前：TabProcGrowth<br>種類：REG_DWORD<br>値：0<br>※ 既定では存在しません</p>
+</blockquote>
+<blockquote>
+<p>[ユーザーの構成] または [コンピューターの構成]<br> + [管理用テンプレート]<br> + [Windows コンポーネント]<br> + [Internet Explorer]<br>   - [タブ プロセスの増加率を設定] を “有効” に設定し、増加率に 0 を指定します。</p>
+</blockquote>
+<h4 id="※-影響範囲-※"><a href="#※-影響範囲-※" class="headerlink" title="※ 影響範囲 ※"></a>※ 影響範囲 ※</h4><p>上記のいずれかの方法で LCIE 機能を無効化すると、マネージャー プロセスのみで動作するようになります。<br>この結果、Internet Explorer 7 以前と同様に単一のプロセスで動作するようになります。<br>しかしながら、64 ビット OS 環境の場合は常に 64 ビット プロセスとして動作するようになるため、32 ビットにのみ対応した BHO や ActiveX などは利用することができません。</p>
+<p>また、LCIE 機能を無効にすることにより、保護モードや拡張保護モード機能が無効となるためセキュリティが低下します。<br>さらに、ここでは詳しく触れませんが、クラッシュ回復機能やハング回復機能といった信頼性を向上させるための仕組みも同様に無効化されます。</p>
+<p>このように、LCIE の無効化はデメリットの方が多いため、無効化しない状態での利用をお勧めします。</p>
+<blockquote>
+<p>32-bit browser applications may not work as expected in Internet Explorer 10<br><a href="https://support.microsoft.com/en-us/help/2716529/32-bit-browser-applications-may-not-work-as-expected-in-internet-explo" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/2716529/32-bit-browser-applications-may-not-work-as-expected-in-internet-explo</a></p>
+</blockquote>
+<h2 id="セッション共有"><a href="#セッション共有" class="headerlink" title="セッション共有"></a>セッション共有</h2><p>LCIE 機能がもたらす機能の一つとして、フレーム マージによる “セッション” (資格情報、非永続的な Cookie) の共有があります。</p>
+<p>従来の Internet Explorer では、異なるプロセスとして iexplore.exe が起動するとそれぞれが独立して動作するため、”セッション” は共有されませんでした。<br>LCIE 機能が有効な Internet Explorer 8 以降では、すでに起動済みの Internet Explorer が存在している場合にはその起動済みの Internet Explorer にマージされて動作します。<br>したがって “セッション” も共有されるため、例えば、すでにログオン済みなのに再度ログオンを求められる・・・というようなことがなくなり、利便性が向上しています。</p>
+<p>ただ、このような動作が問題となる場合もあります。<br>下記のいずれかの方法で、セッションを共有しない状態で Internet Explorer を起動することができます。<br>何等かの問題が発生した場合にはお試しください。</p>
+<h3 id="方法-1-noframemerging-オプションを指定する"><a href="#方法-1-noframemerging-オプションを指定する" class="headerlink" title="方法 1) -noframemerging オプションを指定する"></a>方法 1) -noframemerging オプションを指定する</h3><p>[ファイル名を指定して実行] (Windows キー + R キー) などから iexplore.exe -noframemerging を実行することで、明示的にセッションを共有しない状態で起動することができます。</p>
+<blockquote>
+<p>Internet Explorer Setup command-line options and return codes<br><a href="https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/internet-explorer/ie11-ieak/ie-setup-command-line-options-and-return-codes</a></p>
+</blockquote>
+<h3 id="方法-2-FrameMarging-のレジストリ値を設定しフレーム-マージを無効にする"><a href="#方法-2-FrameMarging-のレジストリ値を設定しフレーム-マージを無効にする" class="headerlink" title="方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする"></a>方法 2) FrameMarging のレジストリ値を設定しフレーム マージを無効にする</h3><blockquote>
+<p>キー：HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main<br>名前：FrameMerging<br>種類：REG_DWORD<br>値：0<br>※ 既定では存在しません</p>
+</blockquote>
+<blockquote>
+<p>Session management within Internet Explorer 8.0<br><a href="https://blogs.msdn.microsoft.com/askie/2009/05/08/session-management-within-internet-explorer-8-0/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/askie/2009/05/08/session-management-within-internet-explorer-8-0/</a></p>
+</blockquote>
+<p>今日の記事はここまで！<br>いかがでしたでしょうか。改めて Internet Explorer のプロセス モデルを理解するきっかけになりましたら幸いです。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/process-model.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../protected-mode/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          保護モードと拡張保護モード
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../azure-bot-service/ip-limitation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Bot Service の IP 制限について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../Deploy-Edge/">新しい Microsoft Edge の展開について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection2/">IIS の調査に必要な通信系のログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection1/">IIS の調査に必要な基本的なログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../New-Edge-via-WU/">Windows Update による新しい Microsoft Edge の配信について</a>
+          </li>
+        
+          <li>
+            <a href="../new-microsoft-edge/">新しい Microsoft Edge 向け Blog 始めました</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">3</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 20px;">Azure Bot Service</a> <a href="../../tags/C/" style="font-size: 10px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 20px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 15px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 15px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 20px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

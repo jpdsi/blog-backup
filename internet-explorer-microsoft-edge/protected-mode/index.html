@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>保護モードと拡張保護モード | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。元の記事の最新の更新情報については、本内容をご参照ください。  こんにちは。今回は Internet Explorer の保護モードって何だっけ？拡張保護モードって何だっけ？という点について改めてご紹介いたします。 そもそも保護モードおよび拡張保護モードはなぜ必要なの？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="保護モードと拡張保護モード">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;protected-mode&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。元の記事の最新の更新情報については、本内容をご参照ください。  こんにちは。今回は Internet Explorer の保護モードって何だっけ？拡張保護モードって何だっけ？という点について改めてご紹介いたします。 そもそも保護モードおよび拡張保護モードはなぜ必要なの？">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;protected-mode&#x2F;protected-mode.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;protected-mode&#x2F;enhanced-protected-mode.png">
+<meta property="article:published_time" content="2019-12-18T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-22T22:15:40.150Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="保護モード">
+<meta property="article:tag" content="拡張保護モード">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;protected-mode&#x2F;protected-mode.png">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/protected-mode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      保護モードと拡張保護モード
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2019-12-18T15:00:00.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+bae5d456-d21d-54c1-b994-312998f24840%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A8%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2Fprotected-mode%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2Fprotected-mode.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2Fprotected-mode.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/" data-id="ck5pv94as000bz0vl5klh8zuq" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本記事は Technet Blog の更新停止に伴い、もともとばらばらに存在していた記事を一つのブログに集約／移行したものです。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p>
+</blockquote>
+<p>こんにちは。<br>今回は Internet Explorer の保護モードって何だっけ？拡張保護モードって何だっけ？という点について改めてご紹介いたします。</p>
+<h2 id="そもそも保護モードおよび拡張保護モードはなぜ必要なの？"><a href="#そもそも保護モードおよび拡張保護モードはなぜ必要なの？" class="headerlink" title="そもそも保護モードおよび拡張保護モードはなぜ必要なの？"></a>そもそも保護モードおよび拡張保護モードはなぜ必要なの？</h2><p>保護モードの登場は、日々進化したインターネット ビジネスと日々深刻なってくるセキュリティ保護の重要性と深い関係があります。</p>
+<p>Windows XP / 2003 以前の OS はログインしたユーザーが起動したプロセスなら、プロセス内にそのユーザーの権限をフルに使うことができました。<br>管理者権限でログインして、インターネット サーフィンをするときどうなるかを想像してみたことがありますか？<br>Internet Explorer を立ち上げて、管理者権限でプロセス (iexplore.exe) が起動されて、その中で Web ページが動いています。<br>ページ内の ActiveX コントロールなどの実行を許可してしまうと、管理者権限でプロセスが動作しているため何の制限もなく自由にローカル ファイルなどへのアクセスができてしまいます。<br>今となってはとても恐ろしい状態と言えます。</p>
+<p>そこで Windows Vista で OS レベルでプロセス整合性レベルという新機能が登場しました。<br>この機能のおかげでユーザーの権限を一部だけ許可できるようになり、Internet Explorer もこの機能を活用することで安全性を向上させる機能が登場しました。<br>この機能こそが「保護モード」です。</p>
+<p>「保護モード」が有効である場合、整合性レベルが低いプロセスで動かすことにより、危険性が高いサイトを閲覧したとしてもセキュリティ上のリスクを軽減することができるようになりました。</p>
+<p>更に Windows 8 での Windows ストア アプリケーションの登場により、同じく整合性レベルが低いプロセスでも、更なる厳しい権限制限やデーターアクセスの分離の必要性が生じ AppContainer というさらに低い整合性レベルが追加されました。<br>Internet Explorer もこの追加された権限を利用し、従来よりもさらに安全性を向上させる機能が登場しました。<br>この機能こそが「拡張保護モード」です。</p>
+<p>保護モード、拡張保護モードについて詳しく紹介していきます。</p>
+<h2 id="保護モードとは？"><a href="#保護モードとは？" class="headerlink" title="保護モードとは？"></a>保護モードとは？</h2><p>保護モードが最初に登場したのは、Windows Vista 上の Internet Explorer 7 です。<br>下記のように、インターネット オプションで各ゾーンのセキュリティ設定を行うタブに [保護モードを有効にする] というオプションが追加されました。</p>
+<img src="/blog/internet-explorer-microsoft-edge/protected-mode/protected-mode.png" class="">
+
+<h4 id="保護モードの既定値"><a href="#保護モードの既定値" class="headerlink" title="保護モードの既定値:"></a>保護モードの既定値:</h4><table>
+<thead>
+<tr>
+<th align="center">インターネット</th>
+<th align="center">ローカル イントラネット</th>
+<th align="center">信頼済みサイト</th>
+<th align="center">制限付きサイト</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">有効</td>
+<td align="center">無効</td>
+<td align="center">無効</td>
+<td align="center">有効</td>
+</tr>
+</tbody></table>
+<h4 id="保護モードの本質"><a href="#保護モードの本質" class="headerlink" title="保護モードの本質:"></a>保護モードの本質:</h4><p>保護モードは、Windows OS のプロセス整合性モデル (Integrity Level、以下 IL) を利用したセキュリティを強化するための機能です。</p>
+<p>IL とは簡単に言うと、OS 上のプロセスを [高] (High) - [中] (Medium) - [低] (Low) の三段階でレベル付けし、レベルが高ければ高いほど OS での読み込み・書き込み権限が強い、低ければ低いほど権限が弱いという仕組みです。<br>Internet Explorer は保護モードが有効のサイトを表示する際時は IL が [低] のプロセス (コンテンツ プロセス) で処理し、保護モードが無効のサイトは IL が [中] のプロセス (コンテンツ プロセス) で処理します。<br>こうして、インターネット上のサイトを権限の低いプロセスでホストして、仮にサイト内に OS への意図しない箇所への書き込みもしくは読み込み処理が実装されていても、この操作は権限制限によって失敗するため悪意のあるサイトから OS のデータを保護できます。</p>
+<h4 id="保護モードが効かないパターン"><a href="#保護モードが効かないパターン" class="headerlink" title="保護モードが効かないパターン:"></a>保護モードが効かないパターン:</h4><p>この IL という仕組みは、ユーザー アカウント制御 (UAC) を前提としているため、この機能が有効である OS でのみ対応しています。<br>以下のシナリオで起動した Internet Explorer は IL=Low とならないため保護モードは実質無効です。</p>
+<ul>
+<li>OS の UAC 機能を無効に設定している場合 (IL=High)</li>
+<li>ビルトインの管理者 (ユーザー名: Administrator) でログオンした場合 (IL=High)</li>
+<li>Internet Explorer を右クリックして [管理者として起動] で起動する場合 (IL=High)</li>
+<li>Internet Explorer の LCIE プロセス モデルを無効 (TabProcGrowth=0) にした場合 (IL=Medium)</li>
+</ul>
+<h2 id="拡張保護モードとは？"><a href="#拡張保護モードとは？" class="headerlink" title="拡張保護モードとは？"></a>拡張保護モードとは？</h2><p>Windows 8 以降 [低] よりも権限が制限された IL レベル:  AppContainer が追加されました。<br>この AppContainer は Windows ストア アプリケーション (Windows 8 でタイル状のアイコンから起動するアプリケーション) が動作するセキュリティ基盤となります。<br>Windows 10 における ユニバーサル Windows プラットフォーム (UWP) アプリケーションも同様です。</p>
+<p>Internet Explorer においてもこの新しい IL レベルに対応する機能が追加されました。<br>これが [拡張保護モード] であり、Windows 8 上の Internet Explorer 10 で初めて実装されました。</p>
+<h4 id="拡張保護モードの設定箇所"><a href="#拡張保護モードの設定箇所" class="headerlink" title="拡張保護モードの設定箇所:"></a>拡張保護モードの設定箇所:</h4><p>Windows 8.1 に実装されているモダン UI 版の Internet Explorer (タイル アイコンから起動する Internet Explorer) は常に拡張保護モードが有効です。<br>モダン UI 版においては設定変更することはできません。</p>
+<p>Windows 10 などのデスクトップで利用する Internet Explorer は、インターネット オプションの [詳細設定] タブで設定が可能です。</p>
+<img src="/blog/internet-explorer-microsoft-edge/protected-mode/enhanced-protected-mode.png" class="">
+
+<p>上記を見てお気付きかと思いますが、64 ビット OS 環境においては [拡張保護モードで 64 ビット プロセッサを有効にする] という項目が追加されています。<br>この設定は、拡張保護モードが有効である場合に、コンテンツ プロセスを 64 ビットにするかどうかを設定する項目です。<br>Internet Explorer のプロセス モデルの投稿で “例外” と記載した点はこの項目が関係します。</p>
+<p>なお、この項目は Internet Explorer 11 で新たに追加された項目です。<br>はじめて拡張保護モードに対応した Internet Explorer 10 では拡張保護モードを有効にすると、必ずコンテンツ プロセスも 64 ビットで動作します。<br>Internet Explorer 11 ではコンテンツ プロセスのビット数をユーザーが自由に選択できるようにするために本項目が追加されました。</p>
+<h4 id="拡張保護モードの既定値"><a href="#拡張保護モードの既定値" class="headerlink" title="拡張保護モードの既定値:"></a>拡張保護モードの既定値:</h4><p>Internet Explorer 11 がサポートされているクライアント OS / サーバー OS いずれの環境においても両項目とも無効化されています。</p>
+<ul>
+<li>拡張保護モードを有効にする</li>
+<li>拡張保護モードで 64 ビット プロセッサを有効にする</li>
+</ul>
+<p>Internet Explorer 11 をサポートしている環境は下記のとおりです。</p>
+<blockquote>
+<p>クライアント OS : Windows 7 / Windows 8.1 / Windows 10<br>サーバー OS : Windows Server 2008 R2 / Windows Server 2012 / Windows Server 2012 R2 / Windows Server 2016 / Windows Server 2019</p>
+</blockquote>
+<h5 id="補足-Windows-Server-2012-と-OS-のビット数について"><a href="#補足-Windows-Server-2012-と-OS-のビット数について" class="headerlink" title="補足 : Windows Server 2012 と OS のビット数について"></a>補足 : Windows Server 2012 と OS のビット数について</h5><p>Windows Server 2012 は、2020 年 1 月より Internet Explorer 11 のみがサポートされます。<br>“拡張保護モードで 64 ビット プロセッサを有効にする” の設定項目は、Windows 8.1 / Windows Server 2012 以降の 64 ビット OS 環境のみ存在します。</p>
+<h4 id="拡張保護モードの本質"><a href="#拡張保護モードの本質" class="headerlink" title="拡張保護モードの本質:"></a>拡張保護モードの本質:</h4><p>まず拡張保護モードは、保護モードが有効であることを前提としています。<br>このため、保護モードが無効な状態の場合や保護モードが効かないパターンに記載したような方法で Internet Explorer を起動した場合は、拡張保護モードも無効です。</p>
+<p>保護モードかつ拡張保護モードのいずれも有効である場合、IL は [Low] よりも低い [AppContainer] でコンテンツ プロセスが動作します。<br>したがって、[Low] よりもさらに厳しい制限のもとでプロセスが動作するため、従来の保護モードよりも安全性が向上しています。</p>
+<h4 id="整合性レベル-IL-とコンテンツ-プロセスのビット数"><a href="#整合性レベル-IL-とコンテンツ-プロセスのビット数" class="headerlink" title="整合性レベル (IL) とコンテンツ プロセスのビット数:"></a>整合性レベル (IL) とコンテンツ プロセスのビット数:</h4><p>コンテンツ プロセスの整合性レベル (IL) は、閲覧対象のサイトがどのゾーンに含まれるか、そのゾーンにおいて保護モードが有効となっているか、がまずは影響します。<br>保護モードが有効となっている状態で、かつ、”拡張保護モードを有効にする” が有効となっている場合のみ、コンテンツ プロセスの IL が AppContainer となります。<br>いずれか条件に合致しない場合にはコンテンツ プロセスの IL は Low もしくは Medium となります。</p>
+<p>“拡張保護モードで 64 ビット プロセッサを有効にする” が有効となっている場合のみ、コンテンツ プロセスのビット数が 64 ビットとなります。<br>下記の場合にはコンテンツ プロセスのビット数は 32 ビットです。</p>
+<ul>
+<li>本設定項目が無効となっている場合</li>
+<li>32 ビット OS 環境の場合 (本設定項目がそもそも存在しない)</li>
+</ul>
+<h5 id="補足-Windows-7-および-Windows-Server-2008-R2-について"><a href="#補足-Windows-7-および-Windows-Server-2008-R2-について" class="headerlink" title="補足 : Windows 7 および Windows Server 2008 R2 について"></a>補足 : Windows 7 および Windows Server 2008 R2 について</h5><p>Windows 7 や Windows Server 2008 R2 の場合は、Windows OS 自体が AppContainer の IL に非対応です。<br>拡張保護モードを有効としても IL は AppContainer にはならず Low のままとなるため、64 ビット OS の場合にはコンテンツ プロセスのビット数を 64 ビットとして動作させることで、拡張保護モードに一部対応しています。<br>32 ビット OS (Windows 7) の場合には、プロセス自体を 64 ビットとすることができないため拡張保護モード自体に対応しておらず設定項目も存在しません。</p>
+<p>上記をまとめると下記のとおりです。</p>
+<h6 id="64-ビット-OS-環境の場合"><a href="#64-ビット-OS-環境の場合" class="headerlink" title="64 ビット OS 環境の場合"></a>64 ビット OS 環境の場合</h6><table>
+  <tr><th>&nbsp;</th><th>保護モード</th><th>拡張保護モードを<br/>有効にする</th><th>拡張保護モードで<br/>64 ビット プロセッサを<br/>有効にする</th><th>結果</th></tr>
+  <tr><td rowspan="3">Windows 7<br/>および<br/>Windows Server 2008 R2</td><td rowspan="2">有効</td><td>有効</td><td>(項目なし)</td><td>Low<br/>64 ビット</td></tr>
+  <tr><td>無効</td><td>(項目なし)</td><td>Low<br/>32 ビット</td></tr>
+  <tr><td>無効</td><td>―</td><td>(項目なし)</td><td>Medium<br/>32 ビット</td></tr>
+  <tr><td rowspan="5">Windows 8.1 以降<br/>および<br/>Windows Server 2012 以降</td><td rowspan="4">有効</td><td rowspan="2">有効</td><td>有効</td><td>AppContainer<br/>64 ビット</td></tr>
+  <tr><td>無効</td><td>AppContainer<br/>32 ビット</td></tr>
+  <tr><td rowspan="2">無効</td><td>有効</td><td>Low<br/>64 ビット</td></tr>
+  <tr><td>無効</td><td>Low<br/>32 ビット</td></tr>
+  <tr><td>無効</td><td>―</td><td>―</td><td>Medium<br/>32 ビット</td></tr>
+</table>
+
+<h6 id="32-ビット-OS-環境の場合-32-ビット版のサーバー-OS-は存在しません"><a href="#32-ビット-OS-環境の場合-32-ビット版のサーバー-OS-は存在しません" class="headerlink" title="32 ビット OS 環境の場合 (32 ビット版のサーバー OS は存在しません)"></a>32 ビット OS 環境の場合 (32 ビット版のサーバー OS は存在しません)</h6><table>
+  <tr><th>&nbsp;</th><th>保護モード</th><th>拡張保護モードを有効にする</th><th>結果</th></tr>
+  <tr><td rowspan="2">Windows 7</td><td>有効</td><td>(項目なし)</td><td>Low<br/>32 ビット</td></tr>
+  <tr><td>無効</td><td>(項目なし)</td><td>Medium<br/>32 ビット</td></tr>
+  <tr><td rowspan="3">Windows 8.1 以降</td><td rowspan="2">有効</td><td>有効</td><td>AppContainer<br/>32 ビット</td></tr>
+  <tr><td>無効</td><td>Low<br/>32 ビット</td></tr>
+  <tr><td>無効</td><td>―</td><td>Medium<br/>32 ビット</td></tr>
+</table>
+
+<h4 id="拡張保護モードが効かないパターン"><a href="#拡張保護モードが効かないパターン" class="headerlink" title="拡張保護モードが効かないパターン:"></a>拡張保護モードが効かないパターン:</h4><p>重複しますが、保護モード機能が無効な場合は拡張保護モードも無効となります。<br>したがって、”保護モードが効かないパターン” に記載の条件下においては拡張保護モードも無効となります。<br>また、Windows 7 および Windows Server 2008 R2 環境においては、コンテンツ プロセスのビット数が変化するだけで本物の「拡張保護モードではない」ことも念頭においてください。</p>
+<h4 id="拡張保護モード時の注意点"><a href="#拡張保護モード時の注意点" class="headerlink" title="拡張保護モード時の注意点:"></a>拡張保護モード時の注意点:</h4><p>拡張保護モードが有効に動作している場合、当該 Web ページ上で ActiveX コントロールが利用されている場合は注意が必要です。<br>拡張保護モードが有効である場合、上述のとおり IL=AppContainer で動作しますが、ActiveX 自体が AppContainer 内で動作できるようにデザインされている必要があります。<br>下記の資料を参考に AppContainer で動作できるようにご対応をご検討ください。</p>
+<blockquote>
+<p>Supporting enhanced protected mode (EPM)<br><a href="https://docs.microsoft.com/ja-jp/previous-versions/windows/internet-explorer/ie-developer/compatibility/dn519894(v%3dvs.85)" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/previous-versions/windows/internet-explorer/ie-developer/compatibility/dn519894(v%3dvs.85)</a></p>
+</blockquote>
+<p>長文となりましたがいかがでしたでしょうか。<br>上述の内容が少しでもお役に立ちましたら幸いです。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/protected-mode.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../web-apps/aspdotnet-samesitecookie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          ASP.NET における SameSite Cookie について
+        
+      </div>
+    </a>
+  
+  
+    <a href="../process-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Internet Explorer のプロセス モデル</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../Deploy-Edge/">新しい Microsoft Edge の展開について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection2/">IIS の調査に必要な通信系のログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection1/">IIS の調査に必要な基本的なログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../New-Edge-via-WU/">Windows Update による新しい Microsoft Edge の配信について</a>
+          </li>
+        
+          <li>
+            <a href="../new-microsoft-edge/">新しい Microsoft Edge 向け Blog 始めました</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">3</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 20px;">Azure Bot Service</a> <a href="../../tags/C/" style="font-size: 10px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 20px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 15px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 15px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 20px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

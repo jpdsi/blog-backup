@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>FAQ ボット アプリケーションの作成方法 (C#) | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="質問と回答を登録、検索するサービスである QnA Maker、ユーザーとの会話を行うボットアプリと実行基盤である Bot Service を使って、FQA ボットアプリを作成する方法です。環境構築、QnA Maker のリソース作成、Bot Service のリソース作成を行い、最後に Azure 上に公開するところまでおまとめしています。   環境構築以下の記事に沿って Visual Studi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FAQ ボット アプリケーションの作成方法 (C#)">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;how-to-create-faq-bot&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="質問と回答を登録、検索するサービスである QnA Maker、ユーザーとの会話を行うボットアプリと実行基盤である Bot Service を使って、FQA ボットアプリを作成する方法です。環境構築、QnA Maker のリソース作成、Bot Service のリソース作成を行い、最後に Azure 上に公開するところまでおまとめしています。   環境構築以下の記事に沿って Visual Studi">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;how-to-create-faq-bot&#x2F;how-to-create-faq-bot-1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;how-to-create-faq-bot&#x2F;how-to-create-faq-bot-2.png">
+<meta property="article:published_time" content="2019-12-25T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-22T22:15:39.790Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Azure Bot Service">
+<meta property="article:tag" content="QnA Maker">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="作成方法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;how-to-create-faq-bot&#x2F;how-to-create-faq-bot-1.png">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-azure-bot-service/how-to-create-faq-bot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FAQ ボット アプリケーションの作成方法 (C#)
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2019-12-25T15:00:00.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+c5beb9be-67ee-5c1d-b7dd-ed4c3fa62aef%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BFAQ+%E3%83%9C%E3%83%83%E3%83%88+%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95+%28C%23%29%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fazure-bot-service%2Fhow-to-create-faq-bot%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Fazure-bot-service%2Fhow-to-create-faq-bot.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Fazure-bot-service%2Fhow-to-create-faq-bot.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/azure-bot-service/how-to-create-faq-bot/" data-id="ck5pv94a00001z0vl1gp06mvp" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>質問と回答を登録、検索するサービスである QnA Maker、ユーザーとの会話を行うボットアプリと実行基盤である Bot Service を使って、FQA ボットアプリを作成する方法です。<br>環境構築、QnA Maker のリソース作成、Bot Service のリソース作成を行い、最後に Azure 上に公開するところまでおまとめしています。</p>
+<img src="/blog/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-1.png" class="">
+
+<h2 id="環境構築"><a href="#環境構築" class="headerlink" title="環境構築"></a>環境構築</h2><p>以下の記事に沿って Visual Studio Code + C# 拡張機能 (または Visual Studio 2017 以降)、.NET Core SDK (最新)、Bot Framework Emulator をインストールします。</p>
+<blockquote>
+<p>(Visual Studio Code) C# および Visual Studio Code の使用を開始する<br><a href="https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code</a></p>
+<p>(Visual Studio 2017 以降) チュートリアル:基本的なボットを作成してデプロイする<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp</a></p>
+<p>Bot Framework Emulator<br><a href="https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md" target="_blank" rel="noopener">https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md</a></p>
+</blockquote>
+<h2 id="サンプルを作成して-Azure-上に公開するまでの流れ"><a href="#サンプルを作成して-Azure-上に公開するまでの流れ" class="headerlink" title="サンプルを作成して Azure 上に公開するまでの流れ"></a>サンプルを作成して Azure 上に公開するまでの流れ</h2><ol>
+<li><p>QnA Maker のリソースを作成し、任意の Question、Answer を登録します。<br>チュートリアル:QnA Maker ポータルでナレッジ ベースを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-publish-query-in-portal" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-publish-query-in-portal</a></p>
+</li>
+<li><p>以下のチュートリアルに沿って QnA Maker ポータルより Knowledge Base を作成し、それを利用するボットを Azure ポータルより作成します。<br>チュートリアル:Azure Bot Service v4 を使用して QnA ボットを作成する<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-qna-bot" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/tutorials/create-qna-bot</a></p>
+</li>
+<li><p>作成した Web App Bot の “ビルド” より zip ファイルでソースコードをダウンロードし、Visual Studio Code または Visual Studio でソースコードをお好みに合わせて編集します。<br>(Visual Studio Code) C# および Visual Studio Code の使用を開始する<br><a href="https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/dotnet/core/tutorials/with-visual-studio-code</a><br>(Visual Studio 2017 以降) チュートリアル:基本的なボットを作成してデプロイする<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-builder-tutorial-basic-deploy?view=azure-bot-service-4.0&amp;tabs=csharp</a></p>
+</li>
+<li><p>Bot Framework Emulator でローカルデバッグします。<br>Bot Framework Samples<br><a href="https://github.com/microsoft/BotBuilder-Samples" target="_blank" rel="noopener">https://github.com/microsoft/BotBuilder-Samples</a></p>
+</li>
+<li><p>Azure 上に公開します。<br>(Visual Studio Code) Visual Studio Code で ASP.NET Core アプリを Azure に公開する<br><a href="https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1</a><br>(Visual Studio 2017 以降) Visual Studio を使用して Azure App Service に Web アプリを発行する<br><a href="https://docs.microsoft.com/ja-jp/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019</a></p>
+</li>
+<li><p>Web App Bot の “チャネル” より、ブラウザー (Web チャット) や LINE、Microsoft Teams で利用できるよう設定ができます。<br>ボットを Web チャットに接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0</a><br>ボットを LINE に接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-line?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-channel-connect-line?view=azure-bot-service-4.0</a><br>ボットを Teams に接続する<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0</a></p>
+</li>
+</ol>
+<h2 id="ご参考"><a href="#ご参考" class="headerlink" title="ご参考"></a>ご参考</h2><p>サンプルではユーザーからの質問に複数該当しそうな QnA Maker の回答 (Question と Answer のペア) がある場合には、以下の画像のように近い内容の質問を複数選択肢で提示します。</p>
+<img src="/blog/azure-bot-service/how-to-create-faq-bot/how-to-create-faq-bot-2.png" class="">
+
+<p>この仕組みは QnA Maker にて表示する Confidence Score を元にしています。<br>Dialog\QnAMakerBaseDialog.cs にはボットアプリが QnA Maker に問い合わせをしたときに回答 (Question と Answer のペア) として受け取る最少スコア (ScoreTheashold)、回答の数 (Top) が指定されています。<br>サンプルの例では Confidence Score が 10 以上の QA ペアを 3 つ受け取るよう指定されていますので、値を変更することで複数選択肢の表示を調整することができます。</p>
+<figure class="highlight c#"><figcaption><span>Dialog\QnAMakerBaseDialog.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> <span class="keyword">float</span> DefaultThreshold = <span class="number">0.1F</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> <span class="keyword">int</span> DefaultTopN = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>QnA Maker ナレッジ ベースの信頼度スコア<br><a href="https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/concepts/confidence-score" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/cognitive-services/qnamaker/concepts/confidence-score</a></p>
+</blockquote>
+<p>以上です。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/azure-bot-service/how-to-create-faq-bot.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../internet-explorer-microsoft-edge/new-microsoft-edge/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          新しい Microsoft Edge 向け Blog 始めました
+        
+      </div>
+    </a>
+  
+  
+    <a href="../bot-monitoring/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Bot Service の監視</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/Deploy-Edge/">新しい Microsoft Edge の展開について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection2/">IIS の調査に必要な通信系のログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/LogCollection1/">IIS の調査に必要な基本的なログ情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/New-Edge-via-WU/">Windows Update による新しい Microsoft Edge の配信について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/new-microsoft-edge/">新しい Microsoft Edge 向け Blog 始めました</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">3</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">1</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 20px;">Azure Bot Service</a> <a href="../../tags/C/" style="font-size: 10px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 20px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 15px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 15px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 20px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
