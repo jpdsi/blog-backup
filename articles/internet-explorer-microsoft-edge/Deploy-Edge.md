@@ -10,25 +10,35 @@ tags:
 
 Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版) チャネル ビルド (Microsoft Edge 79 stable) のリリースから一週間が経ちました。
 
-[公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/)にて下記のとおりお伝えしていますが、Windows Update 経由での配信 (※1) までは、[こちらからインストーラーをダウンロード](https://www.microsoft.com/edge) いただく他には、[SCCMで展開](https://docs.microsoft.com/en-us/configmgr/apps/deploy-use/deploy-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json)、[Intuneで展開](https://docs.microsoft.com/en-us/intune/apps/apps-windows-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json) などで新しい Microsoft Edge をご利用いただくことができます。
+[公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/) にて下記の引用のとおりお伝えしていますが、Windows Update 経由での配信 (※1) までは、[こちらからインストーラーをダウンロード](https://www.microsoft.com/edge) いただく他には、[SCCMで展開](https://docs.microsoft.com/en-us/configmgr/apps/deploy-use/deploy-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json) 、[Intuneで展開](https://docs.microsoft.com/en-us/intune/apps/apps-windows-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json) などで新しい Microsoft Edge をご利用いただくことができます。
 
 > 日本のお客様に対しては、確定申告への影響を考慮し、Windows Updateを通じた新しいMicrosoft Edgeの配信は令和２年４月１日以降、順次開始される予定です。
 
 新しい Microsoft Edge のリリース前からも、多くのユーザー、IT Pro のみなさまから、Microsoft Edge についての様々なご質問をいただいております。
-今回はよくお問い合せをいただく内容について QA 形式で紹介しますので、ご参考になるとうれしいです。
+[エンタープライズ環境の Microsoft Edge についてよく寄せられる質問](https://docs.microsoft.com/ja-jp/DeployEdge/faqs-edge-in-the-enterprise) ではすでにいくつかの QA を掲載していますのでご覧ください。
+随時こちらの公式ドキュメントへの追記も進めていきますが、以下に 3 つ QA を載せました。ご参考になるとうれしいです。
 
-Q1:インストーラーが [exe 形式](https://www.microsoft.com/en-us/edge)と [msi 形式](https://www.microsoft.com/en-us/edge/business/download)のふたつがありますが、違いはなんですか？
-A1:
+---
+## Q1:インストーラーが [exe 形式](https://www.microsoft.com/en-us/edge) と [msi 形式](https://www.microsoft.com/en-us/edge/business/download) のふたつがありますが、違いはなんですか？
+<u>Answer</u>
 - exe 形式はインストール時にインターネットからファイルをダウンロードしながらインストールします。
 - msi 形式はインターネット接続は不要なフルパッケージです。インターネット非接続環境などで、組織内の Web サーバーやファイル サーバーに msi パッケージを格納し、組織内の端末に展開するといったシナリオにご利用いただけます。
 - exe 形式はその時点での最新の Stable (安定版) チャネル ビルドがインストールできます。
 - msi 形式は Stable チャネルのほか、Beta チャネル、Dev チャネルのフルパッケージがダウンロードできます。
 
-Q2:古い Microsoft Edge (EdgeHTML) と新しい Microsoft Edge (Chromium ベース) の両方を使いたいときはどうすればいいですか？
-A2:
-["Microsoft Edge でのブラウザーの同時実行エクスペリエンスを許可する" ポリシー](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-sysupdate-access-old-edge)を、**新しい Microsoft Edge のインストール前に** 有効にします。
-もし、
+---
+## Q2:今後の Windows Update での展開に備えて、展開を抑止する構成をしておきたいのですが...
+<u>Answer</u>
+[こちら](https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit) に沿って、**Blocker Toolkit**　をインストールします。
+なお、Blocker Toolkit は Windows Update でのインストールを抑止するものであり、ユーザーによる手動インストールは制御できません。手動でのインストールやインストール後の自動更新の制御をする場合は [更新ポリシー](https://docs.microsoft.com/ja-jp/DeployEdge/microsoft-edge-update-policies) を構成します。
 
+---
+## Q3:古い Microsoft Edge (EdgeHTML) と新しい Microsoft Edge (Chromium ベース) の両方を使いたいときはどうすればいいですか？
+<u>Answer</u>
+[こちら](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-sysupdate-access-old-edge) に沿って、**"Microsoft Edge でのブラウザーの同時実行エクスペリエンスを許可する"** ポリシーを **新しい Microsoft Edge のインストール前に** 有効にします。
+後日、実際の設定の様子について記事を作りたいと思います。
+
+---
 (※1)
 Windows Update による新しい Microsoft Edge の配信に関する [公式の情報](https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit)がありますが、以下に要点を簡単にまとめます。
 
