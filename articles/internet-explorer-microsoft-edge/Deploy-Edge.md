@@ -1,6 +1,6 @@
 ---
 title: 新しい Microsoft Edge の展開について
-date: 2020-01-22
+date: 2020-01-23
 tags: 
   - Microsoft Edge
   - Chromium
