@@ -1,5 +1,5 @@
 ---
-title: IIS の調査に必要なダンプ ファイルの採取について
+title: IIS の調査に必要なダンプ ファイルの採取について(Debug Diagnostic Tool)
 date: 2020-01-27
 tags: 
   - Internet Information Services
