@@ -8,7 +8,7 @@ tags:
 
 こんにちは。
 
-今回は Chromium ベースの新しい Microsoft Edge のアンインストールについて紹介します。<br>
+今回は Chromium ベースの新しい Microsoft Edge のアンインストールについて紹介します。  
 新しい Microsoft Edge をインストーラーを利用してインストールした場合は、以下の手順でアンインストールすることができます。
 
 ## [設定] ページからのアンインストール
@@ -26,8 +26,8 @@ tags:
 
 ![Microsoft Edge のアンインストールの確認](/articles/internet-explorer-microsoft-edge/how-to-uninstall-edge/uninstall-edge-confirmation.png)
 
-新しい Microsoft Edge をアンインストールすると、従来の Microsoft Edge (EdgeHTML) を再び使用できます。<br>
-なお、新しい Microsoft Edge のアンインストールは、<u>Windows Update を通じて Microsoft Edge が提供されるまでの期間に限り</u>可能です。<br>
+新しい Microsoft Edge をアンインストールすると、従来の Microsoft Edge (EdgeHTML) を再び使用できます。  
+なお、Microsoft Edge のアンインストールは、<u>Windows Update を通じて Microsoft Edge が提供されるまでの期間に限り</u>可能です。  
 [公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/) でお伝えしている通り、日本のお客様に対する Windows Update を通じた新しい Microsoft Edge の配信は、令和 2 年 4 月 1 日以降に順次開始される予定です。
 
 > 日本のお客様に対しては、確定申告への影響を考慮し、Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。
