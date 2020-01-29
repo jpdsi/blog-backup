@@ -12,8 +12,9 @@ IIS サポート チームです！
 
 以前、以下の Blog 記事において 4 つの基本的なログ情報について執筆しています。
 
-　IIS の調査に必要な基本的なログ情報について
-　https://github.com/jpdsi/blog/blob/master/articles/web-apps/LogCollection1.md
+  IIS の調査に必要な基本的なログ情報について
+  https://github.com/jpdsi/blog/blob/master/articles/web-apps/LogCollection1.md
+
 
 しかし、問題が FTP に関係する場合には、実は上記とは異なる以下のログの採取が必要となります。
 
