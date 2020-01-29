@@ -13,7 +13,7 @@ IIS サポート チームです！
 以前、IIS 上でのトラブル シューティングに役立つ 4 つのログの採取方法について以下の記事を書いてますが、現象の性質によってはこの 4 つのログ + α で調査の前進が見込まれるログがございます。
 
 　IIS の調査に必要な基本的なログ情報について
-　https://github.com/jpdsi/blog/blob/master/articles/web-apps/LogCollection1.md
+　https://jpdsi.github.io/blog/web-apps/LogCollection1/
 
 今回は、IIS の通信に関する現象の調査に役立つログをご紹介いたします。
  
