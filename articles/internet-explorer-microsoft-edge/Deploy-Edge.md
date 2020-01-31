@@ -36,7 +36,7 @@ Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版)
 ## Q3:古い Microsoft Edge (EdgeHTML) と新しい Microsoft Edge (Chromium ベース) の両方を使いたいときはどうすればいいですか？
 <u>Answer</u>
 [こちら](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-sysupdate-access-old-edge) に沿って、**"Microsoft Edge でのブラウザーの同時実行エクスペリエンスを許可する"** ポリシーを **新しい Microsoft Edge のインストール前に** 有効にします。
-後日、実際の設定の様子について記事を作りたいと思います。
+[実際の設定の様子についての記事](https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/side-by-side/) もぜひご覧ください。
 
 ---
 (※1)
