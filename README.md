@@ -24,6 +24,7 @@
 - [新しい Microsoft Edge 向け Blog 始めました](./articles/internet-explorer-microsoft-edge/new-microsoft-edge.md)
 - [Windows Update による新しい Microsoft Edge の配信について](./articles/internet-explorer-microsoft-edge/New-Edge-via-WU.md)
 - [新しい Microsoft Edge の展開について](./articles/internet-explorer-microsoft-edge/Deploy-Edge.md)
+- [Internet Explorer および Microsoft Edge での Flash の今後の対応について](./articles/internet-explorer-microsoft-edge/flash.md)
 
 ## その他
 <!--
