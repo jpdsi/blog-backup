@@ -6,6 +6,10 @@ tags:
   - Chromium
 ---
 
+(更新履歴)
+2020/02/10 Q4 を追加しました。
+
+---
 こんにちは。
 
 Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版) チャネル ビルド (Microsoft Edge 79 stable) のリリースから一週間が経ちました。
@@ -37,6 +41,16 @@ Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版)
 <u>Answer</u>
 [こちら](https://docs.microsoft.com/en-us/deployedge/microsoft-edge-sysupdate-access-old-edge) に沿って、**"Microsoft Edge でのブラウザーの同時実行エクスペリエンスを許可する"** ポリシーを **新しい Microsoft Edge のインストール前に** 有効にします。
 [実際の設定の様子についての記事](https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/side-by-side/) もぜひご覧ください。
+
+---
+## Q4:新しい Microsoft Edge (Chromium ベース) にブックマークなどは引き継がれますか？
+<u>Answer</u>
+はい。[公式ドキュメント](https://docs.microsoft.com/ja-jp/DeployEdge/faqs-edge-in-the-enterprise) に以下の記載がありますが、ブックマークなどを引き継ぐことができます。
+
+> 現時点では、Microsoft Edge では、Microsoft Edge、Chrome、Internet Explorer、Firefox (Win10) の既存のインストールからのインポートがサポートされています。 インポートでは、ブックマーク、履歴、パスワード、オートフィル (支払い、住所、汎用フォーム) の設定がサポートされています。 インポートは、最初の実行エクスペリエンスで実行するか、ブラウザーの設定を使用して実行するかを選択できます。
+
+なお「最初の実行エクスペリエンス (First-run Experience)」は随時改善を重ねておりますので、今後のバージョンアップで動作が変わる可能性はあります。
+また、現時点では古い Edge で保持していた Cookie は、自動的に新しい Edge に移行されます。
 
 ---
 (※1)
