@@ -9,7 +9,7 @@
     "test": "npx textlint ./articles/**/*.md"
   },
   "hexo": {
-    "version": "4.1.1"
+    "version": "4.2.0"
   },
   "dependencies": {
     "del": "^4.1.1",
@@ -30,6 +30,7 @@
     "hexo-renderer-marked": "^2.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
+    "npm": "^6.14.0",
     "textlint": "^11.2.5",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-filter-rule-whitelist": "^2.0.0",
