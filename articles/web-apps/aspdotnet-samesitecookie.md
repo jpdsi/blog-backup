@@ -77,14 +77,14 @@ Cookie の SameSite 属性が Lax が設定されている場合、下記のペ�
 ###### Session Cookie
 ```xml web.config
 <system.web>
-<sessionState … cookieSameSite="None"/>
+<sessionState ～中略～ cookieSameSite="None"/>
 </system.web>
 ```
 
 ###### Form 認証 Cookie
 ```xml web.config
 <system.web>
-<forms … cookieSameSite="None" />
+<forms ～中略～ cookieSameSite="None" />
 </system.web>
 ```
 
@@ -94,14 +94,14 @@ Cookie の SameSite 属性が Lax が設定されている場合、下記のペ�
 ###### Session Cookie
 ```xml web.config
 <system.web>
-<httpCookies … requireSSL="true"/>
+<httpCookies ～中略～ requireSSL="true"/>
 </system.web>
 ```
 
 ###### Form 認証 Cookie
 ```xml web.config
 <system.web>
-<forms … requireSSL="true" />
+<forms ～中略～ requireSSL="true" />
 </system.web>
 ```
 
