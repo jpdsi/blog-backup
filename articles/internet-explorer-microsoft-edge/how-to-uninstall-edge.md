@@ -28,9 +28,11 @@ tags:
 
 新しい Microsoft Edge をアンインストールすると、従来の Microsoft Edge (EdgeHTML) を再び使用できます。  
 なお、Microsoft Edge のアンインストールは、<u>Windows Update を通じて Microsoft Edge が提供されるまでの期間に限り</u>可能です。  
-[公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/) でお伝えしている通り、日本のお客様に対する Windows Update を通じた新しい Microsoft Edge の配信は、令和 2 年 4 月 1 日以降に順次開始される予定です。
+[公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/) でお伝えしている通り、日本のお客様に対する Windows Update を通じた新しい Microsoft Edge の配信は、~~令和 2 年 4 月 1 日以降に順次開始される予定です。~~
 
-> 日本のお客様に対しては、確定申告への影響を考慮し、Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 1 日以降、順次開始される予定です。
+<span style="color: red;">(令和 2 年 3 月 2 日追記) 日本のお客様に対する Windows Update を通じた新しい Microsoft Edge の配信は、<b>令和 2 年 4 月 17 日以降</b>となります。</span>
+
+> 国税庁より、申告所得税 (及び復興特別所得税)、贈与税及び個人事業者の消費税 (及び地方消費税) の申告期限・納付期限が令和 2 年 4 月 16 日まで延長されることが発表されたことに伴い、Windows Update を通じた新しい Microsoft Edge の配信は令和 2 年 4 月 17 日以降となります (令和 2 年 3 月 2 日追記)。
 
 ---
 なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
