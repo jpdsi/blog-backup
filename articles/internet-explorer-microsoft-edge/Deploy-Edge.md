@@ -8,7 +8,7 @@ tags:
 
 (更新履歴)
 2020/02/12 Q4 を追加しました。
-2020/03/02 Windows Updateを通じた新しいMicrosoft Edgeの配信について最新情報を反映しました。
+2020/03/02 Windows Update を通じた新しい Microsoft Edge の配信について最新情報を反映しました。
 
 ---
 こんにちは。
