@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本記事は Technet Blog の更新停止に伴い、もとの 記事 からの複写となります。元の記事の最新の更新情報については、本内容をご参照ください。  今回は IIS の観点より、アンチ ウイルス スキャン対象から除外すべきフォルダーについてご紹介します。 アンチ ウィルス ソフトのようなセキュリティ関連ソフトや、バックアップ ソフト等の予期しない動作によって、IIS が動作するために必要なモ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;web-apps&#x2F;iis-exclude-antivirus-scanning&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="本記事は Technet Blog の更新停止に伴い、もとの 記事 からの複写となります。元の記事の最新の更新情報については、本内容をご参照ください。  今回は IIS の観点より、アンチ ウイルス スキャン対象から除外すべきフォルダーについてご紹介します。 アンチ ウィルス ソフトのようなセキュリティ関連ソフトや、バックアップ ソフト等の予期しない動作によって、IIS が動作するために必要なモ">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2020-02-17T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-02T03:08:37.614Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Information Services">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-web-apps/iis-exclude-antivirus-scanning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-02-17T15:00:00.000Z" itemprop="datePublished">2020-02-18</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+adb5c0c0-adb5-5eb6-aaf4-6c199621b63f%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BIIS+%E8%A6%B3%E7%82%B9%E3%81%A7%E3%82%A2%E3%83%B3%E3%83%81+%E3%82%A6%E3%82%A4%E3%83%AB%E3%82%B9+%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3%E5%AF%BE%E8%B1%A1%E3%81%8B%E3%82%89%E9%99%A4%E5%A4%96%E3%81%97%E3%81%9F%E3%81%84%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%83%BC%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Fiis-exclude-antivirus-scanning%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/web-apps/iis-exclude-antivirus-scanning/" data-id="ck79vw4ts000z78vl1lck5ik9" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本記事は Technet Blog の更新停止に伴い、もとの <a href="https://docs.microsoft.com/ja-jp/archive/blogs/jpiis/iis_antivirus" target="_blank" rel="noopener">記事</a> からの複写となります。<br>元の記事の最新の更新情報については、本内容をご参照ください。</p>
+</blockquote>
+<p>今回は IIS の観点より、アンチ ウイルス スキャン対象から除外すべきフォルダーについてご紹介します。</p>
+<p>アンチ ウィルス ソフトのようなセキュリティ関連ソフトや、バックアップ ソフト等の予期しない動作によって、IIS が動作するために必要なモジュールやファイルの処理時に影響が発生し、後述の事例のような現象が発生する場合があります。</p>
+<p>そのため、IIS に関する以下のフォルダーに対し、各種ソフトウェアの除外設定を実施いただく事を推奨しております。</p>
+<h2 id="■-IIS-の観点でスキャン対象から除外を推奨するフォルダー"><a href="#■-IIS-の観点でスキャン対象から除外を推奨するフォルダー" class="headerlink" title="■ IIS の観点でスキャン対象から除外を推奨するフォルダー"></a>■ IIS の観点でスキャン対象から除外を推奨するフォルダー</h2><ul>
+<li>IIS のインストール フォルダー<br>%SystemRoot%\System32\inetsrv およびその配下</li>
+<li>IIS のログ、圧縮、構成ファイル格納フォルダー<br>%SystemDrive%\inetpub およびその配下</li>
+<li>HTTPERR ログ フォルダー<br>%SystemRoot%\System32\LogFiles\HTTPERR およびその配下</li>
+<li>.NET Framework フォルダー<br>%SystemRoot%\Microsoft.NET\Framework&lt;.NET Framework のバージョン&gt; およびその配下<br>%SystemRoot%\Microsoft.NET\Framework64&lt;.NET Framework のバージョン&gt; およびその配下<br>※前者が 32bit アプリケーション用のフォルダー、後者が 64bit アプリケーション用のフォルダーです</li>
+<li>アプリケーションが配置されているフォルダー</li>
+</ul>
+<p>Web アプリケーション格納フォルダーおよび Web アプリケーションにて、ログの出力や一時的なファイルを保存するフォルダーなどが存在する場合は、あわせてウィルス スキャンの対象から除外することを推奨しています。</p>
+<hr>
+<p>以下、各フォルダーについて記載します。</p>
+<h3 id="IIS-のインストール-フォルダー"><a href="#IIS-のインストール-フォルダー" class="headerlink" title="IIS のインストール フォルダー"></a>IIS のインストール フォルダー</h3><p>IIS が動作するために必要なモジュールや、構成ファイルなどの情報が当該フォルダーに含まれています。<br>必要なモジュールや構成ファイルへのアクセスが阻害されるようなことがあった場合、IIS が正常に動作しない可能性があるため、除外をお勧めしています。</p>
+<h3 id="IIS-のログ、圧縮、構成ファイル格納フォルダ"><a href="#IIS-のログ、圧縮、構成ファイル格納フォルダ" class="headerlink" title="IIS のログ、圧縮、構成ファイル格納フォルダ"></a>IIS のログ、圧縮、構成ファイル格納フォルダ</h3><p>IIS が処理をする上で利用する一時的なファイルの保管場所として利用するフォルダーです。<br>当該フォルダーへのアクセスが阻害されるようなことがあった場合、同様に IIS が正常に動作しない可能性があるため、除外をお勧めしています。</p>
+<h3 id="HTTPERR-ログ-フォルダー"><a href="#HTTPERR-ログ-フォルダー" class="headerlink" title="HTTPERR ログ フォルダー"></a>HTTPERR ログ フォルダー</h3><p>HTTP の要求を受け付ける、http.sys がエラーを出力するフォルダーです。<br>エラーの内容がトラブルシュート時に利用できることがあるため、アクセスが阻害されてエラーが記録されないことを避けるために、除外をお勧めしています。</p>
+<h3 id="ASP-NET-コンパイル-フォルダー-ASP-NET-をご利用の場合"><a href="#ASP-NET-コンパイル-フォルダー-ASP-NET-をご利用の場合" class="headerlink" title="ASP.NET コンパイル フォルダー (ASP.NET をご利用の場合)"></a>ASP.NET コンパイル フォルダー (ASP.NET をご利用の場合)</h3><p>ASP.NET がアプリケーションをコンパイルして生成されたアセンブリ (dll) を保持するためのフォルダーです。<br>該当のフォルダー内のファイルがウィルス スキャン等によって何らかの変更が加えられた場合、アプリケーションの再起動が発生するため、除外をお勧めしています。</p>
+<h3 id="アプリケーションが配置されているフォルダー"><a href="#アプリケーションが配置されているフォルダー" class="headerlink" title="アプリケーションが配置されているフォルダー"></a>アプリケーションが配置されているフォルダー</h3><p>IIS で公開されるコンテンツへのアクセス時に阻害されるようなことがあった場合、コンテンツが正常に応答できず、クライアント側でエラーとなる可能性があるため、除外をお勧めしています。</p>
+<h2 id="■-セキュリティ関連ソフトの影響により発生する事例"><a href="#■-セキュリティ関連ソフトの影響により発生する事例" class="headerlink" title="■ セキュリティ関連ソフトの影響により発生する事例"></a>■ セキュリティ関連ソフトの影響により発生する事例</h2><h3 id="1-アプリケーション-ドメインの再起動"><a href="#1-アプリケーション-ドメインの再起動" class="headerlink" title="1) アプリケーション ドメインの再起動"></a>1) アプリケーション ドメインの再起動</h3><p>アプリケーション ドメインの再起動は、web.config などの構成ファイルの変更や、bin フォルダー配下のファイルの編集をトリガーとして行われます。<br>再起動されると次回アクセス時にアセンブリのロード等が再度行われるため、他のタイミングよりリクエストの処理に時間がかかることがあります。</p>
+<p>ASP.NET にてヘルス モニタリングのイベントを有効にしている場合、以下のイベント ID : 1305 が記録されます。</p>
+<h5 id="へルス-モニタリングを有効にする構成"><a href="#へルス-モニタリングを有効にする構成" class="headerlink" title="へルス モニタリングを有効にする構成"></a>へルス モニタリングを有効にする構成</h5><figure class="highlight xml"><figcaption><span>web.config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">healthMonitoring</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">name</span>=<span class="string">"myLifeTimeLogs"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">eventName</span>=<span class="string">"Application Lifetime Events"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">provider</span>=<span class="string">"EventLogProvider"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">healthMonitoring</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="イベント-ログ"><a href="#イベント-ログ" class="headerlink" title="イベント ログ"></a>イベント ログ</h5><blockquote>
+<p>ログの名前: Application<br>ソース: ASP.NET 4.0.30319.0<br>日付: 2018/08/17 11:34:21<br>イベント ID: 1305<br>タスクのカテゴリ: Web Event<br>レベル: 情報<br>キーワード: クラシック<br>説明: Event code: 1002 Event message: アプリケーションをシャットダウンしています。<br>原因: 構成が変更されました。</p>
+</blockquote>
+<p>しかしながら、セキュリティ関連ソフトの影響により、構成ファイルの変更が誤検知され、アプリケーション ドメインが意図せず再起動してしまう場合があります。</p>
+<p>そのような場合、何もアプリケーションに変更を加えていないにも関わらず、たまにアクセスに時間がかかることがあるといった現象として見えることがあります。</p>
+<h3 id="2-構成ファイル作成の際にアクセス拒否が発生"><a href="#2-構成ファイル作成の際にアクセス拒否が発生" class="headerlink" title="2) 構成ファイル作成の際にアクセス拒否が発生"></a>2) 構成ファイル作成の際にアクセス拒否が発生</h3><p>IIS や OS を再起動した後の初回アクセス等のタイミングで、普段は問題ないものの、たまに以下のイベント ID : 5189 が記録され、構成ファイルを作成しようとした際にアクセス拒否が発生する場合があります。 </p>
+<h5 id="イベント-ログ-1"><a href="#イベント-ログ-1" class="headerlink" title="イベント ログ"></a>イベント ログ</h5><blockquote>
+<p>ログの名前: System<br>ソース: Microsoft-Windows-WAS<br>日付: 2018/08/17 11:34:21<br>イベント ID: 5189<br>タスクのカテゴリ: なし<br>レベル: エラー<br>キーワード: クラシック<br>ユーザー: N/A<br>コンピューター: contoso.local<br>説明: Windows プロセス アクティブ化サービスが、アプリケーション プール ‘DefaultAppPool’ 用のアプリケーション プール構成ファイルを生成できませんでした。エラーの種類は ‘7’ です。この問題を解決するには、applicationhost.config ファイルが正しいことを確認し、最近行った構成の変更を再度確定してください。データ フィールドには、エラー番号が表示されています。</p>
+</blockquote>
+<p>アプリケーション プール用の構成ファイル (既定では %SystemDrive%\inetpub\temp\appPools フォルダー) を作成しようとしたものの、アクセスが拒否されたために失敗したことで、該当のイベントが記録されます。</p>
+<p>アクセス拒否は一般的に当該ファイルにアクセス権がない場合に発生し、アクセス権がない場合は常時エラーとなります。</p>
+<p>しかしながら、本エラーが単発で記録される場合には一時的にアクセスが阻害された可能性があり、そのような場合にはセキュリティ関連ソフトの影響が考えられます。</p>
+<h3 id="3-アプリケーション-プールのプロセスが突然終了"><a href="#3-アプリケーション-プールのプロセスが突然終了" class="headerlink" title="3) アプリケーション プールのプロセスが突然終了"></a>3) アプリケーション プールのプロセスが突然終了</h3><p>普段は問題なく動作しているものの、たまに以下のイベント ID : 5009 が記録され、プロセスが予期せず終了する場合があります。</p>
+<h5 id="イベント-ログ-2"><a href="#イベント-ログ-2" class="headerlink" title="イベント ログ"></a>イベント ログ</h5><blockquote>
+<p>ログの名前: System<br>ソース: Microsoft-Windows-WAS<br>日付: 2018/08/17 11:34:21<br>イベント ID: 5009<br>タスクのカテゴリ: なし<br>レベル: 警告<br>キーワード: クラシック<br>ユーザー: N/A<br>コンピューター: contoso.local<br>説明: アプリケーション プール ‘DefaultAppPool’ を提供しているプロセスが突然終了しました。プロセス id は ‘1660’ でした。プロセス終了コードは ‘0xfffffffe’ でした。</p>
+</blockquote>
+<p>イベントに記録されている終了コード 0xfffffffe は “CLEAN_WORKER_PROCESS_EXIT_CODE” を示し、異常終了を示すものではなく、正常にワーカー プロセスが終了された場合に記録されます。</p>
+<p>Application Error イベント等も特に記録されていない場合、IIS にロードされているモジュールが何らかの要因により自発的に停止した、と考えられます。</p>
+<p>このような場合、セキュリティ関連ソフトの動作によって IIS が動作するために必要なモジュールやファイルの処理に影響が発生し、プロセスの突然終了につながる可能性があります。</p>
+<hr>
+<p>上記事例以外にも、セキュリティ関連ソフトの影響により、予期しない動作となる可能性がありますため、除外設定についてご検討いただけますと幸いです。</p>
+<p>※ただし、アンチ ウィルス ソフトの種類によってはスキャンの除外対象のフォルダーやファイルに対してもアクセスが発生してしまう場合もあります。<br>アンインストールを行わなければそのアプリケーションの動作の影響を抑えることができなかったという事例もあります。<br>除外や停止のみでは改善されない場合は、アンインストールにより事象が改善されるかもご確認いただけますと幸いです。</p>
+<h2 id="■-参考情報"><a href="#■-参考情報" class="headerlink" title="■ 参考情報"></a>■ 参考情報</h2><p>ASP.NET アプリケーションでのウイルス対策スキャンから除外するフォルダー<br><a href="https://support.microsoft.com/ja-jp/help/3126034/folders-to-exclude-from-antivirus-scanning-in-asp-net-apps" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/3126034/folders-to-exclude-from-antivirus-scanning-in-asp-net-apps</a></p>
+<p>fltmc.exe の使い方<br><a href="https://docs.microsoft.com/ja-jp/archive/blogs/jpwdkblog/fltmc-exe" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/archive/blogs/jpwdkblog/fltmc-exe</a></p>
+<p>※fltmc.exeを用いてセキュリティ関連ソフト等のフィルター ドライバーのインストール状況を確認できます。</p>
+<p>それでは、また！</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/web-apps/iis-exclude-antivirus-scanning.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../Rapid-Fail-Protection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          ラピッド フェール保護機能について
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../internet-explorer-microsoft-edge/flash/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Internet Explorer および Microsoft Edge での Flash の今後の対応について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../MigrationAzureSignalR/">ASP.NET Core SignalR から Azure SignalR Service への移行</a>
+          </li>
+        
+          <li>
+            <a href="../Rapid-Fail-Protection/">ラピッド フェール保護機能について</a>
+          </li>
+        
+          <li>
+            <a href="">IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/flash/">Internet Explorer および Microsoft Edge での Flash の今後の対応について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/side-by-side/">新しいバージョンの Microsoft Edge のインストール後も Microsoft Edge レガシーを利用する方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">5</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">8</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 12.5px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 15px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 10px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 17.5px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 15px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 17.5px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 17.5px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
