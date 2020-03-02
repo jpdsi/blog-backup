@@ -8,6 +8,7 @@ tags:
 
 (更新履歴)
 2020/02/12 Q4 を追加しました。
+2020/03/02 Windows Updateを通じた新しいMicrosoft Edgeの配信について最新情報を反映しました。
 
 ---
 こんにちは。
@@ -16,7 +17,7 @@ Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版)
 
 [公式ブログ](https://blogs.windows.com/japan/2020/01/16/upgrading-new-microsoft-edge-79-chromium/) にて下記の引用のとおりお伝えしていますが、Windows Update 経由での配信 (※1) までは、[こちらからインストーラーをダウンロード](https://www.microsoft.com/edge) いただく他には、[SCCMで展開](https://docs.microsoft.com/en-us/configmgr/apps/deploy-use/deploy-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json) 、[Intuneで展開](https://docs.microsoft.com/en-us/intune/apps/apps-windows-edge?toc=https://docs.microsoft.com/DeployEdge/toc.json&bc=https://docs.microsoft.com/DeployEdge/breadcrumb/toc.json) などで新しい Microsoft Edge をご利用いただくことができます。
 
-> 日本のお客様に対しては、確定申告への影響を考慮し、Windows Updateを通じた新しいMicrosoft Edgeの配信は令和２年４月１日以降、順次開始される予定です。
+> 国税庁より、申告所得税（及び復興特別所得税）、贈与税及び個人事業者の消費税（及び地方消費税）の申告期限・納付期限が令和2年4月16日まで延長（PDF: 156KB）されることが発表されたことに伴い、Windows Updateを通じた新しいMicrosoft Edgeの配信は令和２年４月17日以降となります（令和2年3月2日追記）。
 
 新しい Microsoft Edge のリリース前からも、多くのユーザー、IT Pro のみなさまから、Microsoft Edge についての様々なご質問をいただいております。
 [エンタープライズ環境の Microsoft Edge についてよく寄せられる質問](https://docs.microsoft.com/ja-jp/DeployEdge/faqs-edge-in-the-enterprise) ではすでにいくつかの QA を掲載していますのでご覧ください。
