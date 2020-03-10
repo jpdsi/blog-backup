@@ -9,7 +9,7 @@
     "test": "npx textlint ./articles/**/*.md"
   },
   "hexo": {
-    "version": "4.1.1"
+    "version": "4.2.0"
   },
   "dependencies": {
     "del": "^4.1.1",
