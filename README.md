@@ -18,14 +18,19 @@
 - [IIS の調査に必要なダンプ ファイルの採取について (Debug Diagnostic Tool)](./articles/web-apps/LogCollection4.md)
 - [IIS の調査に必要な FTP の情報について](./articles/web-apps/LogCollection5.md)
 - [IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー](./articles/web-apps/iis-exclude-antivirus-scanning.md)
+- [ラピッド フェール保護機能について](./articles/web-apps/Rapid-Fail-Protection.md)
+- [ASP.NET Core SignalR から Azure SignalR Service への移行](./articles/web-apps/MigrationAzureSignalR.md)
 
 ## Internet Explorer / Microsoft Edge
 - [Internet Explorer のプロセス モデル](./articles/internet-explorer-microsoft-edge/process-model.md)
 - [保護モードと拡張保護モード](./articles/internet-explorer-microsoft-edge/protected-mode.md)
 - [新しい Microsoft Edge 向け Blog 始めました](./articles/internet-explorer-microsoft-edge/new-microsoft-edge.md)
 - [Windows Update による新しい Microsoft Edge の配信について](./articles/internet-explorer-microsoft-edge/New-Edge-via-WU.md)
+- [新しい Microsoft Edge のアンインストールについて](./articles/internet-explorer-microsoft-edge/how-to-uninstall-edge.md)
 - [新しい Microsoft Edge の展開について](./articles/internet-explorer-microsoft-edge/Deploy-Edge.md)
+- [新しいバージョンの Microsoft Edge のインストール後も Microsoft Edge レガシーを利用する方法](./articles/internet-explorer-microsoft-edge/side-by-side.md)
 - [Internet Explorer および Microsoft Edge での Flash の今後の対応について](./articles/internet-explorer-microsoft-edge/flash.md)
+- [新しい Microsoft Edge での file プロトコルの制限について](./articles/internet-explorer-microsoft-edge/FileProtocol.md)
 
 ## その他
 <!--

@@ -27,7 +27,7 @@ Adobe Flash のサポート終了のロードマップは、以前下記の資�
 この方針は、マイクロソフトが独自に進めているのではなく、開発元の Adobe 社が中心となりブラウザー各社連携をとり進められています。
 来年 2021 年には、どのブラウザーをご利用の場合でも Flash が実行できなくなることが予想されますため、html5 などの代替テクノロジーへの移行のご検討を何卒よろしくお願いします。
 
-なお、新しい Chromium 版の Microsoft Edge は、Chromium をベースとするほかのブラウザーと同様のライムラインで、既定での無効化および廃止の対応が行われる見込みです。このため、EdgeHTML 版の Microsoft Edge や Internet Explorer での対応予定とは異なる可能性が十分に考えられます。
+なお、新しい Chromium 版の Microsoft Edge は、Chromium をベースとするほかのブラウザーと同様のタイムラインで、既定での無効化および廃止の対応が行われる見込みです。このため、EdgeHTML 版の Microsoft Edge や Internet Explorer での対応予定とは異なる可能性が十分に考えられます。
 代替テクノロジーへの移行を予定されている場合は、[Google 社の情報](https://www.blog.google/products/chrome/) も併せてご確認ください。
 
 ---
