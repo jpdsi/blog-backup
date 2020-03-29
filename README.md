@@ -31,6 +31,7 @@
 - [新しいバージョンの Microsoft Edge のインストール後も Microsoft Edge レガシーを利用する方法](./articles/internet-explorer-microsoft-edge/side-by-side.md)
 - [Internet Explorer および Microsoft Edge での Flash の今後の対応について](./articles/internet-explorer-microsoft-edge/flash.md)
 - [新しい Microsoft Edge での file プロトコルの制限について](./articles/internet-explorer-microsoft-edge/FileProtocol.md)
+- [保護モードをまたいだ Cookie について](./articles/internet-explorer-microsoft-edge/cross-protected-mode-cookie.md)
 
 ## その他
 <!--
