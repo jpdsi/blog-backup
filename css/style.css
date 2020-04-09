@@ -651,7 +651,7 @@ a.article-share:hover {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: auto;
+/*margin: auto*/
 }
 .article-entry iframe {
   border: none;

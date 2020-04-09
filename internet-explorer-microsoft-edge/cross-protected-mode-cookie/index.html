@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>保護モードをまたいだ Cookie について | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは。本日は、最近お問い合わせをいただくことの多い気のする、何かと話題の Cookie についてのお話です。とはいっても、SameSite の話ではないです。Internet Explorer をご利用の際に良く陥りがちな問題についてお話しします。 Cookie が送信されない！単一のドメイン、ホストのみで遷移するような仕組みの Web サイトでは問題となることはないですが、最近の Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="保護モードをまたいだ Cookie について">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;cross-protected-mode-cookie&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="こんにちは。本日は、最近お問い合わせをいただくことの多い気のする、何かと話題の Cookie についてのお話です。とはいっても、SameSite の話ではないです。Internet Explorer をご利用の際に良く陥りがちな問題についてお話しします。 Cookie が送信されない！単一のドメイン、ホストのみで遷移するような仕組みの Web サイトでは問題となることはないですが、最近の Web">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2020-03-26T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-09T07:08:40.776Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="Cookie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/cross-protected-mode-cookie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      保護モードをまたいだ Cookie について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-03-26T15:00:00.000Z" itemprop="datePublished">2020-03-27</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+eed48bc1-2c33-579a-9f93-51653f1ab5d2%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89%E3%82%92%E3%81%BE%E3%81%9F%E3%81%84%E3%81%A0+Cookie+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2Fcross-protected-mode-cookie%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2Fcross-protected-mode-cookie.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2Fcross-protected-mode-cookie.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/cross-protected-mode-cookie/" data-id="ck8sf79k3000dfgvlbrgdaj1g" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは。<br>本日は、最近お問い合わせをいただくことの多い気のする、何かと話題の Cookie についてのお話です。<br>とはいっても、SameSite の話ではないです。<br>Internet Explorer をご利用の際に良く陥りがちな問題についてお話しします。</p>
+<h2 id="Cookie-が送信されない！"><a href="#Cookie-が送信されない！" class="headerlink" title="Cookie が送信されない！"></a>Cookie が送信されない！</h2><p>単一のドメイン、ホストのみで遷移するような仕組みの Web サイトでは問題となることはないですが、最近の Web サイトでは複数のサービスと連携をとるような複雑な構成をしていることが多くなってきました。<br>このように、異なるドメイン、ホスト間を行き来するような仕組みの Web サイトの場合、まれに Cookie が送信されない！という事象に出くわすことがあります。</p>
+<p>これによって、例えば「認証したはずなのに最初のページに戻っちゃう」や「Cookie に情報を保存したはずなのに保存されていない」といった事象が発生する場合があります。<br>しかも、、、Microsoft Edge や Google Chrome では問題ないのに Internet Explorer だけで起きる…という状況となると、いよいよ「なんで？」という状況となります。</p>
+<h2 id="Internet-Explorer-オリジナルの機能の影響"><a href="#Internet-Explorer-オリジナルの機能の影響" class="headerlink" title="Internet Explorer オリジナルの機能の影響"></a>Internet Explorer オリジナルの機能の影響</h2><p>Internet Explorer オリジナルの機能として、「<strong>保護モード</strong>」という機能があります。<br>保護モードの詳細については <a href="../protected-mode/">こちら</a> を参照いただきたいですが、Windows Vista 上の Internet Explorer 7 で初めて搭載された Internet Explorer のセキュリティ機能の一つです。</p>
+<h3 id="どうしてこの機能が-Cookie-の送信に影響するのか"><a href="#どうしてこの機能が-Cookie-の送信に影響するのか" class="headerlink" title="どうしてこの機能が Cookie の送信に影響するのか"></a>どうしてこの機能が Cookie の送信に影響するのか</h3><p>答えは、保護モードの違い による Cookie の取り扱いが影響します。<br>具体的には、保護モードの有効 / 無効による Cookie の保存先の違いが影響します。</p>
+<p>Cookie は下記のいずれかの方法で発行／作成されますが、これら以外にブラウザーが勝手に Cookie を作成することはありません。</p>
+<ul>
+<li>Set-Cookie ヘッダー</li>
+<li>document.cookie プロパティ</li>
+</ul>
+<p>ファイルに保存される形式の Cookie (expires 属性や maxage 属性が指定された Cookie) は、Internet Explorer では保護モードの状態に合わせて インターネット一時ファイル と同様に Cookie も保存先が異なります。</p>
+<ul>
+<li>保護モード無効時 : %USERPROFILE%\AppData\Local\Microsoft\Windows\INetCookies</li>
+<li>保護モード有効時 : %USERPROFILE%\AppData\Local\Microsoft\Windows\INetCookies\Low</li>
+</ul>
+<p>それぞれの Cookie は独立して存在しており、例えば、保護モードが「無効」な時に保存された Cookie は、保護モードが「有効」な時には利用されません。<br>対象の Cookie がどの Web サイトを閲覧したときに発行されて、どの Web サイトで対象の Cookie を利用しようとしているのか、そしてそれぞれの Web サイトの保護モードの状態がどうなっているか、という点がとても重要です。</p>
+<h3 id="Cookie-が送信されない一例"><a href="#Cookie-が送信されない一例" class="headerlink" title="Cookie が送信されない一例"></a>Cookie が送信されない一例</h3><p>例えば、Azure AD (AAD) 認証を必要とする Web アプリケーションを例とした場合のことを考えましょう。</p>
+<p>なお、下記を前提とします。</p>
+<ul>
+<li>login.microsoftonline.com は信頼済みサイト ゾーンに明示的に登録されている</li>
+<li>対象の Web アプリケーションは明示的なゾーン登録をしておらず、インターネット ゾーンと判断される</li>
+<li>インターネット ゾーンは保護モード有効、信頼済みサイト ゾーンは保護モード無効として構成している</li>
+</ul>
+<ol>
+<li>最初に login.microsoftonline.com へ接続し AAD 認証が行われます。</li>
+<li>認証に成功すると認証済みを示す Cookie が AAD から発行されます。<br>login.microsoftonline.com は <strong>信頼済みサイト ゾーン</strong> として認識されるため、発行された Cookie は保護モードが無効な場合の保存先に保存されます。</li>
+<li>Web アプリケーションにリダイレクトされトップ ページが表示されます。<br>Web アプリケーションは、<strong>インターネット ゾーン</strong> として認識されるため、Cookie は保護モードが有効な場合の保存先が参照されます。</li>
+<li>Web アプリケーションのトップ ページでは、処理に必要なトークンを取得するため、バックグラウンドで XMLHttpRequest を使って login.microsoftonline.com へリクエストを送信します。<br>Web アプリケーションは保護モードが有効な状態となっているため、XMLHttpRequest によるリクエストもこの制約を受けます。<br>Cookie の参照先は保護モードが有効な場合の保存先となり、2. で保存した Cookie は参照されず「認証済みを示す Cookie がリクエストに含まれない」動作となります。</li>
+<li>login.microsoftonline.com から、対象ユーザーがログオンしていないとのレスポンスが返されます。</li>
+<li>Web アプリケーションの実装により再度ログインを促す表示が行われます。</li>
+</ol>
+<h2 id="対処策について"><a href="#対処策について" class="headerlink" title="対処策について"></a>対処策について</h2><p>このような状況を避けるにはどうしたらよいでしょうか。</p>
+<p>端的には、関連する Web サイトの <strong>セキュリティ ゾーンを統一する</strong> こと、です。<br>言い換えると、関連するすべての web サイトを、例えば、<strong>信頼済みサイト ゾーン</strong> に明示的に追加します。</p>
+<p>単一のドメイン、ホストのみで運用していた場合には、特定のドメイン、ホストのみを登録すれば良かったのですが、今は様々なサービスと連携して Web サイトが構築されていることが多々あります。</p>
+<p>このため、Web サイト閲覧時にどうも動きがおかしい…といった状況に遭遇した場合には、まずは、保護モードの状態をすべてのセキュリティ ゾーンで統一してみてどうかを確認してみましょう。</p>
+<p>すべてのゾーンで保護モードを有効にすることで事象が改善するようであれば、今回お話しした Cookie の動作が影響している可能性があります。<br>この場合は、保護モードの状態をもとに戻したうえで、上述のとおり、関連する Web サイトをすべて <strong>信頼済みサイト ゾーン</strong> などに明示的に登録して事象が改善するかどうか確認してみましょう。</p>
+<p>今回は以上です。<br>それでは、また次回！</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/cross-protected-mode-cookie.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../SkypeMeetingWithEdge/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Microsoft Edge を利用して Skype 会議を開催しよう
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../azure-bot-service/bot-cs-performance/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Web App Bot (C#) の応答遅延のログについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../SkypeMeetingWithEdge/">Microsoft Edge を利用して Skype 会議を開催しよう</a>
+          </li>
+        
+          <li>
+            <a href="">保護モードをまたいだ Cookie について</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-bot-service/bot-cs-performance/">Web App Bot (C#) の応答遅延のログについて</a>
+          </li>
+        
+          <li>
+            <a href="../FileProtocol/">新しい Microsoft Edge での file プロトコルの制限について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/MigrationAzureSignalR/">ASP.NET Core SignalR から Azure SignalR Service への移行</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">8</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 12px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 14px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 12px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 18px;">Chromium</a> <a href="../../tags/Cookie/" style="font-size: 12px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 14px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 18px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 16px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
