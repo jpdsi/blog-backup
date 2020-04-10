@@ -17,10 +17,15 @@ tags:
 サポートされているブラウザーは Microsoft Edge もしくは Google Chrome です。
 最新の Microsoft Edge は以下のサイトからダウンロードできます。Windows 8.1 など以前の OS にも対応していますのでご利用のプラットフォームに合わせダウンロードしてインストールしておきます。
 
-新しい Microsoft Edge をご紹介します。
+新しい Microsoft Edge をダウンロード
 https://www.microsoft.com/ja-jp/edge
 
 会議の参加者の方にも Microsoft Edge もしくは Google Chrome のインストールを事前に頂けるようお知らせください。
+新しい Microsoft Edge には、日々のブラウジングをより快適にする、便利で安全な機能が多数あります。
+以下のブログ記事でもその魅力を紹介しているので、いまこの機会に生まれ変わった Microsoft Edge をお試しください！
+
+新しい Microsoft Edge に移行すべき 10 の理由
+https://blogs.windows.com/japan/2020/04/09/the-top-10-reasons-to-switch-to-the-new-microsoft-edge/
 
 <u>**会議の開催**</u>
 
