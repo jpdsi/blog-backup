@@ -57,7 +57,7 @@ i18n_dir: :lang
 skip_render:
   - '_data/*.png'
   - 'BingSiteAuth.xml'
-  - 'google7b0e49916a95b40a.html'
+  - 'google9ca3279f19b2244b.html'
 
 # Writing
 new_post_name: :title.md # File name of new posts
