@@ -13,6 +13,10 @@
 <meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
 <meta property="og:description" content="今回は Internet Explorer を利用している場合に発生するメモリ使用量が増える現象についてお話しします。なお、本記事に掲載している内容は、Internet Explorer 以外の、例えば Microsoft Edge や Google Chrome、Firefox といったほかのブラウザーでも有効な部分があります。ぜひ参考にしてみてください。 もともと二回シリーズでの執筆を検討して">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;14_vmmap1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;15_vmmap2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;16_vmmap3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;17_vmmap4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;1_taskmgr1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;2_taskmgr2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;3_taskmgr3.png">
@@ -27,12 +31,12 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;12_extoff.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;13_addon.png">
 <meta property="article:published_time" content="2020-04-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-17T05:05:53.196Z">
+<meta property="article:modified_time" content="2020-04-17T08:29:08.554Z">
 <meta property="article:author" content="Developer Support Internet Japan">
 <meta property="article:tag" content="Internet Explorer">
 <meta property="article:tag" content="メモリ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;1_taskmgr1.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;HighMemoryUsage&#x2F;14_vmmap1.png">
   
     <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
   
@@ -111,7 +115,7 @@
         
         <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+21ac5b9a-c618-57f4-b09c-64f40d31a9ac%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%A1%E3%83%A2%E3%83%AA%E4%BD%BF%E7%94%A8%E9%87%8F%E3%81%8C%E5%A2%97%E3%81%88%E3%82%8B%E7%8F%BE%E8%B1%A1+%28%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%AF%29%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FHighMemoryUsage%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FHighMemoryUsage.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FHighMemoryUsage.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/HighMemoryUsage/" data-id="ck93qc55c000as4v0dck51bjj" class="article-share-link">共有</a>
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/HighMemoryUsage/" data-id="ck93xljv8000alov0cl2w3alf" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -133,6 +137,23 @@
 <p>Internet Explorer では、Web コンテンツを表示する際に内部的にメモリ領域を確保する必要がありますが、上記のように断片化が進んだ状態となっているとメモリ領域の確保に失敗する場合があり、この結果 Web コンテンツを正しく表示できない (表示が崩れる)、そもそも真っ白で何も表示されない、クラッシュしてしまう、などの影響が生じます。<br>このような問題が発生した場合には、タスク マネージャーなどで Internet Explorer のプロセス (iexplore.exe) の状態を確認し、メモリ使用量が 1GB – 1.5GB 以上使用している状態であれば、メモリ枯渇が原因である可能性が高いと判断ができます。</p>
 <p>なお、64bit OS 環境下で、<a href="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/">拡張保護モードが 64 bit で動作するよう構成している場合</a> には 64bit でプロセスが動作するため、上述したような 2GB という制限はありません。理論値としては 8TB (テラ バイト) です。</p>
 <p>参考: 仮想アドレス領域<br><a href="https://msdn.microsoft.com/ja-jp/library/windows/hardware/hh439648(v=vs.85).aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/ja-jp/library/windows/hardware/hh439648(v=vs.85).aspx</a></p>
+<hr>
+<p>参考 : VMMap - プロセス の仮想メモリと物理メモリの割り当て状況をグラフィカルに表示してくれるツール　-</p>
+<p>Windows Sysinternals ツールの 1 つに、プロセスの仮想メモリと物理メモリの割り当て状況をグラフィカルに表示してくれるツールとして VMMap というものがありますので紹介します。</p>
+<p><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/vmmap" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sysinternals/downloads/vmmap</a></p>
+<p>vmmmap.exe を起動し、確認したいプロセスを選びます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/HighMemoryUsage/14_vmmap1.png" class="">
+
+<p>このようにメモリの使用状況について詳細を把握することができます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/HighMemoryUsage/15_vmmap2.png" class="">
+
+<p>メニューの View - Fragmentation View を選択します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/HighMemoryUsage/16_vmmap3.png" class="">
+
+<p>以下のようにメモリの割り当て状況をグラフィカルに表示してくれますので、未使用を示す “白色の領域” が充分にあるかどうか確認ができます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/HighMemoryUsage/17_vmmap4.png" class="">
+
+<p>このツールを使えば、上述の断片化状態かどうかも視覚的に把握することができますので、ぜひご利用ください。</p>
 <hr>
 <p><strong><font color="red">重要 : メモリ使用量の見方について</font></strong></p>
 <p>プロセスで実際にメモリ不足の問題が発生するかどうかは、「ワーキング セット」ではなく、「コミット サイズ」に着目することが重要です。<br>「ワーキング セット」とは、プロセスが利用しているメモリ領域のうち「物理メモリ上に展開されている部分」を指すものであり、「プロセスが使用しているメモリ全体のサイズ」はわかりません。<br>「プロセスが使用しているメモリ全体のサイズ」を示しているのは「コミット サイズ」です。</p>
