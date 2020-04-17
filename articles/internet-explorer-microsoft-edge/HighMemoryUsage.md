@@ -56,6 +56,29 @@ https://msdn.microsoft.com/ja-jp/library/windows/hardware/hh439648(v=vs.85).aspx
 
 ---
 
+参考 : VMMap - プロセス の仮想メモリと物理メモリの割り当て状況をグラフィカルに表示してくれるツール　-
+
+Windows Sysinternals ツールの 1 つに、プロセスの仮想メモリと物理メモリの割り当て状況をグラフィカルに表示してくれるツールとして VMMap というものがありますので紹介します。
+
+https://docs.microsoft.com/en-us/sysinternals/downloads/vmmap
+
+vmmmap.exe を起動し、確認したいプロセスを選びます。
+
+![VMMap1](/articles/internet-explorer-microsoft-edge/HighMemoryUsage/14_vmmap1.png)
+
+このようにメモリの使用状況について詳細を把握することができます。
+![VMMap2](/articles/internet-explorer-microsoft-edge/HighMemoryUsage/15_vmmap2.png)
+
+メニューの View - Fragmentation View を選択します。
+![VMMap3](/articles/internet-explorer-microsoft-edge/HighMemoryUsage/16_vmmap3.png)
+
+以下のようにメモリの割り当て状況をグラフィカルに表示してくれますので、未使用を示す "白色の領域" が充分にあるかどうか確認ができます。
+![VMMap4](/articles/internet-explorer-microsoft-edge/HighMemoryUsage/17_vmmap4.png)
+
+このツールを使えば、上述の断片化状態かどうかも視覚的に把握することができますので、ぜひご利用ください。
+
+---
+
 **<font color="red">重要 : メモリ使用量の見方について</font>**
 
 プロセスで実際にメモリ不足の問題が発生するかどうかは、「ワーキング セット」ではなく、「コミット サイズ」に着目することが重要です。
