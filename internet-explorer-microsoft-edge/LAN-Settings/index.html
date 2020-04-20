@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ローカル エリア ネットワーク (LAN) の設定について | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="これまで Japan IE Support Team Blog にて公開していた記事のうち、プロキシ関連の記事を整理しました。長い記事になってしまうため、下記の 4 つの記事に分けています。 (今回の記事) ローカル エリア ネットワーク (LAN) の設定についてIE からみるプロキシの設定についてPAC についてWPAD について  1. ローカルエリアネットワーク(LAN) の設定プロキシの">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ローカル エリア ネットワーク (LAN) の設定について">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="これまで Japan IE Support Team Blog にて公開していた記事のうち、プロキシ関連の記事を整理しました。長い記事になってしまうため、下記の 4 つの記事に分けています。 (今回の記事) ローカル エリア ネットワーク (LAN) の設定についてIE からみるプロキシの設定についてPAC についてWPAD について  1. ローカルエリアネットワーク(LAN) の設定プロキシの">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;LAN-Settings.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;OS-Proxy.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;LAN-Settings2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;LAN-Settings3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;ProxySettings.png">
+<meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-20T05:13:02.138Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="プロキシ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;LAN-Settings&#x2F;LAN-Settings.png">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/LAN-Settings" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ローカル エリア ネットワーク (LAN) の設定について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-19T15:00:00.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+bfd07902-07fa-5f08-8820-0306b414c169%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB+%E3%82%A8%E3%83%AA%E3%82%A2+%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF+%28LAN%29+%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FLAN-Settings%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FLAN-Settings.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FLAN-Settings.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/LAN-Settings/" data-id="ck980wyf8000ickv03tv43efa" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>これまで Japan IE Support Team Blog にて公開していた記事のうち、プロキシ関連の記事を整理しました。<br>長い記事になってしまうため、下記の 4 つの記事に分けています。</p>
+<p><strong>(今回の記事) ローカル エリア ネットワーク (LAN) の設定について</strong><br><a href="../ProxySettings/">IE からみるプロキシの設定について</a><br><a href="../pac/">PAC について</a><br><a href="../wpad/">WPAD について</a></p>
+<hr>
+<h3 id="1-ローカルエリアネットワーク-LAN-の設定"><a href="#1-ローカルエリアネットワーク-LAN-の設定" class="headerlink" title="1. ローカルエリアネットワーク(LAN) の設定"></a>1. ローカルエリアネットワーク(LAN) の設定</h3><p>プロキシの設定は、Internet Explorer のインターネット オプション - [接続] タブの [LAN の設定] ボタンから開ける [ローカル エリア ネットワーク (LAN) の設定] ダイアログで行います。</p>
+<img src="/blog/internet-explorer-microsoft-edge/LAN-Settings/LAN-Settings.png" class="">
+
+<p>Windows 10 では、[Windows の設定] – [ネットワークとインターネット] – [プロキシ] とも連動しています。</p>
+<img src="/blog/internet-explorer-microsoft-edge/LAN-Settings/OS-Proxy.png" class="">
+
+<p>ここでは [ローカル エリア ネットワーク (LAN) の設定] ダイアログの表示内容に沿って解説します。</p>
+<p>なお、よくあるお問い合せについて後述しましたので、そちらもご覧いただければと思います。</p>
+<hr>
+<h3 id="2-プロキシサーバーの利用を構成するための設定"><a href="#2-プロキシサーバーの利用を構成するための設定" class="headerlink" title="2. プロキシサーバーの利用を構成するための設定"></a>2. プロキシサーバーの利用を構成するための設定</h3><p>プロキシ サーバーの利用を構成するための設定は大きく分けると、赤い枠で囲んだ『プロキシ自動構成 (Proxy Auto-Configuration, PAC) スクリプトを使う方法』と、青い枠で囲んだ『プロキシ サーバーのアドレスやポートを直接指定する方法』の二つがあります。</p>
+<img src="/blog/internet-explorer-microsoft-edge/LAN-Settings/LAN-Settings2.png" class="">
+
+<p>それぞれの項目について順に説明します。</p>
+<p><strong>(1) 自動構成</strong><br>『自動構成』の欄では、『自動構成スクリプト ファイルの取得先を自動的に検出する』か、『自動構成スクリプト ファイルの取得先を手動で指定する』かを設定します。<br>※ 自動構成スクリプト (PAC) とは、<a href="https://docs.microsoft.com/ja-jp/internet-explorer/ie11-ieak/proxy-auto-config-examples" target="_blank" rel="noopener">アクセス先の URL や IP アドレスなどの条件</a> を基に、『プロキシ サーバーを経由せずに直接通信する』か『指定したプロキシ サーバーを経由して通信する』かのどちらかの結果を返す JavaScript で記述されたファイルです。</p>
+<p>[設定を自動的に検出する] のチェックをオンにすると、WPAD (Web Proxy Auto-Discovery) という技術を利用して、PAC ファイルの取得先 (<a href="http://contoso.com/proxy.pac" target="_blank" rel="noopener">http://contoso.com/proxy.pac</a> や <a href="http://wpad.contoso.com/wpad.dat" target="_blank" rel="noopener">http://wpad.contoso.com/wpad.dat</a> のような URL) を自動的に検出してファイルをダウンロードします。<br>自動的な検出を構成せずに、PAC ファイルの取得先を直接指定する場合には、[自動構成スクリプトを使用する] のチェックをオンにして [アドレス] 欄に PAC ファイルの取得先を入力します。</p>
+<p><strong>(2) プロキシ サーバー</strong></p>
+<img src="/blog/internet-explorer-microsoft-edge/LAN-Settings/LAN-Settings3.png" class="">
+
+<p>『プロキシ サーバー』の欄では、利用するプロキシ サーバーのアドレスやポートを直接指定します。<br>[LAN にプロキシ サーバーを使用する] のチェックをオンにして設定します。<br>[アドレス] には、ホスト名、FQDN名、IPアドレスが使用できます。<br>[詳細設定] ボタンを押すと、[プロキシの設定] ダイアログが表示されます。こちらについては後述します。<br>[ローカル アドレスにはプロキシ サーバーを使用しない] のチェックをオンにすると、”ローカル アドレス” でアクセスした場合に、指定されたプロキシ サーバーを経由せずに直接通信します。</p>
+<p><u>“ローカル アドレス” とは？</u><br><a href="http://contoso" target="_blank" rel="noopener">http://contoso</a> のように、ホスト名のみで指定された宛先です。簡単な見分け方は、ピリオド (.) を含んでいるかどうかです。IP アドレス (<a href="http://192.168.1.1" target="_blank" rel="noopener">http://192.168.1.1</a> など) や FQDN (<a href="http://contoso.com" target="_blank" rel="noopener">http://contoso.com</a> など) はピリオドを含んでいるためローカル アドレスではありません。</p>
+<p>たとえば、contoso の IP アドレスが 192.168.1.1 だったとした場合に、[ローカル アドレスにはプロキシ サーバーを使用しない] のチェックをオンにした状態で通信すると、宛先によって以下のようになります。</p>
+<p><a href="http://contoso" target="_blank" rel="noopener">http://contoso</a><br>→ローカル アドレスなので、プロキシ サーバーを経由せずに直接通信します。</p>
+<p><a href="http://192.168.1.1" target="_blank" rel="noopener">http://192.168.1.1</a> または <a href="http://contoso.com" target="_blank" rel="noopener">http://contoso.com</a><br>→ローカル アドレスではないので、プロキシ サーバーを経由して通信します。</p>
+<p>(参考情報)<br>Internet Explorer Uses Proxy Server for Local IP Address Even if the “Bypass Proxy Server for Local Addresses” Option Is Turned On<br><a href="https://support.microsoft.com/en-us/help/262981/" target="_blank" rel="noopener">https://support.microsoft.com/en-us/help/262981/</a></p>
+<p>&lt;自動日本語訳版&gt;<br>[ローカル アドレスにはプロキシ サーバを使用しない] オプションが有効であるにもかかわらず、Internet Explorer がローカル IP アドレスにプロキシ サーバーを使用する<br><a href="https://support.microsoft.com/ja-jp/help/262981/" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/262981/</a></p>
+<p><br><br></p>
+<p>[詳細設定] ボタンを押すと表示される [プロキシの設定] ダイアログについて説明します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/LAN-Settings/ProxySettings.png" class="">
+
+<p><strong><u>使用するプロキシのアドレス/ポート</u></strong></p>
+<p>プロキシ サーバーのアドレスとポート番号を入力します。プロトコル (http://、ftp:// など) で始まらない場合、HTTP プロキシであると見なされます。たとえば、「proxy」と入力すると、「http://proxy」として扱われます。<br>また、すべての種類で同じプロキシ サーバー設定を使用するときは、”すべてのプロトコルに同じプロキシ サーバーを使用する” をオンにします。この場合は上のスクリーンショットでお分かりいただけるかと思いますが、HTTP に指定したプロキシ サーバー情報が適用されます。<br>(Internet Explorer 8 以降では、プロトコルの種類 gopher: は存在しません)</p>
+<p><strong><u>次で始まるアドレスにはプロキシを利用しない</u></strong></p>
+<p>プロキシ サーバーを経由せずにアクセスしたいアドレスを指定します。複数のアドレスを、セミコロンで区切って複数指定できます。<br>例外リストに指定可能な文字列 (最大 2064 バイト) の表記形式は以下となります。下記表記形式中の [] で括られる部分は省略可能を意味し、”” で括られる部分は固定の文字列を意味します。<br>[&lt;プロトコル スキーム&gt;”://“]&lt;ホスト名、FQDN または IP アドレス&gt;[“:”&lt;ポート番号&gt;][“;”*]<br>&lt;プロトコル スキーム&gt; は http や ftp 等のプロトコル名を指します。<br>なお、プロキシ サーバーの例外リストに指定可能なプロトコル名に特に制限はございませんが、IE がサポートする通信プロトコルは http、https、ftp のみとなります。</p>
+<p><strong><u>例外リストにワイルドカード (*) は利用できる？</u></strong></p>
+<p>はい。ワイルドカード (<em>) も利用できます。<br>例)<br>*.example.com (“some.example.com” “<a href="http://www.example.com&quot;" target="_blank" rel="noopener">www.example.com&quot;</a> などにマッチ)<br>“www.</em>.com” (“<a href="http://www.example.com&quot;" target="_blank" rel="noopener">www.example.com&quot;</a> “<a href="http://www.department.example.com&quot;" target="_blank" rel="noopener">www.department.example.com&quot;</a> などにマッチ)<br>“<a href="http://www.example.*&quot;" target="_blank" rel="noopener">www.example.*&quot;</a> (“<a href="http://www.example.com&quot;" target="_blank" rel="noopener">www.example.com&quot;</a> “<a href="http://www.example.org&quot;" target="_blank" rel="noopener">www.example.org&quot;</a> “<a href="http://www.example.microsoft.com&quot;" target="_blank" rel="noopener">www.example.microsoft.com&quot;</a> などにマッチ)<br>“123.1<em>.66.</em>“ (“123.144.66.12” “123.133.66.15” “123.187.66.13.” などにマッチ)<br>“<em>contoso</em>“</p>
+<p>なお、ワイルドカードの利用は充分にご注意ください。例えば “www.*.com” をプロキシ例外として指定した場合、非常に多くのサイトが該当してしまうので、意図しないアドレスがプロキシ サーバー経由せずにアクセスしてしまった、ということになりかねません。</p>
+<hr>
+<h3 id="3-よくあるお問い合わせ"><a href="#3-よくあるお問い合わせ" class="headerlink" title="3. よくあるお問い合わせ"></a>3. よくあるお問い合わせ</h3><p><strong><u>複数の項目が有効だった場合の優先順位は？</u></strong><br>[インターネットオプション] - [接続]タブの設定は、複数にチェックが入っていた場合、上から順に試行されます。つまり、優先順位は以下となります。</p>
+<ol>
+<li>設定を自動的に検出する</li>
+<li>自動構成スクリプトを使用する</li>
+<li>LAN にプロキシ サーバーを使用する</li>
+</ol>
+<p>「自動構成スクリプトを使用する」だけが設定されている場合、指定されたアドレスで自動構成スクリプトが取得できたかどうかによって、次にダイレクト接続を試行するかどうかが決定されます。<br>自動構成スクリプトの取得に失敗した場合は、プロキシを使用せずに対象の Web サイトへの接続を試みます。<br>自動構成スクリプトの取得に成功した場合は、自動構成スクリプトから返されたプロキシに接続を試みます。この場合、当該プロキシに接続できる/できないにかかわらず、以降のダイレクト接続の試行は行いません。<br>また「LAN にプロキシ サーバーを使用する」も同時に設定されている場合、IE自動構成スクリプトの取得に失敗すると、次に「LAN にプロキシ サーバーを使用する」のプロキシを使用した接続を試みます。<br>このプロキシに接続できなかった場合は、それ以上の試行は行わず「ページを表示できません」のエラーページを表示する動作となります。</p>
+<p><strong><u>自動構成スクリプトを取得するタイミング</u></strong><br>Windows 7 までは、IE のプロセス起動後、最初に通信を行うタイミングで IE 自身が取得します。このとき、自動構成スクリプトのキャッシュが存在する場合は、一般的な Web ページのキャッシュと同じ仕組みでキャッシュが利用されます。ブラウザーのキャッシュについては こちら で詳しく説明していますので併せてご覧いただければと思いますが、有効期限内のキャッシュが存在する場合には自動構成スクリプトを Web サーバーに取得しにいくことなしに、キャッシュされた自動構成スクリプトを利用することなどにご注意いただければと思います。</p>
+<p>一方、Windows 8 からは、WinHTTP Web Proxy Auto-Discovery Service (WinHttpAutoProxySvc) という OS の機能 (サービス) によって自動構成スクリプトを取得するようになり、IE などのアプリケーションはその情報を参照する形になりました。Windows 7 までのように IE の起動とは関係がなくなり、OS の起動時に取得されるほか、下記の状況下で再取得が試みられます。</p>
+<p>  (A) WinHttpAutoProxySvc サービスの再起動時 (Windows 10 Version 1803 からはサービスの再起動はできません)<br>  (B) NLA (Network Location Awareness) サービスの再起動時<br>  (C) ネットワークへの接続時 (構成変更 (ネットワークアダプタの無効化／有効化、LAN ケーブルの抜き差し) を含む)</p>
+<p>上記の状況下で再取得が試みられますが、Windows 7 までの IE 上での動作と同様にキャッシュが利用されます。そのため、キャッシュの期限を無視して強制的に再取得をさせたい場合は、IE 側で閲覧履歴の削除をしてから上記の A ～ C いずれかを実施します。</p>
+<p><strong><u>自動プロキシキャッシュについて</u></strong><br>“自動プロキシ キャッシュ” とは、接続先のホスト名とプロキシ サーバーを紐づけて記憶する Internet Explorer の機能です。<br>“自動構成スクリプトのファイル (pac ファイル) 自体のキャッシュ” とは異なります。</p>
+<p>自動プロキシ キャッシュ機能では、例えば、1 回目に <a href="http://www.microsoft.com/" target="_blank" rel="noopener">http://www.microsoft.com/</a> にアクセスを行った際には自動構成スクリプトを解析し対象となるプロキシを決定する必要がありますが、2 回目以降のアクセスでは自動構成スクリプトを再度解析することなく 1 回目に得られた結果を用いプロキシに対してアクセスを試みるような高速化に関わる動作を実現しています。</p>
+<p>たとえば、以下のような pac で、192.168.100.100 がダウンして、192.168.100.200 が利用されたというシナリオを考えます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function FindProxyForURL(url, host)</span><br><span class="line">&#123;</span><br><span class="line">if (shExpMatch(host, &quot;*.microsoft.com&quot;)) &#123;</span><br><span class="line">  return &quot;PROXY 192.168.100.100; PROXY 192.168.100.200&quot;; &#125;</span><br><span class="line"></span><br><span class="line">return &quot;DIRECT&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自動プロキシ キャッシュの機能によって *.microsoft.com へのアクセスは 192.168.100.200 を利用するということが Internet Explorer のメモリ上に保持され、プロセスを再起動するまで (※) キャッシュされた情報でプロキシへのアクセスをします。(つまり、最初から 192.168.100.200 からアクセスします)<br>※ Windows 10 Version 1607 からは、自動プロキシ キャッシュの機能の処理が WinHTTPAutoProxySvc に移動したため、Internet Explorer を再起動することでは自動プロキシ キャッシュの情報はクリアされず、WinHTTPAutoProxySvc の再起動 (または、Pac の再読み込み) でクリアされるように変わりました。</p>
+<p>   Internet Explorer の自動プロキシ キャッシュを無効にする方法<br>   <a href="https://support.microsoft.com/ja-jp/help/271361/how-to-disable-automatic-proxy-caching-in-internet-explorer" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/271361/how-to-disable-automatic-proxy-caching-in-internet-explorer</a></p>
+<p>これに加えて、プロキシ サーバーとの接続を確立できない場合は、当該プロキシ サーバーは「無効なプロキシ サーバー」の一覧というメモリ上で「30 分間」保持される情報として管理されるものがあります。<br>この動作により KB320507 で説明する、無効と判断したプロキシ サーバーに対しては、IE を再起動するか、30 分間経過するまでは接続を再試行しないという状態になり得ます。</p>
+<p>   Internet Explorer が 30 分間に無効なプロキシ サーバーを再試行しません。<br>   <a href="https://support.microsoft.com/ja-jp/help/320507/internet-explorer-does-not-retry-bad-proxy-server-for-30-minutes" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/320507/internet-explorer-does-not-retry-bad-proxy-server-for-30-minutes</a></p>
+<p><strong><u>IE11 以降における、file プロトコルでの自動構成スクリプトのアドレス指定について</u></strong><br>IE11 では、自動構成スクリプトのアドレスに file プロトコルでアドレスを指定できません。<br>例えば以下のような指定は無効で、この指定では自動構成スクリプトを利用することができません。</p>
+<ul>
+<li>C:\temp\proxy.pac</li>
+<li>file://example/proxy.pac</li>
+</ul>
+<ul>
+<li><p>動作変更の背景<br>もともと IE10 以前でも、上記のようなfile プロトコルによる指定は推奨されていませんでした。理由は、IE だけではなく、他のアプリケーションも自動構成スクリプトの設定を利用するものがあるためです。<br>具体的には、IE が通信に利用するモジュール “WinInet” では上の指定は有効なのですが、Windows Update などが利用する通信モジュール “WinHTTP” では、file プロトコルによる自動構成スクリプトのアドレス指定はサポートされていません。そのため、IE は問題なく自動構成スクリプトを利用でき、通信が行えても、Windows Update 等の他のアプリケーションが自動構成スクリプトを利用できず、問題が発生することがあるのです。これは以下の技術文書でも説明しています。</p>
+<p>自動構成スクリプトの指定方法によって Windows Update が失敗する<br><a href="https://support.microsoft.com/ja-jp/help/890444" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/890444</a></p>
+</li>
+</ul>
+<p>以上のような背景を踏まえ、file プロトコルでのアドレス指定は、Windows Update 等 WinHTTP を利用しているアプリケーションとの相互運用性を向上させるため、IE11から利用できなくなりました。</p>
+<p>なお、Windows 10 Version 1607 より前の環境については、アドレス指定の見直しを進めていただく間の暫定的な対応策として、以下のレジストリを設定していただくと、IE11 でも file プロトコルでのアドレス指定が有効となります。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>キー</td>
+<td>HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</td>
+</tr>
+<tr>
+<td>名前</td>
+<td>EnableLegacyAutoProxyFeatures</td>
+</tr>
+<tr>
+<td>種類</td>
+<td>REG_DWORD</td>
+</tr>
+<tr>
+<td>値</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>あくまで暫定的な対応のために用意された方法であり、<font color="red">Windows 10 Version 1607 からはこの方法は利用できません。</font>お手数をおかけしますが、自動構成スクリプトは http または https プロトコルでアクセス可能な Web サーバーに配置してご利用いただけますようお願いいたします。</p>
+<p><strong><u>プロキシサーバーの設定を、外部のアプリケーションやスクリプトなどから変更したい</u></strong><br>WinINet というモジュールに含まれる公開 API の InternetSetOption 関数を利用することでプロキシ サーバーの設定を行うことができます。</p>
+<p> InternetSetOptionW function<br> <a href="https://docs.microsoft.com/en-us/windows/desktop/api/wininet/nf-wininet-internetsetoptionw" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/desktop/api/wininet/nf-wininet-internetsetoptionw</a></p>
+<p>実装例は以下のドキュメントにありますので併せてご覧ください。</p>
+<p> Setting and Retrieving Internet Options<br> <a href="https://docs.microsoft.com/en-us/windows/desktop/WinInet/setting-and-retrieving-internet-options" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/desktop/WinInet/setting-and-retrieving-internet-options</a><br>  ※ 「Setting Connection Options」の部分です。</p>
+<p>なお、プロキシの情報は下記の DefaultConnectionSettings とそれに関連する複数のレジストリが自動的に同期をとりながら管理されています。</p>
+<p>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Connections\DefaultConnectionSettings<br>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\AutoConfigURL<br>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyEnable<br>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyOverride<br>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyServer</p>
+<p>DefaultConnectionSettings はフォーマットが非公開のバイナリー データであり、基本的にはこれらのレジストリが直接編集されることは想定しておらず、たとえば、ProxyEnable や ProxyOverride などを個別に直接変更するとレジストリ間で不整合が生じて予期しない動作 (プロキシの設定が消えてしまったり、想定した通信にならないなど) となる場合があります。<br>技術的な観点からは、これらのレジストリをまとめて配布することでプロキシの設定を行うことができますが、サポートされる方法としては、上記の InternetSetOption 関数を利用することです。</p>
+<p>以上です。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/LAN-Settings.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../IE-SecurityZones/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          IE のセキュリティ ゾーンについて
+        
+      </div>
+    </a>
+  
+  
+    <a href="../ProxySettings/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">IE からみるプロキシの設定について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../IE-GroupPolicyPreferences/">基本設定で Internet Explorer 関連の設定を配布する</a>
+          </li>
+        
+          <li>
+            <a href="../IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+          </li>
+        
+          <li>
+            <a href="../IE-SecurityZones/">IE のセキュリティ ゾーンについて</a>
+          </li>
+        
+          <li>
+            <a href="">ローカル エリア ネットワーク (LAN) の設定について</a>
+          </li>
+        
+          <li>
+            <a href="../ProxySettings/">IE からみるプロキシの設定について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WPAD/" rel="tag">WPAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/pac/" rel="tag">pac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" rel="tag">メモリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">12</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/WPAD">WPAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/pac">pac</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5">キャッシュ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3">セキュリティ ゾーン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7">プロキシ</a><span class="tag-list-count">5</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%A1%E3%83%A2%E3%83%AA">メモリ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A">基本設定</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">9</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 11.67px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 13.33px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 11.67px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 16.67px;">Chromium</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 11.67px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 20px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 18.33px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 16.67px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/WPAD/" style="font-size: 10px;">WPAD</a> <a href="../../tags/pac/" style="font-size: 11.67px;">pac</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" style="font-size: 10px;">キャッシュ</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" style="font-size: 10px;">セキュリティ ゾーン</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" style="font-size: 15px;">プロキシ</a> <a href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" style="font-size: 10px;">メモリ</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">基本設定</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

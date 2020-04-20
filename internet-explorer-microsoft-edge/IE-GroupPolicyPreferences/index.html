@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>基本設定で Internet Explorer 関連の設定を配布する | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="※ これまで Japan IE Support Team Blog にて公開していた３つの記事を整理してまとめました。 Internet Explorer 関連の設定を、ドメインのグループ ポリシーを使用してクライアントに配布する方法についての紹介です。 以下の赤枠の部分についてを本記事で扱います。    基本設定ポリシーにて Internet Explorer 関連の設定を構成する場合は以下の">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本設定で Internet Explorer 関連の設定を配布する">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="※ これまで Japan IE Support Team Blog にて公開していた３つの記事を整理してまとめました。 Internet Explorer 関連の設定を、ドメインのグループ ポリシーを使用してクライアントに配布する方法についての紹介です。 以下の赤枠の部分についてを本記事で扱います。    基本設定ポリシーにて Internet Explorer 関連の設定を構成する場合は以下の">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-New.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-New1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-New1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-New2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-Connection.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-LAN.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-Common.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-Report.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-Result.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences-Security.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;AdministrativeTemplates.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory01.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory02.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory03.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory04.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory05.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory06.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory07.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Registory08.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut01.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut02.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut03.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut04.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut05.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;Shortcut06.png">
+<meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-20T05:13:02.048Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="基本設定">
+<meta property="article:tag" content="プロキシ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-GroupPolicyPreferences&#x2F;GroupPolicyPreferences.png">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/IE-GroupPolicyPreferences" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基本設定で Internet Explorer 関連の設定を配布する
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-19T15:00:00.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+fa4d972b-40fb-5cbf-9656-bba77b60a196%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E3%81%A7+Internet+Explorer+%E9%96%A2%E9%80%A3%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%82%92%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FIE-GroupPolicyPreferences%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FIE-GroupPolicyPreferences.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FIE-GroupPolicyPreferences.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/" data-id="ck980wyey000bckv08s3i5835" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>※ これまで Japan IE Support Team Blog にて公開していた３つの記事を整理してまとめました。</p>
+<p>Internet Explorer 関連の設定を、ドメインのグループ ポリシーを使用してクライアントに配布する方法についての紹介です。</p>
+<p>以下の赤枠の部分についてを本記事で扱います。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences.png" class="">
+
+<hr>
+<p>基本設定ポリシーにて Internet Explorer 関連の設定を構成する場合は以下の 3 つを使用します。</p>
+<ul>
+<li>インターネット設定 — インターネット オプションと類似の設定から構成できます</li>
+<li>レジストリ — インターネット オプションの設定に対応するレジストリ値を配布できます</li>
+<li>ショートカット — IEの観点では “お気に入り” を配布するときに利用できます</li>
+</ul>
+<p>ぞれぞれ順にみていきます。</p>
+<hr>
+<h2 id="インターネット設定"><a href="#インターネット設定" class="headerlink" title="インターネット設定"></a>インターネット設定</h2><p>インターネット設定は以下の手順で開きます。</p>
+<ol>
+<li>[グループ ポリシー管理エディター] を開きます。</li>
+<li>[ユーザーの構成] &gt; [基本設定] &gt; [コントロール パネルの設定] &gt; [インターネット設定] を選択します。</li>
+<li>[インターネット設定] を右クリックし、[新規作成] &gt; [Internet Explorer XX] (配布先のバージョン) を選択します。</li>
+</ol>
+<p>※ “Internet Explorer 11” という項目がありませんが、”Internet Explorer 10” を選択することで Internet Explorer 11 への配布が可能です。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-New.png" class="">
+
+<hr>
+<p><strong><font color="red">重要</font></strong><br><font color="red">各設定項目では『緑は配布する』/『赤は配布しない』を表しています。</font></p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-New1.png" class="">
+
+<p>以下のようにファンクション キーで切り替えることができます。</p>
+<ul>
+<li>画面上の全項目を有効(全て緑)にする：F5</li>
+<li>画面上の全項目を無効(全て赤)にする：F8</li>
+<li>選択中の項目を有効にする(項目のみ緑)：項目選択中にF6</li>
+<li>選択中の項目を無効にする(項目のみ赤)：項目選択中にF7</li>
+</ul>
+<p><font color="red">設定を配布するつもりのないタブを開いたとき、緑の線や丸印で表示されている項目は、”OK” ボタンで設定で閉じた時点で配布対象となります。<br>そのため、特に設定を配布する必要のない画面を開いた場合は、『キャンセル後再度編集する』か『F8で配布不可にする』ようお気をつけください。</font></p>
+<hr>
+<p>それでは、例としてプロキシの設定を配布する手順を紹介します。</p>
+<p>なお、プロキシの設定については <a href="../LAN-Settings/">こちらの記事</a> で詳しく説明していますが、「よくあるお問い合わせ」に記載のとおりプロキシの情報はバイナリ データを含む複数のレジストリが自動的に同期をとりながら管理されています。<br>技術的な観点からは、これらのレジストリをまとめて配布することでプロキシの設定を行うことができますが、サポートされる方法としては、基本設定 - インターネット設定を利用することですので、以下の方法での対応をご検討ください。</p>
+<h3 id="インターネット設定の構成手順"><a href="#インターネット設定の構成手順" class="headerlink" title="インターネット設定の構成手順"></a>インターネット設定の構成手順</h3><ol>
+<li>上述の手順で設定画面を開きます。<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-New1.png" class="">
+
+</li>
+</ol>
+<p>先ほどお伝えしたように『緑は配布する』/『赤は配布しない』を表しています。<br>今回はプロキシの設定だけを配布しようと考えていますので、F8 キーなどで画面上に見えている『緑』の項目を『赤』に切り替えます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-New2.png" class="">
+
+<p><font color="red">繰り返しになりますが、全般タブを (緑の項目を目にしたあと) このまま “OK” ボタンで閉じると、[スタートアップ] の設定や [終了時に閲覧の履歴を削除する] の設定も配布対象となり、意図しない設定を配布してしまうことになるのでご注意ください。</font></p>
+<ol start="2">
+<li><p>次に [接続] タブを開きますが、先ほどと同様に『緑』の項目 “プロキシ サーバーを構成する…” を配布つもりがない時は以下のように『赤』に変更しておきます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Connection.png" class="">
+</li>
+<li><p>[LAN の設定] ボタンをクリックします。<br>この例では、自動構成スクリプトのアドレスを明示的に指定したものを配布することにします。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-LAN.png" class="">
+<p>pac の URL を入力し、F6 キーで『緑』にします。<br>※ [自動構成スクリプトを使用する] を構成する場合はアドレス欄を構成するのみで自動でチェックが入ります。</p>
+</li>
+</ol>
+<p>ここでも、<font color="red">配布しない項目は『赤』にしておくこと</font>を忘れずに…</p>
+<ol start="4">
+<li><p>最後に、いま構成した設定をクライアント環境に　“一度だけ”　適用したい場合は、[共通]　タブにおいて [1 度だけ適用し、再適用しない] にチェックを入れます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Common.png" class="">
+</li>
+<li><p>[OK] で画面を閉じます。<br>実際に配布される項目は、グループ ポリシー オブジェクト (GPO) を選択した際に右側に表示される画面の [設定] タブにて確認できます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Report.png" class="">
+</li>
+<li><p>クライアントに配布されたプロキシの設定をみてみましょう。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Result.png" class="">
+
+</li>
+</ol>
+<p>[自動構成スクリプトを使用する] が、手順 3 で設定した pac の URL になっています。<br>[設定を自動的に検出する] は手順 3 で『赤』にしたのでユーザーが指定した設定が上書きされずに残されています。</p>
+<hr>
+<h2 id="レジストリ"><a href="#レジストリ" class="headerlink" title="レジストリ"></a>レジストリ</h2><p>次に基本設定でレジストリを配布してみます。<br>先ほどの『インターネット設定』はインターネット オプションと類似の設定画面を用いて配布項目を構成 / 配布できる非常に便利な項目ですが、セキュリティ ゾーン の URL の配布に対応していません。<br>(以下の画像のように[サイト]ボタンがグレーアウトしています)</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Security.png" class="">
+
+<p>クライアント環境に対して『ユーザーが任意に変更可能な状態』でセキュリティ ゾーンの URL を配布したい場合は、基本設定の『レジストリ項目』を構成します。</p>
+<font color="red">
+※ 管理用テンプレートにある「サイトとゾーンの割り当て一覧」を構成した場合、ユーザーが手動で設定した内容は無視され、本項目で設定した内容に強制されます。
+インターネット オプション上の当該の項目は、グレーアウトした状態でユーザーは変更できず、かつ、本項目で設定したサイト (ドメイン) のみが表示される動作となります。
+このため「サイトとゾーンの割り当て一覧」を使用するかどうかは、よく検討してください。
+</font>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/AdministrativeTemplates.png" class="">
+
+<p><strong>前提 1 : セキュリティ ゾーンの URL が登録されるレジストリ</strong><br>各セキュリティ ゾーンのレジストリは以下のように登録されます。</p>
+<p>場所 : HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\トップレベルドメイン\サブドメイン<br>名前 : プロトコル（http / https）<br>種類 : REG_DWORD<br>値 : 1 (ローカル イントラネット) / 2 (信頼済みサイト) / 3 (インターネット) / 4 (制限付きサイト)</p>
+<p>例えば、”<a href="https://www.microsoft.com&quot;" target="_blank" rel="noopener">https://www.microsoft.com&quot;</a> を “信頼済みサイト” として配布した場合は以下のようになります。<br>場所 : HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\microsoft.com\www<br>名前 : https<br>種類 : REG_DWORD<br>値 : 2</p>
+<p><strong>前提 2 : Internet Explorer セキュリテ ィ強化の構成 (IE ESC)</strong><br>サーバー　OS　には『Internet Explorer セキュリティ強化の構成 (IE ESC)』と呼ばれる機能があります。（既定は “有効” です）<br>この機能の状態により、登録 / 参照するセキュリティ ゾーンのレジストリが異なります。</p>
+<p>有効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\EscDomains<br>無効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains</p>
+<p>配布元 / 配布先の『IE ESC』の状態が異なる状態でセキュリティ ゾーンの URL を 配布すると、登録 / 参照先が異なるため値が反映されません。<br>(後述の “レジストリ項目” の設定手順 4 で直接値を入力すると回避できます)</p>
+<p>このため、セキュリティ ゾーンの URL をグループ ポリシーで管理する場合、配布元 / 配布先 IE ESC の 状態にご注意ください。<br>(クライアント OS には IE ESC が存在しないため “無効” と同等です）</p>
+<p>IE ESC機能についての詳細は以下にあります。</p>
+<p>Internet Explorer セキュリティ強化の構成による Internet Explorer のユーザー操作の変更<br><a href="https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configuration-changes-browsing-experience" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configuration-changes-browsing-experience</a></p>
+<p>上記の前提を踏まえて実際の設定方法を紹介します。</p>
+<hr>
+<h3 id="基本設定のレジストリ項目の設定手順"><a href="#基本設定のレジストリ項目の設定手順" class="headerlink" title="基本設定のレジストリ項目の設定手順"></a>基本設定のレジストリ項目の設定手順</h3><p>この例では “<a href="https://www.microsoft.com&quot;" target="_blank" rel="noopener">https://www.microsoft.com&quot;</a> を信頼済みサイトに登録してみます。</p>
+<p>※ 誤入力防止のために、登録されるレジストリ キーを直接指定して基本設定を構成する方法としています。<br>サーバー上で設定ができない場合は、手順 5 でレジストリ ([キーのパス] / [値の名前] / [値の種類] / [値のデータ]) を直接入力します（手順6/7は不要です）。</p>
+<ol>
+<li><p>配布元端末の IE 上にて配布する URL (ここでは <a href="https://www.microsoft.com" target="_blank" rel="noopener">https://www.microsoft.com</a>) を信頼済みサイトとして設定します。</p>
+</li>
+<li><p>[グループ ポリシー管理エディター]を開きます。</p>
+</li>
+<li><p>[ユーザーの構成] &gt; [基本設定] &gt; [Windows の設定] &gt; [レジストリ] を選択します。</p>
+</li>
+<li><p>[レジストリ]を右クリックし、[新規作成] &gt; [レジストリ項目] を選択します。</p>
+</li>
+</ol>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory.png" class="">
+
+<ol start="5">
+<li><p>最初に [全般タブ] が開かれます。[アクション] では既定の “更新” を、[ハイブ] は “HKEY_CURRENT_USER” を選択します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory01.png" class="">
+</li>
+<li><p>[キーのパス] 項目の […] ボタンをクリックし、[レジストリ項目ブラウザー] から予め登録したドメインを選択します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory02.png" class="">
+
+</li>
+</ol>
+<p>※ この例ではレジストリ キーは以下のとおりです。<br>HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\microsoft.com\www</p>
+<ol start="7">
+<li>画面下部に表示される [名前] / [種類] / [データ] 欄の [名前] をクリック (反転します) し、[選択] ボタンを押下します。<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory03.png" class="">
+
+</li>
+</ol>
+<p>自動的に値が入力されます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory04.png" class="">
+<p>※ 手順 6 をせずに直接入力することも可能ですが、パスや値を間違えないように気を付けてください。</p>
+<ol start="8">
+<li><p>クライアント環境に “一度だけ” 適用したい場合は、[共通] タブにおいて [1 度だけ適用し、再適用しない] にチェックを入れます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory05.png" class="">
+</li>
+<li><p>[OK] で設定画面を閉じると、作成した設定が登録されます。(ログオン等の GPO 適用のタイミングでクライアント環境に値が反映されるようになります)</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory06.png" class="">
+</li>
+<li><p>実際に配布される項目は、グループ ポリシー オブジェクト (GPO) を選択した際に右側に表示される画面の [設定] タブにて確認可能です。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory07.png" class="">
+</li>
+<li><p>クライアントに配布された信頼済みサイトの設定をみてみましょう。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory08.png" class="">
+
+</li>
+</ol>
+<hr>
+<h2 id="ショートカット"><a href="#ショートカット" class="headerlink" title="ショートカット"></a>ショートカット</h2><p>最後に、ショートカットでお気に入りを配布してみます。</p>
+<ol>
+<li><p>[グループ ポリシー管理エディター] を開きます。</p>
+</li>
+<li><p>[ユーザーの構成] &gt; [基本設定] &gt; [Windows の設定] &gt; [ショートカット] を選択します。</p>
+</li>
+<li><p>[ショートカット] を右クリックし、[新規作成] &gt; [ショートカット] を選択します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut.png" class="">
+</li>
+<li><p>最初に [全般タブ] が開かれます。[アクション] は既定の “更新” のままとします。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut01.png" class="">
+
+</li>
+</ol>
+<p>[名前] は %userprofile%\Favorites\ &lt;ショートカット名&gt; と入力します。<br>[ターゲットの種類] は “URL” を、[場所] は “&lt;完全なパスの指定&gt;” を選択します。<br>[ターゲット URL] に URL (この例では <a href="https://www.microsoft.com" target="_blank" rel="noopener">https://www.microsoft.com</a>) を指定します。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut02.png" class="">
+
+<ol start="5">
+<li><p>[共通タブ] の [ログインしているユーザーのセキュリティ コンテキストで実行する (ユーザー ポリシーオプション)] はそのままにしておきます。<br>クライアント環境に “一度だけ” 適用したい場合は、[共通] タブにおいて [1 度だけ適用し、再適用しない] にチェックを入れます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut03.png" class="">
+</li>
+<li><p>[OK] で設定画面を閉じると、作成した設定が登録されます。(ログオン等の GPO 適用のタイミングでクライアント環境に値が反映されるようになります)</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut04.png" class="">
+</li>
+<li><p>実際に配布される項目は、グループ ポリシー オブジェクト (GPO) を選択した際に右側に表示される画面の [設定] タブにて確認可能です。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut05.png" class="">
+</li>
+<li><p>クライアントに配布されたお気に入りをみてみましょう。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Shortcut06.png" class="">
+
+</li>
+</ol>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../IE-Cache/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">基本設定で Internet Explorer 関連の設定を配布する</a>
+          </li>
+        
+          <li>
+            <a href="../IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+          </li>
+        
+          <li>
+            <a href="../IE-SecurityZones/">IE のセキュリティ ゾーンについて</a>
+          </li>
+        
+          <li>
+            <a href="../LAN-Settings/">ローカル エリア ネットワーク (LAN) の設定について</a>
+          </li>
+        
+          <li>
+            <a href="../ProxySettings/">IE からみるプロキシの設定について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WPAD/" rel="tag">WPAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/pac/" rel="tag">pac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" rel="tag">メモリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">12</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/WPAD">WPAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/pac">pac</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5">キャッシュ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3">セキュリティ ゾーン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7">プロキシ</a><span class="tag-list-count">5</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%A1%E3%83%A2%E3%83%AA">メモリ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A">基本設定</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">9</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 11.67px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 13.33px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 11.67px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 16.67px;">Chromium</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 11.67px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 20px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 18.33px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 16.67px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/WPAD/" style="font-size: 10px;">WPAD</a> <a href="../../tags/pac/" style="font-size: 11.67px;">pac</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" style="font-size: 10px;">キャッシュ</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" style="font-size: 10px;">セキュリティ ゾーン</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" style="font-size: 15px;">プロキシ</a> <a href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" style="font-size: 10px;">メモリ</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">基本設定</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

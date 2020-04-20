@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話) | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="※ これまで Japan IE Support Team Blog にて公開していた記事を移しました。 「IE8 では Web サーバー側でファイルを更新したらすぐクライアントに反映されていたのに、IE9 以降にしたらすぐに反映されなくなった。。」というお問い合わせをいただくことがあります。この現象は、IE9 以降の IE で [インターネット オプション] の [全般タブ] [インターネット一時">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="※ これまで Japan IE Support Team Blog にて公開していた記事を移しました。 「IE8 では Web サーバー側でファイルを更新したらすぐクライアントに反映されていたのに、IE9 以降にしたらすぐに反映されなくなった。。」というお問い合わせをいただくことがあります。この現象は、IE9 以降の IE で [インターネット オプション] の [全般タブ] [インターネット一時">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;TemporaryInternetFiles.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;Explorer.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;Cache-iis85.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;DeleteBrowsingHistory.jpg">
+<meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-20T05:13:02.013Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="キャッシュ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-Cache&#x2F;TemporaryInternetFiles.jpg">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/IE-Cache" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-19T15:00:00.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+2c1b8323-7378-5637-a178-430ef4b3506d%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BWeb+%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E5%81%B4%E3%81%A7%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%82%92%E6%9B%B4%E6%96%B0%E3%81%97%E3%81%A6%E3%82%82+IE+%E4%B8%8A%E3%81%AB%E5%8F%8D%E6%98%A0%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84+%28%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E3%81%8A%E8%A9%B1%29%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FIE-Cache%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FIE-Cache.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FIE-Cache.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-Cache/" data-id="ck980wyf3000dckv03pzsevhy" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>※ これまで Japan IE Support Team Blog にて公開していた記事を移しました。</p>
+<p>「IE8 では Web サーバー側でファイルを更新したらすぐクライアントに反映されていたのに、IE9 以降にしたらすぐに反映されなくなった。。」というお問い合わせをいただくことがあります。<br>この現象は、IE9 以降の IE で [インターネット オプション] の [全般タブ] [インターネット一時ファイルと履歴の設定] で [自動的に確認する] (既定値) が設定されている場合に 発生することがあり、以下の技術文書でもご案内しています。</p>
+<p>Internet Explorer 9 において Webサーバーとの通信なしでキャッシュからコンテンツを表示する場合がある<br><a href="https://support.microsoft.com/ja-jp/help/2530998" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/2530998</a></p>
+<p>今回は、この IE の “キャッシュ” の動作について詳しくご紹介いたします。</p>
+<hr>
+<h2 id="まず最初に、キャッシュとは"><a href="#まず最初に、キャッシュとは" class="headerlink" title="まず最初に、キャッシュとは"></a>まず最初に、キャッシュとは</h2><p>Internet Explorer における “キャッシュ” とは、<strong>閲覧しているページを次回もっと早く表示できるように、PC に保存しておく Web ページ (html、aspx など)、画像 (jpg、gif など)、その他リソースファイル (スタイルシートファイル (.css)、JavaScript ファイル (.js)、動画や音声ファイル などなど) 等などのコピー</strong> のことです。<br>次回同じページにアクセスした時、Web サーバー側で特に更新されていなければキャッシュからファイルを取得することで、通信量を抑えたりページ表示の速度を速めたりするための仕組みです。</p>
+<p>保存されているキャッシュは、[インターネット オプション] – [全般] タブ - 閲覧の履歴 – [設定] ボタンをクリックすると表示される [Web サイト データの設定] ダイアログ上で、[ファイルの表示] ボタンを押すと確認できます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-Cache/TemporaryInternetFiles.jpg" class="">
+
+<p>エクスプローラが起動して、以下のようにキャッシュが表示されます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-Cache/Explorer.jpg" class="">
+
+<p>いくつかの項目が表示されていますが、このうち <strong>“有効期限日時”</strong> は Web サーバーが指定してくる (具体的には、HTTP レスポンス ヘッダーの Set-Cookie ヘッダーで指定してくる) ものになります。指定がなければ、”なし” と表示されます。</p>
+<p>一度閲覧した Web ページを次回表示した時、IE は基本的にファイル取得を以下の流れで行います。</p>
+<p>ユーザーが Web ページのアドレスを IE のアドレスバーに入力して Enter キーを押す<br>IE は、対象のコンテンツのキャッシュがキャッシュフォルダに存在するかを確認する<br>→　キャッシュが存在していて、<br>→→　 有効期限内であればキャッシュから取得。<br>→ →　有効期限が切れていれば、Web サーバーへ更新確認 (If-Modified-Since ヘッダーを含む Get リクエスト) を行う。<br>→→→　更新確認の結果<br>→ →→→　Web サーバー側のファイルが更新されていたら、Web サーバーから取得。（ファイルをダウンロード。HTTP ステータスコード 200 OK が返る）<br>→ →→→　更新されていなければ (HTTP ステータスコード 304 Not Modified が返れば) 引き続きキャッシュから取得。</p>
+<p>上記の流れを考えると、Web サーバー上のファイルが更新されれば Web サーバーから取得するのだから、「Web サーバー側でファイルを更新したのに、クライアントの IE で Web サイトにアクセスしても更新が反映されない。。」ということはなさそうに思われます。</p>
+<p>が、</p>
+<p>IE9 以降の IE では、以下両方に該当する場合、更新確認も行わずにコンテンツをキャッシュから取得するようになっています。</p>
+<p>クライアント側の IE で [インターネット オプション] [インターネット一時ファイルと履歴の設定] で [自動的に確認する] (既定値) が設定されている<br>Web サーバー側で “有効期限日時” を指定していないコンテンツである</p>
+<p>この動作変更は、IE9 以降 RFC2616 に準拠して、”表示の高速化、効率化のため、より積極的にキャッシュを利用する” ために行われました。</p>
+<p>具体的には、<strong>[インターネット一時ファイルと履歴の設定] で [自動的に確認する] が設定されている場合、Web サーバーから “有効期限の指定のない” コンテンツを取得すると、IE は独自に有効期限を計算して設定し、キャッシュを作成する</strong> ようになりました。</p>
+<p>この機能は “ヒューリスティックキャッシュ” と呼ばれます。</p>
+<hr>
+<p>(※) ヒューリスティック キャッシュについて</p>
+<p>有効期限の指定のないコンテンツについて、従来の IE では限定されたリソース (画像ファイル) にのみ独自に期限を設定していましたが、IE9 以降ではキャッシュ可能な全てのリソースについて独自に期限を設定するようにしました。<br>ヒューリスティック キャッシュの詳細については、以下のブログ記事で紹介されています。</p>
+<p>Caching Improvements in Internet Explorer 9<br><a href="https://docs.microsoft.com/en-us/archive/blogs/ie/caching-improvements-in-internet-explorer-9" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/archive/blogs/ie/caching-improvements-in-internet-explorer-9</a></p>
+<p>ヒューリスティック キャッシュでは、以下の計算式で有効期限を算出します。最初にコンテンツを取得してキャッシュを作成するとき、算出した有効期限を設定します。</p>
+<p>有効期間 = (最終チェック日時 - 最終更新日時) * 0.1</p>
+<p>つまり最終チェック日時と最終更新時間の差が大きい、つまり更新されていない期間が長いコンテンツは有効期間が長く設定され、クライアントからの更新確認の頻度が下がる仕組みです。</p>
+<p>なおエクスプローラー上では、”有効期限日時” は “なし” と表示され、IE が設定した有効期限は見ることができません。</p>
+<hr>
+<p>つまり、<br>例えば先ほどのエクスプローラー画面の iis-85.png の場合</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-Cache/Cache-iis85.jpg" class="">
+
+<ul>
+<li>最終チェック日時 :  2018/03/07 10:52</li>
+<li>最終変更日時 : 2016/04/22 9:49</li>
+</ul>
+<p>であるため、キャッシュ作成時、有効期間は約 68 日間と設定されることとなります。<br>言い換えますと、IE が最初に iis-85.png を Web サーバーから取得してキャッシュを作成してから約 68 日間はキャッシュが有効期限内になり、この間に  Web サーバー側で更新しても、IE は Web サーバーへの更新確認は行わずキャッシュから取得します。</p>
+<p>以上から、頻繁に更新したり、更新後すぐに確実にクライアントの IE に反映させたい！といったコンテンツについては、Web サーバー側で明示的に有効期限を指定されることをお勧めしています。</p>
+<hr>
+<h2 id="有効期限を設定していなかったコンテンツを-Web-サーバー上で更新した時、クライアントの-IE-に直ぐ反映させるにはどうすればいい？"><a href="#有効期限を設定していなかったコンテンツを-Web-サーバー上で更新した時、クライアントの-IE-に直ぐ反映させるにはどうすればいい？" class="headerlink" title="有効期限を設定していなかったコンテンツを Web サーバー上で更新した時、クライアントの IE に直ぐ反映させるにはどうすればいい？"></a>有効期限を設定していなかったコンテンツを Web サーバー上で更新した時、クライアントの IE に直ぐ反映させるにはどうすればいい？</h2><p>まず、クライアントには「IE が有効期限を独自に設定したキャッシュ」が既に存在している状態です。</p>
+<p>[インターネット一時ファイルと履歴の設定] で [自動的に確認する] が選択されている場合、これが有効期限内であるうちは Web サーバーに更新確認を行わないので更新は反映されません。<br>Web サーバー側からは、クライアントのキャッシュを削除する方法がありません。<br>そのため、どうにかしてクライアントのキャッシュを削除する必要があります。</p>
+<p>その他の方法として、[インターネット一時ファイルと履歴の設定] で [Web サイトを表示する度に確認する] または [Internet Explorer を表示する度に確認する] を指定すると、IE は有効期限内のコンテンツであっても Web サーバーに更新確認を行います。</p>
+<p>キャッシュ削除の最もシンプルな方法は、ユーザー自身が [インターネット オプション] – [全般] タブから、閲覧の履歴を削除することです。</p>
+<p>クライアント側でキャッシュを削除するには、インターネット オプション – 全般 タブ - 閲覧の履歴 の [削除] ボタンをクリックして [閲覧の履歴の削除] ダイアログから行います。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-Cache/DeleteBrowsingHistory.jpg" class="">
+
+<p>“キャッシュ” を削除するには、”インターネット一時ファイルおよび Web サイトのファイル” にチェックを入れて [削除] ボタンをクリックします。<br>Cookie や、フォームへの入力内容などを削除したくない場合には該当のチェックは外しても大丈夫です。</p>
+<p>他の項目についての詳細は、以下の技術文書にてご案内しています。</p>
+<p>Internet Explorer の閲覧履歴の表示および削除<br><a href="https://support.microsoft.com/ja-jp/help/17438/windows-internet-explorer-view-delete-browsing-history" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/17438/windows-internet-explorer-view-delete-browsing-history</a></p>
+<p>社内の Active Directory 環境のクライアント端末を管理されているような方で、 ドメインに参加しているクライアント全部、キャッシュを削除したい、、ということであれば、 一つの手として「グループ ポリシーで [終了時に閲覧の履歴を削除する] を有効とするポリシーをクライアントに配布する」という方法もあります。<br>これが適用されたクライアントでは、IE を終了するときにキャッシュが削除されます。</p>
+<hr>
+<h2 id="今後、Web-サーバー側で更新したコンテンツを、すぐクライアントに反映させるためにはどうすればいい？"><a href="#今後、Web-サーバー側で更新したコンテンツを、すぐクライアントに反映させるためにはどうすればいい？" class="headerlink" title="今後、Web サーバー側で更新したコンテンツを、すぐクライアントに反映させるためにはどうすればいい？"></a>今後、Web サーバー側で更新したコンテンツを、すぐクライアントに反映させるためにはどうすればいい？</h2><p>頻繁に更新されるようなコンテンツでは、”Web サーバー側でコンテンツの有効期限を指定する” 方法をお勧めしています。<br>例えば以下のような HTTP 応答ヘッダー指定を行い、コンテンツのキャッシュの有効期限を制御します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control : no-cache</span><br></pre></td></tr></table></figure>
+
+<p>IE11 では、上記の HTTP 応答ヘッダーを含むファイルを受信すると有効期限切れのキャッシュを作成します。そのため次回アクセス時には Web サーバーへ更新確認を行い、更新されていれば Web サーバーから取得、更新がなければキャッシュから取得する、という動作になります。</p>
+<p>なお HTTP 応答ヘッダーによる指定をクライアントのキャッシュに反映させるためには、Web サーバー側で指定を行った後、やっぱりクライアントのキャッシュを削除する必要がありますのでご注意ください。</p>
+<p>キャッシュの有効期限を指定する HTTP 応答ヘッダーには以下があります。</p>
+<p>Expires<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires</a><br>キャッシュを有効期限切れとする日時を指定します。</p>
+<p>Cache-Control<br><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control</a><br>キャッシュを有効とする期間 (秒) を指定します。キャッシュの作成を抑止する指定も可能です。</p>
+<hr>
+<h3 id="ご参考-META-タグによるキャッシュ制御の指定について"><a href="#ご参考-META-タグによるキャッシュ制御の指定について" class="headerlink" title="ご参考 : META タグによるキャッシュ制御の指定について"></a>ご参考 : META タグによるキャッシュ制御の指定について</h3><p>Web ページ (HTML、ASPX 等) 内では以下のような META 要素でキャッシュを制御できます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;META http-equiv&#x3D;cache-control content&#x3D;no-cache&gt;</span><br><span class="line">&lt;META http-equiv&#x3D;expires content&#x3D;0&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ただしこの指定は、”記載されている Web ページ” のみが対象であり、ページに読み込まれる .css や .js 等の Web リソースファイルに対しては有効ではありません。Web リソースファイルのキャッシュを制御するには、後述の通り Web サーバーにて設定を行う必要があります。</p>
+<p>また Web ページにおいても、キャッシュを確実に制御されたい場合、以下の理由から META タグではなく HTTP 応答ヘッダーによる指定を強くお勧めしております。</p>
+<p>META タグでのキャッシュ制御は、あくまでも HTML ファイル内の “タグ” で行なうものであり、” HTML ファイルを読み込んでから解釈しキャッシュの処理をする” ものです。<br>キャッシュの制御を HTML パーサーで行なうこととなるためキャッシュは一旦作成されます。SSL の場合は直接キャッシュ自体を削除し、非 SSL の場合は、期限切れのキャッシュと同等に扱われます。</p>
+<hr>
+<h3 id="ご参考-キャッシュの削除について"><a href="#ご参考-キャッシュの削除について" class="headerlink" title="ご参考 :キャッシュの削除について"></a>ご参考 :キャッシュの削除について</h3><p>IE のキャッシュ削除の方法として、 正式にサポートされているのは以下となります。</p>
+<ul>
+<li>[インターネット オプション] – [閲覧の履歴の削除] ダイアログから削除</li>
+<li>エクスプローラでキャッシュの場所を開いて削除</li>
+<li>キャッシュ削除のためのアプリケーションを開発、実行して削除 (※)</li>
+</ul>
+<p>(※) キャッシュ削除のために用意された “DeleteURLCacheEntry” API を利用したアプリケーションを作成し、実行することによって削除できます。<br>“インターネット一時ファイルおよびWebサイトのファイル” のみを削除するような処理も実装可能です。</p>
+<p>DeleteUrlCacheEntry function<br><a href="https://docs.microsoft.com/ja-jp/windows/win32/api/wininet/nf-wininet-deleteurlcacheentry" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/windows/win32/api/wininet/nf-wininet-deleteurlcacheentry</a></p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/IE-Cache.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../IE-GroupPolicyPreferences/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          基本設定で Internet Explorer 関連の設定を配布する
+        
+      </div>
+    </a>
+  
+  
+    <a href="../IE-SecurityZones/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">IE のセキュリティ ゾーンについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../IE-GroupPolicyPreferences/">基本設定で Internet Explorer 関連の設定を配布する</a>
+          </li>
+        
+          <li>
+            <a href="">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+          </li>
+        
+          <li>
+            <a href="../IE-SecurityZones/">IE のセキュリティ ゾーンについて</a>
+          </li>
+        
+          <li>
+            <a href="../LAN-Settings/">ローカル エリア ネットワーク (LAN) の設定について</a>
+          </li>
+        
+          <li>
+            <a href="../ProxySettings/">IE からみるプロキシの設定について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WPAD/" rel="tag">WPAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/pac/" rel="tag">pac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" rel="tag">メモリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">12</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/WPAD">WPAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/pac">pac</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5">キャッシュ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3">セキュリティ ゾーン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7">プロキシ</a><span class="tag-list-count">5</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%A1%E3%83%A2%E3%83%AA">メモリ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A">基本設定</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">9</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 11.67px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 13.33px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 11.67px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 16.67px;">Chromium</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 11.67px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 20px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 18.33px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 16.67px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/WPAD/" style="font-size: 10px;">WPAD</a> <a href="../../tags/pac/" style="font-size: 11.67px;">pac</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" style="font-size: 10px;">キャッシュ</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" style="font-size: 10px;">セキュリティ ゾーン</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" style="font-size: 15px;">プロキシ</a> <a href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" style="font-size: 10px;">メモリ</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">基本設定</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

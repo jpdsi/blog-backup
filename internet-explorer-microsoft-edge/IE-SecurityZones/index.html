@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>IE のセキュリティ ゾーンについて | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Internet Explorer の “セキュリティ ゾーン” についてお話をしたいと思います。 こちらの画面をご覧いただいたことはありますでしょうか？ [インターネット オプション] の、[セキュリティ] タブです。   ※ [インターネット オプション] ダイアログは、IE の [ツール] メニュー -  [インターネット オプション] をクリックすると表示されます。 インターネット、ローカ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE のセキュリティ ゾーンについて">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="Internet Explorer の “セキュリティ ゾーン” についてお話をしたいと思います。 こちらの画面をご覧いただいたことはありますでしょうか？ [インターネット オプション] の、[セキュリティ] タブです。   ※ [インターネット オプション] ダイアログは、IE の [ツール] メニュー -  [インターネット オプション] をクリックすると表示されます。 インターネット、ローカ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;SecurityTab.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;Property.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;LocalIntranet.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;NotificationBar.jpg">
+<meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-20T05:13:02.092Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Internet Explorer">
+<meta property="article:tag" content="セキュリティ ゾーン">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IE-SecurityZones&#x2F;SecurityTab.jpg">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-internet-explorer-microsoft-edge/IE-SecurityZones" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IE のセキュリティ ゾーンについて
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-19T15:00:00.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+4ce27bbc-fabe-57dc-8bb1-1c165782115a%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BIE+%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3+%E3%82%BE%E3%83%BC%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FIE-SecurityZones%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FIE-SecurityZones.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FIE-SecurityZones.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-SecurityZones/" data-id="ck980wyf6000fckv0cjmlcyoe" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Internet Explorer の “セキュリティ ゾーン” についてお話をしたいと思います。</p>
+<p>こちらの画面をご覧いただいたことはありますでしょうか？ [インターネット オプション] の、[セキュリティ] タブです。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-SecurityZones/SecurityTab.jpg" class="">
+
+<p>※ [インターネット オプション] ダイアログは、IE の [ツール] メニュー -  [インターネット オプション] をクリックすると表示されます。</p>
+<p><strong>インターネット、ローカル イントラネット、信頼済みサイト、制限付きサイト</strong> の 4 つのアイコンが表示されていますが、これは IE の <strong>セキュリティ ゾーン</strong> を表しています。</p>
+<hr>
+<h2 id="“セキュリティ-ゾーン”-とは"><a href="#“セキュリティ-ゾーン”-とは" class="headerlink" title="“セキュリティ ゾーン” とは"></a>“セキュリティ ゾーン” とは</h2><p>Web サイトが 「ネットワーク上どの位置にあるか」を判定していずれかの “ゾーン” を割り当て、割り当てられたゾーンに基づいてセキュリティの管理を行う、IE 独自の機能です。</p>
+<p>各ゾーンは、以下のようなイメージで設計されています。</p>
+<p><strong><u>インターネット ゾーン</u></strong><br>一般的な、いわゆるインターネット上のサイトで利用されるゾーンです。悪意のあるサイトが含まれる可能性もあるため、既定でセキュリティは厳しめで、セキュリティレベルは「中高」です。</p>
+<p><strong><u>ローカル イントラネットゾーン</u></strong><br>家庭内、社内など、内部ネットワークに存在するサイト向けのゾーンです。通常これらのサイトは信頼できる管理者によって管理されており、ユーザーがセキュリティ上の危険にさらされる可能性がほぼないことから、既定ではセキュリティは緩めでセキュリティレベルは「中低」です。</p>
+<p><strong><u>信頼済みサイト ゾーン</u></strong><br>公開者、運営者がハッキリしていて、安全で信頼できるサイト向けのゾーンです。既定のセキュリティレベルは「中」で、4つのゾーンの中でローカル イントラネットゾーンの次に緩めです。具体的には、スクリプトの実行などが既定で許可されています。</p>
+<p><strong><u>制限付きサイト ゾーン</u></strong><br>安全でない、信頼できないサイトを向けのゾーンです。既定のセキュリティレベルは 4 つのゾーンのうち最も厳しい、「高」で、スクリプト、ActiveX コントロールの実行や、ファイルのダウンロードなどはほぼ禁止されています。</p>
+<p>通常、例えば <a href="http://www.microsoft.com/" target="_blank" rel="noopener">http://www.microsoft.com/</a> といった一般的な Web サイトは <strong>インターネット ゾーン</strong> と判定されます。</p>
+<p>ユーザーが「安全で信頼できるので、このサイト上のスクリプト等は確認なしで実行してよい」と考えたサイトは、信頼済みサイトゾーン に追加することで、スクリプトなどの実行のたびに確認を求められることなく利用できます。</p>
+<p>逆にあやしい、安全でないと判断したサイトは制限付きサイトゾーンに追加することで、アクセス時に意図せず有害なプログラムが実行されてしまったり、ウィルスを含むプログラムがダウンロードされてしまうことを防げます。</p>
+<p><strong>ローカル イントラネットゾーン</strong> ではユーザーがサイトを追加する以外にも IE  が持つ “ローカル イントラネットゾーンの自動判別” の機能により、家庭内、企業内の Web サイトを自動で ローカル イントラネットゾーン と判断する場合もあります。自動判別については後述します。</p>
+<hr>
+<h2 id="表示中-Web-サイトの-セキュリティゾーンの確認方法"><a href="#表示中-Web-サイトの-セキュリティゾーンの確認方法" class="headerlink" title="表示中 Web サイトの セキュリティゾーンの確認方法"></a>表示中 Web サイトの セキュリティゾーンの確認方法</h2><p>表示している Web サイトがどのゾーンと判定されているかは、ページのプロパティ上に表示されます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-SecurityZones/Property.jpg" class="">
+
+<p>もしくは、Web サイトを表示中に インターネット オプション を開いてセキュリティタブを見てみてください。4 つのゾーンの内選択状態になっている (文字が白くなっている) ゾーンが、表示中の Web サイトが割り当てられているゾーンになります。</p>
+<hr>
+<h2 id="各ゾーンのセキュリティ設定について"><a href="#各ゾーンのセキュリティ設定について" class="headerlink" title="各ゾーンのセキュリティ設定について"></a>各ゾーンのセキュリティ設定について</h2><p>それぞれのゾーンには、既定で適切なセキュリティレベルが設定されています。</p>
+<ul>
+<li>インターネットゾーン : 中高</li>
+<li>ローカル イントラネットゾーン : 中低</li>
+<li>信頼済みサイトゾーン : 中</li>
+<li>制限つきサイトゾーン : 高</li>
+</ul>
+<p>IE のセキュリティ設定は、スクリプト、ActiveX コントロール、ファイルのダウンロードに関するもの、その他にも多くの項目を含んでいます。セキュリティレベルではこれらの項目をまとめて設定できますが、[レベルのカスタマイズ] ボタンをクリックして表示される [セキュリティ設定] ダイアログで個別に設定も可能です。例えば、インターネットゾーンのレベルは “中高” ですが、ほとんどのセキュリティ設定はそのままにして、ActiveX コントロール関係のセキュリティだけ緩めたい、という場合には [レベルのカスタマイズ] を利用します。</p>
+<p>個別の項目を変更すると、セキュリティのレベル には “カスタム” と表示されます。</p>
+<p>セキュリティ関連のレジストリにつきましては、以下でご紹介しています。</p>
+<p>上級ユーザー向けの Internet Explorer セキュリティ ゾーン関連のレジストリ エントリ<br><a href="https://support.microsoft.com/ja-jp/help/182569/internet-explorer-security-zones-registry-entries-for-advanced-users" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/182569/internet-explorer-security-zones-registry-entries-for-advanced-users</a></p>
+<hr>
+<h2 id="セキュリティゾーンの判定について"><a href="#セキュリティゾーンの判定について" class="headerlink" title="セキュリティゾーンの判定について"></a>セキュリティゾーンの判定について</h2><p>IE が Web サイトのゾーンを判定する仕組みについても簡単にご紹介します。</p>
+<p>こちらに フローチャートもございますので、併せてご覧ください。<br><a href="./IESecurityZone.pdf">ローカル イントラネット サイト判定フロー</a></p>
+<h4 id="インターネットゾーン"><a href="#インターネットゾーン" class="headerlink" title="インターネットゾーン"></a>インターネットゾーン</h4><p>ローカル イントラネットゾーン、信頼済みサイトゾーン、制限つきサイトゾーンと判定されなかった Web サイトはすべて、インターネットゾーンと判定されます。</p>
+<p>なおインターネット オプションでは、明示的に Web サイトをインターネットゾーンに追加することはできません。グループ ポリシーの [サイトとゾーンの割り当て一覧] を利用すると、特定のサイトをインターネットゾーンに追加することが可能です。</p>
+<h4 id="信頼済みサイトゾーン、及び-制限つきサイトゾーン"><a href="#信頼済みサイトゾーン、及び-制限つきサイトゾーン" class="headerlink" title="信頼済みサイトゾーン、及び 制限つきサイトゾーン"></a>信頼済みサイトゾーン、及び 制限つきサイトゾーン</h4><p>各ゾーンに明示的に追加されているサイトが、それぞれ該当のゾーンと判定されます。それ以外の条件で、これらのゾーンと判定されることはありません。</p>
+<h4 id="ローカル-イントラネットゾーン"><a href="#ローカル-イントラネットゾーン" class="headerlink" title="ローカル イントラネットゾーン"></a>ローカル イントラネットゾーン</h4><p>信頼済みサイトや制限付きサイトゾーンと同様、”ローカル イントラネットゾーン” に明示的に追加されているサイトは、問答無用でローカル イントラネットゾーンと判定されます。</p>
+<p>どのゾーンにも追加されていない Web サイトは、以下のような複数の要素を総合的に評価し、ローカル イントラネットゾーンに振り分けられるかが決まります。</p>
+<p><strong>ローカルイントラネットゾーンの自動判別について</strong><br>IE が、どのようにローカルイントラネットゾーンを判定するかは、以下のダイアログの指定によって決まります。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-SecurityZones/LocalIntranet.jpg" class="">
+
+<p>※ このダイアログは、インターネット オプション のセキュリティタブ上でローカル イントラネットゾーンのアイコンをクリックし、サイト ボタンをクリックすると表示されます。</p>
+<p>[イントラネットのネットワークを自動的に検出する]　が有効の場合、<strong>ローカル イントラネットゾーンの自動判別</strong> の機能が有効となります。</p>
+<p>自動判別では、まずは “この端末でローカル イントラネットゾーンを有効とするかどうか” の判定が行われます。</p>
+<p>イントラネットゾーンが無効となった端末では、サイトが自動的に “イントラネットゾーン” と判定されることがありません。</p>
+<p>自動判別の機能によってイントラネット設定が有効となるのは以下の場合です。</p>
+<p><u>a. クライアントがドメイン ネットワーク (※) 上に存在する場合</u></p>
+<p>クライアントがドメインに参加している場合、”ローカル イントラネット” ゾーンは利用可能であると判定されます。なお、ドメイン ネットワーク上に存在する場合でも、ドメインに参加していないクライアント (WORKGROUP など) の場合は、 “ローカル イントラネット” ゾーンは利用不可と判断されます</p>
+<p><u>b. クライアントがドメイン ネットワーク上に存在しない場合</u></p>
+<p>Network Location Awareness (NLA) API を利用し、クライアントが管理されたネットワークに接続されているかを確認します。<br>管理されたネットワークに接続されていると判断された場合、”ローカル イントラネット” ゾーンが利用可能と判定します。<br>NLA の機能では、クライアントがドメインに参加していない場合や、該当ドメイン ネットワークに物理的に接続していない場合は、 管理されたネットワークに接続されていないと判断されます。<br>しかし、NLA での確認前に IE のコンポーネントによって端末がドメインに参加しているかの確認が行われます。<br>そのため、ドメインに参加している端末の場合にはドメイン ネットワークに物理的に接続されていない場合でも “ローカル イントラネット” ゾーンが利用可能と判定します。</p>
+<p>　(※) “ドメインネットワーク” とは、ドメイン コントローラーが所属するネットワークを表します。</p>
+<p>上記の条件に該当せず、イントラネット ゾーンを有効とできなかった場合には、IE で ホスト名のみのURL などイントラネットのサイト にアクセスすると、以下のような情報バーが表示されます。</p>
+<img src="/blog/internet-explorer-microsoft-edge/IE-SecurityZones/NotificationBar.jpg" class="">
+
+<p>このメッセージは、”自動判別” の機能が、”イントラネットゾーン” を有効とできる条件が不足していると判断し、イントラネットゾーンを無効としたことを表します。</p>
+<ul>
+<li>“今後、このメッセージを表示しない” を選択すると、引き続きイントラネット設定は無効となり、ローカル イントラネットゾーンは利用できません。</li>
+<li>“イントラネットの設定を有効にする” を選択すると、 [イントラネットのネットワークを自動的に検出する] は無効、つまり自動判別の機能は無効になり、他の 3 つのオプションが有効になります。オプションの設定によって、該当するサイトをイントラネットゾーン として利用できます。</li>
+</ul>
+<p>各オプションは以下のような設定です。</p>
+<p><strong>ほかのゾーンにないローカル (イントラネット) のサイトをすべて含める</strong><br>セキュリティゾーンに明示的に登録されていないローカルサイトを “ローカルイントラネット” セキュリティ ゾーンにマップするかどうかを制御します。この設定が有効な場合、”信頼済みサイト” または “制限付きサイト” ゾーンに明示的に登録にされていないローカルサイトを “ローカル イントラネット” ゾ―ンと判断します。またこの設定が無効の場合、ローカルサイトに対するゾーン判定動作は行いません。なお、ローカルサイトとは、ドット (.) 文字を含まないホスト名のみでアクセスするサイト (<a href="http://contoso" target="_blank" rel="noopener">http://contoso</a> など) を指します。</p>
+<p><strong>プロキシ サーバーを使用しないサイトをすべて含める</strong><br>プロキシサーバーを経由せず直接アクセスするサイト、(例えば インターネットオプション - 接続タブの LAN の設定で プロキシの例外リストに追加されているサイト等) を “ローカルイントラネット” セキュリティ ゾーンにマップするかどうかを制御します。この設定が有効な場合、プロキシサーバーを使用しないサイトは “ローカル イントラネット” ゾーンと判断されます。またこの設定が無効の場合、プロキシサーバーを使用しないサイトに対するゾーン判定動作は行いません。なお、プロキシ サーバーを構成していないシステムでは、この設定は効果がありません。</p>
+<p><strong>すべてのネットワーク パス (UNC) を含める</strong><br>UNC を表す URL (\contosotest など) を “ローカルイントラネット” セキュリティ ゾーンにマップするかどうかを制御します。この設定が有効な場合、すべての UNC ネットワークパス (UNC) は “ローカル イントラネット” ゾーンと判断されます。この設定が無効な場合、ネットワーク パス (UNC) に対するゾーン判定は行いません。</p>
+<hr>
+<p>※ 補足<br>ドメインに参加しているコンピュータで [イントラネットのネットワークを自動的に検出する] オプションを有効にすると、残りの 3 つのオプションも自動的に有効になります。この動作は以下の技術情報にて公開しています。</p>
+<p>Enabling “Automatically Detect Intranet Network” on a domain member computer will enable all the three Intranet Options automatically.<br><a href="https://support.microsoft.com/ja-jp/help/2028170/enabling-automatically-detect-intranet-network-on-a-domain-member-comp" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp/help/2028170/enabling-automatically-detect-intranet-network-on-a-domain-member-comp</a></p>
+<p>ただし、これら 3 つのオプションは、ローカルイントラネットゾーンが有効である場合に効くものとなります。</p>
+<p>例えば、[イントラネットのネットワークを自動的に検出する] オプションが有効で、これによってローカルイントラネットゾーンが “無効” と判断された場合、プロキシ サーバーを使用しないサイトにアクセスしても、ローカルイントラネットゾーンではなくインターネットゾーンと判定されます。</p>
+<hr>
+<p>今回のお話は以上となります。</p>
+<p>インターネット上のサイトを IE で閲覧されている時に、ActiveX コントロールやスクリプトの警告が出て煩わしかったり、面倒だと感じられることがあるかもしれないのですが、インターネットゾーンのセキュリティレベルを下げる、、といったことは危険なのでお勧めできません。本当に信頼できるサイトは信頼済みサイトゾーンに追加して利用するなど、適切にセキュリティ管理していただきながら、IE をご利用いただければと思います。</p>
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/internet-explorer-microsoft-edge/IE-SecurityZones.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../IE-Cache/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)
+        
+      </div>
+    </a>
+  
+  
+    <a href="../LAN-Settings/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">ローカル エリア ネットワーク (LAN) の設定について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../IE-GroupPolicyPreferences/">基本設定で Internet Explorer 関連の設定を配布する</a>
+          </li>
+        
+          <li>
+            <a href="../IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+          </li>
+        
+          <li>
+            <a href="">IE のセキュリティ ゾーンについて</a>
+          </li>
+        
+          <li>
+            <a href="../LAN-Settings/">ローカル エリア ネットワーク (LAN) の設定について</a>
+          </li>
+        
+          <li>
+            <a href="../ProxySettings/">IE からみるプロキシの設定について</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WPAD/" rel="tag">WPAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/pac/" rel="tag">pac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" rel="tag">メモリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">4</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">12</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/WPAD">WPAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/pac">pac</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5">キャッシュ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3">セキュリティ ゾーン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7">プロキシ</a><span class="tag-list-count">5</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%A1%E3%83%A2%E3%83%AA">メモリ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A">基本設定</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">9</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 11.67px;">ASP.NET</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 13.33px;">Azure Bot Service</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 11.67px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 16.67px;">Chromium</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 11.67px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 20px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 18.33px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 16.67px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/WPAD/" style="font-size: 10px;">WPAD</a> <a href="../../tags/pac/" style="font-size: 11.67px;">pac</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" style="font-size: 10px;">キャッシュ</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" style="font-size: 10px;">セキュリティ ゾーン</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" style="font-size: 15px;">プロキシ</a> <a href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" style="font-size: 10px;">メモリ</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">基本設定</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
