@@ -76,7 +76,7 @@ https://support.microsoft.com/ja-jp/help/182569/internet-explorer-security-zones
 IE が Web サイトのゾーンを判定する仕組みについても簡単にご紹介します。
 
 こちらに フローチャートもございますので、併せてご覧ください。
-[ローカル イントラネット サイト判定フロー](./IESecurityZone.pdf)
+[ローカル イントラネット サイト判定フロー](/articles/internet-explorer-microsoft-edge/IE-SecurityZones/IESecurityZone.pdf)
 
 
 #### インターネットゾーン
