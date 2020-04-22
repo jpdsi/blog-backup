@@ -143,3 +143,8 @@ https://channel9.msdn.com/Series/PerfView-Tutorial
 
 
 今回は以上です。 それでは、また次回！
+
+
+---
+なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
+もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。
