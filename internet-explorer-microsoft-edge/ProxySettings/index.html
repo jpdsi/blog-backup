@@ -16,7 +16,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;ProxySettings&#x2F;LAN-Settings.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;ProxySettings&#x2F;datastore.png">
 <meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-20T05:45:02.444Z">
+<meta property="article:modified_time" content="2020-04-22T06:26:16.498Z">
 <meta property="article:author" content="Developer Support Internet Japan">
 <meta property="article:tag" content="Internet Explorer">
 <meta property="article:tag" content="プロキシ">
@@ -100,7 +100,7 @@
         
         <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+bd4035a8-683a-5949-93b9-5d59b415ef77%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BIE+%E3%81%8B%E3%82%89%E3%81%BF%E3%82%8B%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FProxySettings%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FProxySettings.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FProxySettings.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/ProxySettings/" data-id="ck98222dz000mhcv01ielhjhm" class="article-share-link">共有</a>
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/ProxySettings/" data-id="ck9ayev1p000musv064mlcdzn" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -137,14 +137,14 @@
 <p>では、その他のアプリケーションや機能ではどうでしょうか？</p>
 <p>IE の管理するインターネットオプションから設定されたプロキシの設定を『利用するか否か』や『どのように利用するか』は各アプリケーションや機能の実装内容に依存します。</p>
 <p>例えば、以下のようなシナリオが考えられます。</p>
-<ol>
+<ul>
 <li>IE と同様の通信モジュールである wininet.dll を利用しており、IE で設定された値をそのまま利用している</li>
 <li>wininet.dll は利用しているが、プロキシの設定については独自の実装を行っており別に管理されている</li>
 <li>サービスなど向けに用意されている winhttp.dll を利用しており、IE の設定を参照しその値を利用するようにしている</li>
 <li>winhttp.dll を利用しているがサービスとして動作しており、(IEでプロキシの設定を行った)ユーザーの権限で動作しないため他の設定を (netsh コマンドで設定されたプロキシの値)が参照される</li>
 <li>wininet/winhttp のいずれも利用していないが、プロキシの設定は IE の設定値をレジストリから参照しその情報を利用している</li>
 <li>wininet/winhttp のいずれも利用しておらず、完全に独自の実装が行われている</li>
-</ol>
+</ul>
 <p>アプリケーションなどの実装によっては動作シナリオによって動きを柔軟に変化させられるよう上記の中の動作を組み合わせられていることなどもあります。<br>昨今ではサードパーティ製品も含めインターネットに接続し通信する機能やアプリケーションも増えており、一概に「いつどのように利用されるのか」をお伝えすることができません。</p>
 <p>“IE の管理する” プロキシの設定値をどのように参照し利用するかについては個々のアプリケーションなどの実装についての確認をする必要があります。</p>
 <p><u>ご参考</u></p>
@@ -217,11 +217,11 @@
       <ul>
         
           <li>
-            <a href="../IE-GroupPolicyPreferences/">基本設定で Internet Explorer 関連の設定を配布する</a>
+            <a href="../IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
           </li>
         
           <li>
-            <a href="../IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+            <a href="../IE-GroupPolicyPreferences/">基本設定で Internet Explorer 関連の設定を配布する</a>
           </li>
         
           <li>
