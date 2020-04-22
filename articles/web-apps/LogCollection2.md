@@ -111,7 +111,7 @@ IIS サポート チームです！
  # <u>2. ネットワーク トレース</u>
 このログについては、弊社でも多くの情報を公開しておりますが、一言で言うと、OS の標準機能の netsh コマンドを使用して現象発生時に通信ログを取得できるログです。
 
-IIS 上で ARR を動かしている場合は、ARR は内部で winhttp というモジュールを使用して通信をしているため、このモジュールの動作もキャプチャすることが出来るように、"senario=internetclient_dbg" というオプションを付与するとより多くの情報の解析が出来ます。
+IIS 上で ARR を動かしている場合は、ARR は内部で winhttp というモジュールを使用して通信をしているため、このモジュールの動作もキャプチャすることが出来るように、"senario=InternetClient_dbg" というオプションを付与するとより多くの情報の解析が出来ます。
 
 　Troubleshooting 502 Errors in ARR
 　https://docs.microsoft.com/en-us/iis/extensions/troubleshooting-application-request-routing/troubleshooting-502-errors-in-arr
@@ -124,7 +124,7 @@ IIS 上で ARR を動かしている場合は、ARR は内部で winhttp とい�
 1. 管理者権限でコマンド プロンプトを開きます 
 2. 次のコマンドを実行し、キャプチャを開始します
  
-　netsh trace start scenario=internetclient_dbg capture=yes maxSize=1000MB
+　netsh trace start scenario=InternetClient_dbg capture=yes maxSize=1000MB
 
 3. 現象が発生する操作を行います
 4. 次のコマンドを実行して、キャプチャを停止します (しばらく時間がかかります)
