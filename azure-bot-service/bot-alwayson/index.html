@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Web App Bot の常時接続について | Japan Developer Support Internet Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="※ これまで Azure Bot Service Support Team Blog にて公開していた記事を移しました。 こんにちは。Azure Bot Service Support Team です。 Web App Bot をご利用の際に、ボットに ”暫く経ってからアクセスした際にレスポンスが遅いように感じる” といったような事がある場合があります。今回は、そんな時に事象解消の手助けができるよ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web App Bot の常時接続について">
+<meta property="og:url" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;bot-alwayson&#x2F;index.html">
+<meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
+<meta property="og:description" content="※ これまで Azure Bot Service Support Team Blog にて公開していた記事を移しました。 こんにちは。Azure Bot Service Support Team です。 Web App Bot をご利用の際に、ボットに ”暫く経ってからアクセスした際にレスポンスが遅いように感じる” といったような事がある場合があります。今回は、そんな時に事象解消の手助けができるよ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;bot-alwayson&#x2F;lowplan.png">
+<meta property="article:published_time" content="2020-04-22T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-13T05:11:16.323Z">
+<meta property="article:author" content="Developer Support Internet Japan">
+<meta property="article:tag" content="Azure Bot Service">
+<meta property="article:tag" content="Azure App Service">
+<meta property="article:tag" content="設定">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;azure-bot-service&#x2F;bot-alwayson&#x2F;lowplan.png">
+  
+    <link rel="alternate" href="../../blog/atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../blog/atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Developer Support Internet Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-azure-bot-service/bot-alwayson" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web App Bot の常時接続について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Last Update: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-22T15:00:00.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+        
+        
+        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+b34e7ba8-80e5-54af-8227-5519070cf1bd%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BWeb+App+Bot+%E3%81%AE%E5%B8%B8%E6%99%82%E6%8E%A5%E7%B6%9A%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fazure-bot-service%2Fbot-alwayson%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Fazure-bot-service%2Fbot-alwayson.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Fazure-bot-service%2Fbot-alwayson.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://jpdsi.github.io/blog/azure-bot-service/bot-alwayson/" data-id="cka4vzelp0001ngv0djya3a52" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>※ これまで Azure Bot Service Support Team Blog にて公開していた記事を移しました。</p>
+<p>こんにちは。Azure Bot Service Support Team です。</p>
+<p>Web App Bot をご利用の際に、ボットに ”暫く経ってからアクセスした際にレスポンスが遅いように感じる” といったような事がある場合があります。今回は、そんな時に事象解消の手助けができるような方法についてご紹介します。</p>
+<p>まずはなぜ “暫く経ってからアクセスした際にレスポンスが遅いように感じる” といったことが起こるのかについて、下記にて記載させていただきます。</p>
+<br />
+
+<hr>
+<h2 id="考えられる原因について"><a href="#考えられる原因について" class="headerlink" title="考えられる原因について"></a>考えられる原因について</h2><p>まず、Web App Bot については、Bot アプリケーションを Azure App Service 上にホストするものです。</p>
+<p>なお、Web App Bot などの Azure Bot Service の種類に関しては下記の前回の Blog 記事をご参照ください。</p>
+<p>参考 : Azure Bot Service サポートチーム - Azure Bot Service の種類について<br><a href="https://social.msdn.microsoft.com/Forums/ja-JP/74ec7be1-10f9-4faf-af31-89c0d36cec6f/azure-bot-service-?forum=azurebotsupportteamja" target="_blank" rel="noopener">https://social.msdn.microsoft.com/Forums/ja-JP/74ec7be1-10f9-4faf-af31-89c0d36cec6f/azure-bot-service-?forum=azurebotsupportteamja</a></p>
+<p>ホストする Azure App Service では一定期間アイドル状態になるとリソース節約のために、Web アプリは自動的にアンロードされるような機能が備わっております。</p>
+<p>この機能により、システムリソースを節約できる一方で、Web アプリがアンロードされた後の最初の要求への応答が結果的に長くなります。</p>
+<p>Web App Bot をご利用の際に ”暫く経ってからアクセスした際にレスポンスが</p>
+<p>遅いように感じる” といった事象の原因の多くが上記の機能の影響と考えられます。</p>
+<hr>
+<h2 id="考えられる解決法について"><a href="#考えられる解決法について" class="headerlink" title="考えられる解決法について"></a>考えられる解決法について</h2><p>上記の機能を無効にするためには Bot をホストする Azure App Service で [常時接続] をオンにします。</p>
+<p>具体的には、下記が [常時接続] の設定を変更する手順となります。</p>
+<ol>
+<li>Azure Portal で、ホストする Azure App Service のリソースに移動します。</li>
+<li>[構成] を選択し、上部の [全般設定] タブを選択します。</li>
+<li>[常時接続] の [On] (オン) を選択し、保存します。</li>
+</ol>
+<p>参考 : Azure での Web アプリのアプリケーションパフォーマンスに関するよくあるご質問 – 常時接続<br><a href="https://docs.microsoft.com/ja-jp/azure/app-service/faq-availability-performance-application-issues#how-do-i-decrease-the-response-time-for-the-first-request-after-idle-time" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/app-service/faq-availability-performance-application-issues#how-do-i-decrease-the-response-time-for-the-first-request-after-idle-time</a></p>
+<p>参考 : Azure Bot Service - 一般的な問題のトラブルシューティング – 常時接続<br><a href="https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-troubleshoot-general-problems?view=azure-bot-service-4.0#my-bot-is-slow-to-respond-to-the-first-message-it-receives-how-can-i-make-it-faster" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/bot-service/bot-service-troubleshoot-general-problems?view=azure-bot-service-4.0#my-bot-is-slow-to-respond-to-the-first-message-it-receives-how-can-i-make-it-faster</a></p>
+<p>なお、利用する App Service Plan によって制限があり、その注意点についても下記にて記載いたします。</p>
+<h3 id="上記設定の変更に必要な-App-Service-Plan"><a href="#上記設定の変更に必要な-App-Service-Plan" class="headerlink" title="上記設定の変更に必要な App Service Plan"></a>上記設定の変更に必要な App Service Plan</h3><p>2019 年 9 月現在、上記の設定を変更するには、Basic 以上の App Service Plan が必要となります。</p>
+<p>参考 : App Service プラン<br><a href="https://azure.microsoft.com/ja-jp/pricing/details/app-service/plans/" target="_blank" rel="noopener">https://azure.microsoft.com/ja-jp/pricing/details/app-service/plans/</a></p>
+<p>Free や Shared の App Service Plan をご利用の場合には、Basic 以上のプランへのスケールアップをご検討ください。</p>
+<p>参考 : Azure でのアプリのスケールアップ<br><a href="https://docs.microsoft.com/ja-jp/azure/app-service/web-sites-scale" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/app-service/web-sites-scale</a></p>
+<p>なお、Free プラン等のプランをご利用の場合は設定部分が既定のオフのままグレーアウトされます。</p>
+<img src="/blog/azure-bot-service/bot-alwayson/lowplan.png" class="">
+
+<hr>
+<h2 id="QnA-Maker-を連携してご利用の場合"><a href="#QnA-Maker-を連携してご利用の場合" class="headerlink" title="QnA Maker を連携してご利用の場合"></a>QnA Maker を連携してご利用の場合</h2><p>Web App Bot と QnA Maker を連携してご利用の方々も多いかと存じます。</p>
+<p>その場合には、QnA Maker のリソースで利用している側の Azure App Service についても、上記の Web App Bot の Azure App Service と同様に、[常時接続] を ON に設定変更頂く必要がございます。</p>
+<p>今回の内容としては以上となります。</p>
+<p>また、全体的なレスポンスの一般的なパフォーマンス向上という観点では、App Service Plan のスケールアップも有効かと存じますので、こちらも状況に応じてご検討ください。 </p>
+<p>参考 : Azure でのアプリのスケールアップ<br><a href="https://docs.microsoft.com/ja-jp/azure/app-service/web-sites-scale" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/azure/app-service/web-sites-scale</a></p>
+<p>それでは、また。</p>
+<br />
+
+<hr>
+<p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (<a href="https://docs.microsoft.com/" target="_blank" rel="noopener">https://docs.microsoft.com/</a> や <a href="https://support.microsoft.com" target="_blank" rel="noopener">https://support.microsoft.com</a>) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul>
+
+        
+        <a href="https://github.com/jpdsi/blog/edit/master/articles/azure-bot-service/bot-alwayson.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../bot-portal-log-collection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Azure Bot Service の Portal 上の事象の調査に必要な情報
+        
+      </div>
+    </a>
+  
+  
+    <a href="../bot-plan/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Azure Bot Service の料金やプランについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../bot-portal-log-collection/">Azure Bot Service の Portal 上の事象の調査に必要な情報</a>
+          </li>
+        
+          <li>
+            <a href="">Web App Bot の常時接続について</a>
+          </li>
+        
+          <li>
+            <a href="../bot-plan/">Azure Bot Service の料金やプランについて</a>
+          </li>
+        
+          <li>
+            <a href="../bot-log-collection/">Azure Bot Service の調査に必要な基本的な情報について</a>
+          </li>
+        
+          <li>
+            <a href="../../internet-explorer-microsoft-edge/IE-Cache/">Web サーバー側でコンテンツを更新しても IE 上に反映されない (キャッシュのお話)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Portal/" rel="tag">Azure Portal</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Chromium/" rel="tag">Chromium</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Flash/" rel="tag">Flash</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/" rel="tag">Internet Explorer</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/LCIE/" rel="tag">LCIE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Skype/" rel="tag">Skype</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WPAD/" rel="tag">WPAD</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/pac/" rel="tag">pac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" rel="tag">キャッシュ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" rel="tag">セキュリティ ゾーン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" rel="tag">プロキシ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" rel="tag">メモリ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" rel="tag">基本設定</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" rel="tag">拡張保護モード</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" rel="tag">料金プラン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul> -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">8</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-App-Service">Azure App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-Portal">Azure Portal</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3">料金プラン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E8%A8%AD%E5%AE%9A">設定</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/">Microsoft Edge</a><span class="tag-list-count">7</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Chromium">Chromium</a><span class="tag-list-count">7</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Microsoft-Edge/Skype">Skype</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Explorer/">Internet Explorer</a><span class="tag-list-count">12</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/Flash">Flash</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/LCIE">LCIE</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/WPAD">WPAD</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/pac">pac</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5">キャッシュ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3">セキュリティ ゾーン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7">プロキシ</a><span class="tag-list-count">5</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E3%83%A1%E3%83%A2%E3%83%AA">メモリ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">保護モード</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A">基本設定</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Explorer/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89">拡張保護モード</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">9</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">5</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">2</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/05/">2020 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 11.67px;">ASP.NET</a> <a href="../../tags/Azure-App-Service/" style="font-size: 10px;">Azure App Service</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 16.67px;">Azure Bot Service</a> <a href="../../tags/Azure-Portal/" style="font-size: 10px;">Azure Portal</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/C/" style="font-size: 11.67px;">C#</a> <a href="../../tags/Chromium/" style="font-size: 15px;">Chromium</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 11.67px;">Cookie</a> <a href="../../tags/Flash/" style="font-size: 10px;">Flash</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Explorer/" style="font-size: 20px;">Internet Explorer</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 18.33px;">Internet Information Services</a> <a href="../../tags/LCIE/" style="font-size: 10px;">LCIE</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 15px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Skype/" style="font-size: 10px;">Skype</a> <a href="../../tags/WPAD/" style="font-size: 10px;">WPAD</a> <a href="../../tags/pac/" style="font-size: 11.67px;">pac</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%AD%E3%83%A3%E3%83%83%E3%82%B7%E3%83%A5/" style="font-size: 10px;">キャッシュ</a> <a href="../../tags/%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3-%E3%82%BE%E3%83%BC%E3%83%B3/" style="font-size: 10px;">セキュリティ ゾーン</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%97%E3%83%AD%E3%82%AD%E3%82%B7/" style="font-size: 13.33px;">プロキシ</a> <a href="../../tags/%E3%83%A1%E3%83%A2%E3%83%AA/" style="font-size: 10px;">メモリ</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 15px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">保護モード</a> <a href="../../tags/%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">基本設定</a> <a href="../../tags/%E6%8B%A1%E5%BC%B5%E4%BF%9D%E8%AD%B7%E3%83%A2%E3%83%BC%E3%83%89/" style="font-size: 10px;">拡張保護モード</a> <a href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" style="font-size: 10px;">料金プラン</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a> <a href="../../tags/%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">設定</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Developer Support Internet Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
