@@ -42,13 +42,13 @@ tags:
 
 |  | File3 |
 | :--- | :--- |
-| コピー元 | MicrosoftEdgePolicyTemplates\windows\admx\ja-JP\msedge.admx |
-| コピー先 | C:\Windows\PolicyDefinitions\ja-JP\msedge.admx |
+| コピー元 | MicrosoftEdgePolicyTemplates\windows\admx\ja-JP\msedge.adml |
+| コピー先 | C:\Windows\PolicyDefinitions\ja-JP\msedge.adml |
 
 |  | File4 |
 | :--- | :--- |
-| コピー元 | MicrosoftEdgePolicyTemplates\windows\admx\ja-JP\msedgeupdate.admx |
-| コピー先 | C:\Windows\PolicyDefinitions\ja-JP\msedgeupdate.admx |
+| コピー元 | MicrosoftEdgePolicyTemplates\windows\admx\ja-JP\msedgeupdate.adml |
+| コピー先 | C:\Windows\PolicyDefinitions\ja-JP\msedgeupdate.adml |
 
 <br />
 <br />
