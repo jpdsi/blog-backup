@@ -10,7 +10,7 @@ tags:
 
 今回は WCF のバインディング処理にて競合状態により起きる問題についてご説明いたします。
 1 つのプロセス (IIS でホストしている場合は同一アプリケーションプール) で複数の WCF のバインディングをご利用で、以下の例外とスタックトレースが記録される場合がございます。
-これは下記コミュニティより報告があり、調査が進められた結果、弊社製品の問題と判断され、修正が検討されています。(2020/5/21 時点)
+これは下記コミュニティより報告があり、調査が進められた結果、弊社製品の問題と判断され、修正が検討されています。(2020/5/27 時点)
 
 IndexOutOfRangeException in MessageSecurityOverHttpElement when creating WCF client from service reference
 https://developercommunity.visualstudio.com/content/problem/692599/indexoutofrangeexception-in-messagesecurityoverhtt.html
