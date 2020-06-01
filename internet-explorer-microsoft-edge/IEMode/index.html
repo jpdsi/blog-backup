@@ -16,7 +16,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IEMode&#x2F;owa.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;jpdsi.github.io&#x2F;blog&#x2F;internet-explorer-microsoft-edge&#x2F;IEMode&#x2F;compat_enterprise.png">
 <meta property="article:published_time" content="2020-05-28T15:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-29T08:01:20.932Z">
+<meta property="article:modified_time" content="2020-06-01T00:06:08.892Z">
 <meta property="article:author" content="Developer Support Internet Japan">
 <meta property="article:tag" content="Microsoft Edge">
 <meta property="article:tag" content="IE モード">
@@ -100,7 +100,7 @@
         
         <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0D%0A---%0D%0A%0D%0A%23%23%23%23+Document+Details%0D%0A%0D%0A%E2%9A%A0+*Do+not+edit+this+section.%0D%0A%0D%0A*+ID%3A+bc31d9f6-ce25-56dd-9291-4e20520c0e75%0D%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%96%B0%E3%81%97%E3%81%84%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE+Microsoft+Edge+%E3%81%AE+%22IE+%E3%83%A2%E3%83%BC%E3%83%89%22+%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Finternet-explorer-microsoft-edge%2FIEMode%2F%29%0D%0A*+Content+Source%3A+%5Barticles%2Finternet-explorer-microsoft-edge%2FIEMode.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmaster%2Farticles%2Finternet-explorer-microsoft-edge%2FIEMode.md%29%0D%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IEMode/" data-id="ckarx3qt7000ry4v0506n5fiw" class="article-share-link">共有</a>
+        <a data-url="https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IEMode/" data-id="ckavqg9n6000o1sv0didqem6s" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -116,22 +116,22 @@
 <p>何か困ったことがありましたら、私たちサポート チームまでお問い合わせください。</p>
 <hr>
 <p>IE モードを利用するとき『認証がうまくいかない』というお問い合せをよくいただきますので、ここで紹介します。</p>
-<p>認証がうまくいかないという話では <a href="../cross-protected-mode-cookie/">保護モードをまたいだ Cookie について</a> という記事で、Azure AD (AAD) 認証を必要とする Web アプリケーションを例としました。<br>対象の Web アプリケーションのドメインと認証時にアクセスする login.microsoftonline.com が異なったセキュリティ ゾーンに属していた場合、証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断され、再度認証を求められてしまうという現象を解説しました。</p>
-<p>IE モードを利用するとき『どの URL を IE モードで表示するか』を設定しますが、対象の Web アプリケーションの URL に加えて、<strong><font color="red">認証サーバー / シングル サインオン サーバーも IE モードで動作するように明示的に構成する</font></strong> 必要があります。<br>認証サーバーも含めておかないと、以下のように IE モードと Edge とで行き来するときに認証に必要な Cookie が共有されずに認証ができません。</p>
+<p>認証がうまくいかないという話では <a href="../cross-protected-mode-cookie/">保護モードをまたいだ Cookie について</a> という記事で、Azure AD (AAD) 認証を必要とする Web アプリケーションを例としました。<br>対象の Web アプリケーションのドメインと認証時にアクセスする login.microsoftonline.com が異なったセキュリティ ゾーンに属していた場合、認証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断され、再度認証を求められてしまうという現象を解説しました。</p>
+<p>IE モードを利用するとき『どの URL を IE モードで表示するか』を設定しますが、対象の Web アプリケーションの URL に加えて、<strong><font color="red">認証サーバー / シングル サインオン サーバーに対してのアクセスも IE モードで動作するように明示的に構成する</font></strong> 必要があります。<br>認証サーバーも含めておかないと、以下のように IE モードと Edge とで行き来するときに認証に必要な Cookie が共有されずに認証ができません。</p>
 <ol>
 <li>対象の Web アプリケーションの URL にアクセスします。(IE モードで動作します)</li>
 <li>認証のために認証サーバーにアクセスします。(Edge で通信します)</li>
 <li>Edge 側で認証済みを示す Cookie を受け取ります。</li>
 <li>対象の Web アプリケーションにリダイレクトしますが、ここで IE モードに切り替わります。</li>
-<li>IE モードとしては証済みを示す Cookie を持っていないので、Cookie なしの状態でリクエストすることになります。</li>
-<li>証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断され、再度認証を求められます。</li>
+<li>IE モードとしては認証済みを示す Cookie を持っていないので、Cookie なしの状態でリクエストすることになります。</li>
+<li>認証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断され、再度認証を求められます。</li>
 </ol>
 <p>ただ、認証時に通信するサーバーをすべて IE モードで動作するように明示的に指定してしまうと、逆に Edge でアクセスする必要があるパターンでうまくいきません。</p>
 <p>具体例として、Azure AD (AAD) 認証を必要とする Web アプリケーションとして Office.com を使って試してみます。<br>(本来は IE モードを使わずに Edge でご覧いただくことをおすすめします)</p>
 <p>まずは以下のように対象サイト (office.com) だけを登録してみます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;site url&#x3D;&quot;office.com&quot;&gt;</span><br><span class="line">    &lt;open-in&gt;IE11&lt;&#x2F;open-in&gt;</span><br><span class="line">&lt;&#x2F;site&gt;</span><br></pre></td></tr></table></figure>
 
-<p>このサイト リストを読み込んで、office.com にアクセスすると IE モードで開きます。<br>サインインの操作をしてみるとわかりますが、サインインが完了しません。(場合によっては、認証画面の表示がループしてしまうこともあります)<br>これは、上述のとおり、証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断されたためです。</p>
+<p>このサイト リストを読み込んで、office.com にアクセスすると IE モードで開きます。<br>サインインの操作をしてみるとわかりますが、サインインが完了しません。(場合によっては、認証画面の表示がループしてしまうこともあります)<br>これは、上述のとおり、認証済みを示す Cookie がリクエストに含まれないことで、ユーザーがログオンしていないと判断されたためです。</p>
 <p>そこで以下のように、今回の認証時に経由する可能性がある、login.microsoftonline.com, login.windows.net, login.live.com に対しても IE モードになるように &lt;open-in&gt;IE11&lt;/open-in&gt; を設定してみます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;site url&#x3D;&quot;office.com&quot;&gt;</span><br><span class="line">    &lt;open-in&gt;IE11&lt;&#x2F;open-in&gt;</span><br><span class="line">&lt;&#x2F;site&gt;</span><br><span class="line">&lt;site url&#x3D;&quot;login.microsoftonline.com&quot;&gt;</span><br><span class="line">    &lt;open-in&gt;IE11&lt;&#x2F;open-in&gt;</span><br><span class="line">&lt;&#x2F;site&gt;</span><br><span class="line">&lt;site url&#x3D;&quot;login.windows.net&quot;&gt;</span><br><span class="line">    &lt;open-in&gt;IE11&lt;&#x2F;open-in&gt;</span><br><span class="line">&lt;&#x2F;site&gt;</span><br><span class="line">&lt;site url&#x3D;&quot;login.live.com&quot;&gt;</span><br><span class="line">    &lt;open-in&gt;IE11&lt;&#x2F;open-in&gt;</span><br><span class="line">&lt;&#x2F;site&gt;</span><br></pre></td></tr></table></figure>
 
