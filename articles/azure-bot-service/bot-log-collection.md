@@ -44,8 +44,6 @@ Azure 側での詳細な確認を行うために以下の 4 つをご提供く�
 
 Azure Portal 上を Azure Bot Service の [設定] パネルの画面のスクリーンショットをご提供ください。
 
-![build](/articles/azure-bot-service/bot-log-collection/config.png)
-
 <br />
 
 
@@ -55,6 +53,8 @@ Azure Portal 上を Azure Bot Service の [設定] パネルの画面のスク�
 
 (なお、左上部の Azure App Service のリソース名が表示されるように画面全体を撮影ください)
 
+
+![build](/articles/azure-bot-service/bot-log-collection/config.png)
 
 <br />
 
