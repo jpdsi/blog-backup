@@ -48,7 +48,7 @@ function FindProxyForURL (url, host) {
 }
 ```
 
-上記の PAC ファイルには、isPlainHostName 関数と shExpMatch 関数が記載されています。isPlainHostName 関数は host に "." (ピリオド) が含まれていなければ true、含まれていれば false を返す関数です。shExpMatch 関数は、文字列の部分比較を行う関数であり、第一引数に与えた文字列が第二引数に含まれている場合は true、含まれていない場合は false を返します。
+上記の PAC ファイルには、isPlainHostName 関数と shExpMatch 関数が記載されています。isPlainHostName 関数は host に "." (ピリオド) が含まれていなければ true、含まれていれば false を返す関数です。shExpMatch 関数は、文字列の部分比較を行う関数であり、第一引数で与えられた文字列が、シェル表現パターンを使用した第二引数で与えられた文字列にマッチする場合は true、マッチしない場合は false を返します。
 
 上記の PAC ファイルを使用して http://www.bing.com/ にアクセスした場合の戻り値は www.bing-proxy.coom というプロキシ サーバーに 6060 番ポート、http://www.google.com/ にアクセスした場合の戻り値は www.other-proxy.com というプロキシ サーバーに 8080 番ポートでアクセスします。IE では、この戻り値の結果に応じ、対象となるプロキシ サーバーへの接続を試み、接続が確立できる場合にはプロキシ サーバー経由で HTTP の通信が行われます。  
 
