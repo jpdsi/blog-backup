@@ -9,6 +9,7 @@ tags:
 (更新履歴)
 2020/02/12 Q4 を追加しました。
 2020/03/02 Windows Update を通じた新しい Microsoft Edge の配信について最新情報を反映しました。
+<font color="red">2020/07/01 Chromium ベースの Microsoft Edge の Windows Update による配布を、いままで対象外だった Education や Enterprise に対しても実施する予定となりました。詳細は後述します。</font>
 
 ---
 こんにちは。
@@ -57,6 +58,7 @@ Chromium ベースの新しい Microsoft Edge の、最初の Stable (安定版)
 (※1)
 Windows Update による新しい Microsoft Edge の配信に関する [公式の情報](https://docs.microsoft.com/en-us/DeployEdge/microsoft-edge-blocker-toolkit)がありますが、以下に要点を簡単にまとめます。
 
+<font color="red">※ 下記の「2020/7/1 追記」の部分も併せてご覧ください。</font>
 - Windows Update での自動配信は、<u>**Windows 10 バージョン 1803 以上の Home または Pro エディションのみが対象**</u>です
 - <u>**上記以外のすべての Windows バージョン (またはエディション) は自動更新の対象外**</u>です
 - Windows 10 バージョン 1803 以上の Home または Pro エディションであっても、<u>**以下のケースでは自動更新の対象外**</u>です
@@ -65,6 +67,30 @@ Windows Update による新しい Microsoft Edge の配信に関する [公式�
 - 新しい Microsoft Edge は、Windows の累積的な更新プログラムに含められた形ではなく、<u>**個別の更新パッケージとして配信**</u>されます
 
 以上のとおり、エンタープライズの多くの環境については、Windows Update による新しい Microsoft Edge の配信の対象外になるかと想定されますが、不明点などがありましたら私共サポートまでお問い合わせください。
+
+---
+## <font color="red">2020/7/1 追記</font>
+
+Chromium ベースの Microsoft Edge の Windows Update による配布を、いままで対象外だった Education や Enterprise に対しても実施する予定となりました。早くても 7/30 以降で、最初は Education エディションを対象に開始します。
+
+Windows Update for Business (WUfB)/WSUS で管理している端末は対象外です。
+
+もし WUfB や WSUS で更新管理していなくて、急に新しい Edge に置き換えられてしまうと困る環境があれば、早めに Blocker Toolkit の設定を実施ください。
+
+Microsoft Edge (Chromium ベース) の自動配布を無効にするための Blocker Toolkit
+https://docs.microsoft.com/ja-jp/deployedge/microsoft-edge-blocker-toolkit
+
+また、以前の Edge (EdgeHTML) と共存したい場合は、『事前に』グループ ポリシーを設定する必要があります。
+
+Microsoft Edge の新しいバージョンをインストールした後 Microsoft Edge レガシにアクセスする
+https://docs.microsoft.com/ja-jp/deployedge/microsoft-edge-sysupdate-access-old-edge
+
+
+なお、今回お伝えした Windows Update による配布の対象拡大に関しての詳細については以下をご覧ください。
+
+Upgrading to the new Microsoft Edge through Windows Update (expanded)
+https://techcommunity.microsoft.com/t5/articles/upgrading-to-the-new-microsoft-edge-through-windows-update/m-p/1499724#M3025
+---
 
 今回は以上です。  
 それでは、また次回！
