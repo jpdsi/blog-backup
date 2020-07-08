@@ -64,6 +64,10 @@ Flash を再び実行できるように構成することもできなくなる�
 今後の予定についてお伝えできる情報が明確になった時点で改めて本情報を更新いたします。
 
 #### Adobe 社公開情報
+
+Adobe Flash Player法人向けサポート終了情報ページ
+https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html
+
 Adobe Flash Playerサポート終了情報ページ
 https://www.adobe.com/jp/products/flashplayer/end-of-life.html
 
