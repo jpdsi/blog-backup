@@ -8,6 +8,9 @@ tags:
   - Wireshark
 ---
 
+<font color="red">2020/8/7 更新 : ブラウザーのキャッシュが利用されてキャプチャーに記録されないことを避けるために、InPrivate ブラウズをご利用いただく方法をご案内していますが、InPrivate ブラウズをご利用いただけない場合には、ログ取得前にブラウザーのキャッシュをすべて消去してください。</font>
+
+
 こんにちは。Developer Support Internet チームです！
 
 今回は、Chromium ベースの New Microsoft Edge で動作する Web アプリケーションにて、ネットワークに関連する問題が起こった際に、もしかしたら活用できるかもしれない Wireshark を用いたネットワークトレース取得方法の Tips をご紹介いたします。
@@ -94,6 +97,7 @@ tags:
 
 4-1. New Microsoft Edge を InPrivate ウィンドウで開く。
 (タスクバー等の Edge アイコンを右クリックで “新しい InPrivate ウィンドウ” で開けます)
+※ InPrivate ブラウズをご利用いただけない場合には、ログ取得前にブラウザーのキャッシュをすべて消去してください。手順は後述の補足をご覧ください。
 
 4-2. Wireshark にて、左上の青いシャークの形をしたボタンを押してキャプチャを開始する。
 (保存に関するダイアログが出た場合、”保存せずに続ける” を押しキャプチャを開始する)
@@ -141,6 +145,22 @@ tags:
 
 ---
 
+## 6. 後片付け
+
+2 で追加した環境変数 SSLKEYLOGFILE を削除します。
+
+---
+
+## 補足 : ブラウザーのキャッシュ消去について
+
+1. New Microsoft Edge にて edge://settings/clearBrowserData を開きます。
+
+2. 以下のように設定し、[今すぐクリア] ボタンをクリックします。
+
+![clearcache](/articles/internet-explorer-microsoft-edge/New-Edge-Wireshark/clearcache.png)
+
+---
+
 ## 補足 : netsh でのトレース取得方法
 
 New Microsoft Edge の SSLKEYLOGFILE を用いたネットワークトレースの復号について、ネットワークトレースを取得するツール自体は Wireshark ではなく、netsh でも取得は可能です。
@@ -157,6 +177,7 @@ New Microsoft Edge の SSLKEYLOGFILE を用いたネットワークトレース�
 
 4-1. New Microsoft Edge を InPrivate ウィンドウで開く。
 (タスクバー等の Edge アイコンを右クリックで “新しい InPrivate ウィンドウ” で開けます)
+※ InPrivate ブラウズをご利用いただけない場合には、ログ取得前にブラウザーのキャッシュをすべて消去してください。手順は上述の補足をご覧ください。
 
 4-2. 管理者権限でコマンド プロンプトを開き、次のコマンドを実行し、キャプチャを開始します。
 
@@ -173,6 +194,59 @@ New Microsoft Edge の SSLKEYLOGFILE を用いたネットワークトレース�
 ```
 
 4-5. もし私共サポートから本 Blog による New Microsoft Edge の netsh の情報採取をご依頼された場合は、トレースの .etl ファイルと .cab ファイルと C:\tmp\ssl.txt の 3 つ両方とも提供します。
+
+(参考) 以下の etl2pcapng を利用すると、.etl を Wireshark で開ける .pcapng　形式に変換できます。
+
+etl2pcapng
+https://github.com/microsoft/etl2pcapng
+
+コマンド例
+
+```
+etl2pcapng in.etl out.pcapng
+```
+
+---
+
+---
+
+## 補足２ : pktmon でのトレース取得方法
+
+Windows 10 の 1809 から pktmon が搭載されており、上述の netsh と同様にネットワークトレースを取ることができます。
+
+1. 上部の "1. 事前準備" を行います。
+
+2. "2. ユーザー環境変数の設定" を行います。
+
+3. "Wireshark の準備"　は実施せずにスキップ
+
+4. "4. New Microsoft Edge による再現とキャプチャ" は以下の手順で実施します (上部の 5 はスキップします)
+
+4-1. New Microsoft Edge を InPrivate ウィンドウで開く。
+(タスクバー等の Edge アイコンを右クリックで “新しい InPrivate ウィンドウ” で開けます)
+※ InPrivate ブラウズをご利用いただけない場合には、ログ取得前にブラウザーのキャッシュをすべて消去してください。手順は上述の補足をご覧ください。
+
+4-2. 管理者権限でコマンド プロンプトを開き、次のコマンドを実行し、キャプチャを開始します。
+
+```
+　pktmon start --etw -p 0
+```
+
+4-3. New Microsoft Edge にて該当のサイトを開き、素早く事象の再現を行う。
+
+4-4. 次のコマンドを実行して、キャプチャを停止します
+
+```
+　pktmon stop
+```
+
+4-5. もし私共サポートから本 Blog による New Microsoft Edge の pktmon の情報採取をご依頼された場合は、トレースの .etl ファイルと C:\tmp\ssl.txt の両方とも提供します。
+
+(参考) 以下のコマンドを実行すると、Wireshark で開ける .pcapng　形式に変換できます。
+
+```
+  pktmon pcapng PktMon.etl -o PktMon.pcapng
+```
 
 ---
 
