@@ -48,7 +48,7 @@ tags:
 CRX ファイルは既定で許可された MIME タイプではないため、Web サーバーで設定が必要な場合があります。
 例えば、IIS では、以下のように Web.config で MIME タイプの設定を行う必要があります。
 
-```xml:Web.config
+```xml
 <?xml version="1.0" encoding="UTF-8"?> 
 <configuration> 
   <system.webServer> 
