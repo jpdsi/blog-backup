@@ -97,11 +97,11 @@ https://support.microsoft.com/ja-jp/help/262981/
 
 はい。ワイルドカード (*) も利用できます。
 例)
-*.example.com ("some.example.com" "www.example.com" などにマッチ)
-"www.*.com" ("www.example.com" "www.department.example.com" などにマッチ)
-"www.example.*" ("www.example.com" "www.example.org" "www.example.microsoft.com" などにマッチ)
-"123.1*.66.*" ("123.144.66.12" "123.133.66.15" "123.187.66.13." などにマッチ)
-"*contoso*"
+> \*.example.com ("some.example.com" "www.example.com" などにマッチ)
+> "www.\*.com" ("www.example.com" "www.department.example.com" などにマッチ)
+> "www.example.*" ("www.example.com" "www.example.org" "www.example.microsoft.com" などにマッチ)
+> "123.1\*.66.\*" ("123.144.66.12" "123.133.66.15" "123.187.66.13." などにマッチ)
+> "\*contoso\*"
 
 なお、ワイルドカードの利用は充分にご注意ください。例えば "www.*.com" をプロキシ例外として指定した場合、非常に多くのサイトが該当してしまうので、意図しないアドレスがプロキシ サーバー経由せずにアクセスしてしまった、ということになりかねません。
 
