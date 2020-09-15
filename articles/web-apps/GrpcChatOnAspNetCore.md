@@ -395,7 +395,7 @@ Go でのクライアント実装でも、コマンドで通信部分のソー�
 
 Chat クライアントの Go 実装については下記リポジトリを参考にしてください。
 
-Go クライアントリポジトリ：url
+Go クライアントリポジトリ：https://github.com/jpdsi/GrpcChatSample/tree/master/GrpcChatClientGo/chat
 
 ### 実際に通信させてみる
 
@@ -409,6 +409,10 @@ Go 実装のクライアントと C# 実装のクライアント、 C# 実装の
 
 
 このように、 gRPC では異なる言語によるサーバ・クライアントの実装が容易に実現することができます。
+
+今回作ったチャットアプリのコードは以下のリポジトリにあります。
+
+リポジトリ：https://github.com/jpdsi/GrpcChatSample
 
 ## 他のサンプルも見てみたい方へ
 
