@@ -75,7 +75,7 @@ gRPC ではデータのシリアライズに Protocol Buffers をデフォルト
 - その手軽さと利便性から Netflix などでも採用されており、今後もユースケースの増加が見込まれます。
 
 
-![gRPC を利用したサーバ・クライアント間通信の概念図](https://grpc.io/img/landing-2.svg)
+![gRPC を利用したサーバ・クライアント間通信の概念図](/articles/web-apps/GrpcChatOnAspNetCore/grpc.png)
 
 
 参考：[gRPC 公式サイト](https://grpc.io/)
