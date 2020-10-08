@@ -36,11 +36,11 @@ FTP に関係する現象というのは、例えば 550 エラーが発生す�
 ## 1. アクセス権情報
 アクセス権情報とは、現象が発生していたディレクトリのアクセス権の情報を確認するため、各ディレクトリに対して管理者権限で下記のコマンドを実行した結果 (出力されたテキスト ファイル) となります。
 
-  >icacls /T (対象のディレクトリのフルパス) > (実行結果を出力するファイルのフルパス)
+  >icacls (対象のディレクトリのフルパス) /T > (実行結果を出力するファイルのフルパス)
    
 例) 対象のディレクトリが c:\inetpub\ftproot\sub、実行結果を出力するファイルのフルパスを c:\temp\icaclsNG.txt とする場合
 
-  >icacls /T c:\inetpub\ftproot\sub > c:\temp\icaclsNG.txt
+  >icacls c:\inetpub\ftproot\sub /T > c:\temp\icaclsNG.txt
 
 ## 2. イベント ログ
 1. Windows Server 上にてイベント ビューアーを起動します（コマンド: eventvwr）
