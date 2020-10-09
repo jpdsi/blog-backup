@@ -76,6 +76,9 @@ Flash を再び実行できるように構成することもできなくなる�
 > Update on Adobe Flash Player End of Support
 > https://blogs.windows.com/msedgedev/2020/09/04/update-adobe-flash-end-support/
 
+> Adobe Flash Player のサポート終了に関する最新情報
+> https://blogs.windows.com/japan/2020/09/14/update-adobe-flash-end-support/
+
 - これまでの予定と変わりなく、<span style="color: #ff0000;font-weight:bold;">Adobe Flash Player のサポート終了は 2020 年 12 月 31 日です。</span>
 - それ以降の法人向け対応サポートについては、[Adobe 社の情報](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html)をご覧ください。
 - [Adobe 社の情報](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html)で案内される法人向け対応サポート契約を結び、今まで弊社から提供をしてきた Adobe Flash Player に代わるプラグインの提供を受けた場合、それを『Internet Explorer 11』 および 『Microsoft Edge (Chromium 版) の IE モード』で動作させることができますが、『サードパーティー製のプラグイン』の扱いとなり弊社でのサポートはありません。
