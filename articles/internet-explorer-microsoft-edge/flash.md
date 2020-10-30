@@ -6,8 +6,9 @@ tags:
   - Flash
 ---
 
-<font color="red">**2020/9/9 追記: 今後に関する最新情報を追記しました。**</font>
-<font color="red">**2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました**</font>
+<font color="red">**2020/9/9 更新: 今後に関する最新情報を追記しました。**</font>
+<font color="red">**2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました。**</font>
+<font color="red">**2020/10/30 更新: Flash のブロックに関して追記しました。**</font>
 
 > 本記事は Technet Blog の更新停止に伴い、もとの [記事](https://docs.microsoft.com/ja-jp/archive/blogs/jpieblog/flash-roadmap) に加筆／修正を加えた内容です。
 > 元の記事の最新の更新情報については、本内容をご参照ください。
@@ -71,6 +72,8 @@ Flash を再び実行できるように構成することもできなくなる�
 なお、どのようにこの対応が展開されるのか？いつそれが行われるのか？ 2021 年以降も Flash を使い続ける方法があるのか？というお問い合わせをいただくことがありますが、恐れ入りますが、現段階でご紹介できる情報は上記の内容のみです。
 今後の予定についてお伝えできる情報が明確になった時点で改めて本情報を更新いたします。
 
+<span style="color: #ff0000;font-weight:bold;">弊社も Adobe 社も、2020 年 12 月末をもって Flash のサポートを終了します。それ以降はお問い合わせを受け付けることができなくなりますのでご注意ください。</span>
+
 <span style="color: #ff0000;">(2020/9/9 追記, 2020/10/28 更新)</span>
 今後の最新情報が公開されました。以下に概要をまとめます。
 
@@ -108,6 +111,22 @@ https://www.adobe.com/jp/products/flashplayer/end-of-life.html
 そのため、Web サイト側での対応を計画されている場合には、十分に余裕をもった計画とされることをお勧めいたします。
 
 今後も新しい情報が公開され次第、こちらの記事にも順次追加していく予定ですが、最新情報が最速で公開されるのは [弊社開発部門のブログ](https://blogs.windows.com/msedgedev/) ですので併せてご確認ください。
+
+<span style="color: #ff0000;">(2020/10/30 追記)</span>
+以下の内容について補足します。
+
+> 2021 年 1 月初旬に、Microsoft Edge (EdgeHTML 版) と Internet Explorer で Flash は既定で無効化され、また、2020 年 6 月リリースの KB4561600 より古いバージョンの実行はブロックされます。
+
+2021 年 1 月初旬から『2020 年 6 月リリースの [KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) より古いバージョンの実行はブロックするという動作』は、弊社ブラウザー側の機能であり、これについては、[KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) 以上の適用でブロックは解除されます。
+
+一方で、2021 年 1 月から Flash の動作が既定で無効化されるという動作については、Adobe Flash 自体に時限式の無効化措置も含まれています。以下の Adobe 社の公開ドキュメント内の「デフォルトでFlashの再生をブロック」「Flash Playerは2020年末を過ぎても動作しますか？」がご参考になるかと思いますので、併せてご覧ください。
+
+Adobe Flash Player法人向けサポート終了情報ページ
+https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html
+
+なお、Adobe Flash 自体の動作や、Adobe 社の公開情報に関しては、弊社では回答しかねますので Adobe 社へご確認をいただくようお願いをしています。
+
+<span style="color: #ff0000;font-weight:bold;">弊社も Adobe 社も、2020 年 12 月末をもって Flash のサポートを終了しますので、それ以降はお問い合わせを受け付けることができなくなります。ご注意ください。</span>
 
 ---
 なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
