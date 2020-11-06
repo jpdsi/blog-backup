@@ -9,6 +9,7 @@ tags:
 <font color="red">**2020/9/9 更新: 今後に関する最新情報を追記しました。**</font>
 <font color="red">**2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました。**</font>
 <font color="red">**2020/10/30 更新: Flash のブロックに関して追記しました。**</font>
+<font color="red">**2020/11/06 更新: よくあるお問い合わせを追記しました。**</font>
 
 > 本記事は Technet Blog の更新停止に伴い、もとの [記事](https://docs.microsoft.com/ja-jp/archive/blogs/jpieblog/flash-roadmap) に加筆／修正を加えた内容です。
 > 元の記事の最新の更新情報については、本内容をご参照ください。
@@ -74,7 +75,7 @@ Flash を再び実行できるように構成することもできなくなる�
 
 <span style="color: #ff0000;font-weight:bold;">弊社も Adobe 社も、2020 年 12 月末をもって Flash のサポートを終了します。それ以降はお問い合わせを受け付けることができなくなりますのでご注意ください。</span>
 
-<span style="color: #ff0000;">(2020/9/9 追記, 2020/10/28 更新)</span>
+<span style="color: #ff0000;">(更新 : 2020/9/9, 2020/10/28, 2020/11/06)</span>
 今後の最新情報が公開されました。以下に概要をまとめます。
 
 > Update on Adobe Flash Player End of Support
@@ -91,7 +92,7 @@ Flash を再び実行できるように構成することもできなくなる�
 - 2021 年 1 月初旬に、Microsoft Edge (EdgeHTML 版) と Internet Explorer で Flash は既定で無効化され、また、2020 年 6 月リリースの [KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) より古いバージョンの実行はブロックされます。
 - Windows OS のコンポーネントとしての Flash を永久的に削除するための『[Update for Removal of Adobe Flash Player](https://support.microsoft.com/en-us/help/4577586/update-for-removal-of-adobe-flash-player)』というタイトルの更新プログラムがリリース予定です。<span style="color: #ff0000;font-weight:bold;">この更新を適用したあとは元に戻すことはできません。</span>
 - 2020 年 10 月 28 日 (日本時間) から『[Update for Removal of Adobe Flash Player](https://support.microsoft.com/en-us/help/4577586/update-for-removal-of-adobe-flash-player)』を [Microsoft Update カタログから入手](https://www.catalog.update.microsoft.com/search.aspx?q=4577586) できるようになりました。2020 年 12 月 31 日のサポート終了より前に Flash を永久削除したい場合は、カタログから更新プログラムを入手して実行できます。
-- 『[Update for Removal of Adobe Flash Player](https://support.microsoft.com/en-us/help/4577586/update-for-removal-of-adobe-flash-player)』は、2021 年の初めに Windows Update と WSUS で『オプション』として配信予定で、その 2 ～ 3 か月後には『推奨』として配信予定です。
+- 『[Update for Removal of Adobe Flash Player](https://support.microsoft.com/en-us/help/4577586/update-for-removal-of-adobe-flash-player)』は、2021 年の初めに Windows Update (オプション) と WSUS で配信予定で、その 2 ～ 3 か月後には Windows Update では推奨として配信予定です。
 - 2021 年夏には、Windows 10 での OS のロールアップ更新プログラム、および Windows 8.1, Windows Server 2012 and Windows Embedded 8 Standard での Internet Explorer 用の累積的なセキュリティ更新プログラムやマンスリー ロールアップの一部として『[Update for Removal of Adobe Flash Player](https://support.microsoft.com/en-us/help/4577586/update-for-removal-of-adobe-flash-player)』が組み込まれ、<span style="color: #ff0000;font-weight:bold;">更新プログラムの適用により Flash が永久的に削除されます。</span>
 
 #### Adobe 社公開情報
@@ -127,6 +128,50 @@ https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html
 なお、Adobe Flash 自体の動作や、Adobe 社の公開情報に関しては、弊社では回答しかねますので Adobe 社へご確認をいただくようお願いをしています。
 
 <span style="color: #ff0000;font-weight:bold;">弊社も Adobe 社も、2020 年 12 月末をもって Flash のサポートを終了しますので、それ以降はお問い合わせを受け付けることができなくなります。ご注意ください。</span>
+
+---
+
+## よくあるお問い合わせ
+弊社サポートへよくお問い合わせいただくご質問についてまとめます。業務上やむをえない事情がある場合は、以下の『Flash の実行ブロック』および『Flash の既定で無効化』について、更新を適用しないなどの方法で 2021 年 1 月以降も Flash を実行することは可能ではあります。しかしながら、弊社も Adobe 社も 2020 年 12 月末をもってサポート (お問い合わせの受付やセキュリティ更新の提供) を終了しますので、2021 年以降の Flash の実行はお勧めできません。セキュリティの観点からは 2021 年夏予定の Flash の永久削除を待つのではなく、『Update for Removal of Adobe Flash Player』を使用して自発的に Flash を永久削除することをお勧めします。
+
+### 『Flash の実行ブロック』について
+Q. ブロックとは具体的にどのような動作ですか？
+A. Flash の実行がブロックされた結果、画面上でどのように見えるのかなど具体的な挙動については、今後の情報公開をお待ちください。
+
+Q. どうすれば回避できますか？
+A. [KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) 以上の Adobe Flash Player のセキュリティ更新プログラムを適用してください。
+
+Q. 事前に検証できますか？
+A. 今のところできません。Flash の実行をブロックするために必要な情報を弊社管理のサーバーから取得しますが、そのデータをまだ公開していないため、PC の時刻を 2021 年 1 月以降に進めても動作を確認することはできません。
+
+Q. Adobe Flash Player のセキュリティ更新プログラムは、OS のロールアップ更新プログラムに含まれますか？
+A. 含まれません。独立した更新プログラムです。前提条件などは更新プログラムの公開ドキュメントをご確認ください。
+
+### 『Flash の既定で無効化』について
+Q. ブロックとは別ですか？
+A. はい。『ブロック』はブラウザー側の動作であり、『無効化』は Adobe Flash Player による動作です。
+
+Q. どうすれば回避できますか？
+A. [Adobe 社の公開ドキュメント (Adobe Flash Player法人向けサポート終了情報ページ)](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html) 内の「デフォルトでFlashの再生をブロック」「Flash Playerは2020年末を過ぎても動作しますか？」をご確認ください。
+
+Q. 無効化に関してサポートしてほしいのですが。
+A. [Adobe 社の公開ドキュメント (Adobe Flash Player法人向けサポート終了情報ページ)](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html) の内容も含め、Adobe 社へお問い合わせいただくようお願いしています。
+
+### 『Update for Removal of Adobe Flash Player』について
+Q. 今後のスケジュールについて教えてください。
+A. 2021 年の初めに Windows Update (オプション) と WSUS で配信予定で、その 2 ～ 3 か月後には Windows Update では推奨として配信予定です。2021 年夏には、Windows 10 での OS のロールアップ更新プログラム、および Windows 8.1, Windows Server 2012 and Windows Embedded 8 Standard での Internet Explorer 用の累積的なセキュリティ更新プログラムやマンスリー ロールアップの一部としてが組み込まれます。
+
+Q. 更新の適用時に OS の再起動は必要ですか？
+A. 再起動は求められません。
+
+Q. 更新の適用後にアンインストールできますか？ (Flash が存在する状態に戻せますか？)
+A. できません。
+
+Q. Windows 7 のときのようにユーザーが個別に Flash をインストールすることはできますか？
+A. できません。
+
+Q. Microsoft Edge (Chromium 版) に影響しますか？
+A. 影響しません。Microsoft Edge (Chromium 版) は 2021 年 1 月リリース予定のバージョン 88 にて Flash が削除される予定です。それ以前のバージョンはそのままになります。
 
 ---
 なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。
