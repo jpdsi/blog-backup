@@ -136,7 +136,7 @@ https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html
 
 ### 全般
 Q. 2021 年 1 月以降、Flash を使い続けるにはどうしたらいいですか？
-A. Adobe Flash Player のサポート終了は 2020 年 12 月 31 日です。それ以降に使い続ける方法について、弊社ではサポートできません。2021 年以降のそれ以降の法人向け対応サポートについては、[Adobe 社の情報](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html) をご覧ください。
+A. Adobe Flash Player のサポート終了は 2020 年 12 月 31 日です。それ以降に使い続ける方法について、弊社ではサポートできません。2021 年以降の法人向け対応サポートについては、[Adobe 社の情報](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html) をご覧ください。
 
 ### 『Flash の実行ブロック』について
 Q. ブロックとは具体的にどのような動作ですか？
