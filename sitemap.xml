@@ -2,331 +2,331 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/wcf-indexoutofrangeexception/</loc>
-    
-    <lastmod>2020-11-25T00:44:06.254Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/Rapid-Fail-Protection/</loc>
-    
-    <lastmod>2020-11-25T00:44:06.153Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/MigrationAzureSignalR/</loc>
-    
-    <lastmod>2020-11-25T00:44:06.109Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection5/</loc>
-    
-    <lastmod>2020-11-25T00:44:06.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection4/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.972Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection3/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.924Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection2/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection1/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.565Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/iis-exclude-antivirus-scanning/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.539Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/GrpcChatOnAspNetCore/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.479Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/ConfigurationEditor/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.333Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/web-apps/aspdotnet-samesitecookie/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.263Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/wpad/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/SkypeMeetingWithEdge/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.106Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/side-by-side/</loc>
-    
-    <lastmod>2020-11-25T00:44:05.071Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/ProxySettings/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.999Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.929Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/process-model/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.850Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/pac/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.796Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/new-microsoft-edge/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-Wireshark/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.624Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-via-WU/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.576Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/LetsSurfing-on-New-Edge/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.500Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/LAN-Settings/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IEMode/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.374Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-SecurityZones/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.298Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.253Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-Cache/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.200Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-uninstall-edge/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.054Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-deploy-edge-extensions/</loc>
-    
-    <lastmod>2020-11-25T00:44:04.014Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-about-using-new-edge/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.914Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/HighMemoryUsage/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.879Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/flash/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.800Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/FileProtocol/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.685Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/dump/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.535Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/dotnet-framework-tls12/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.300Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/Deploy-Edge/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.223Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/cross-protected-mode-cookie/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.144Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jpdsi.github.io/blog/general/welcome/</loc>
-    
-    <lastmod>2020-11-25T00:44:03.097Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/ip-limitation/</loc>
     
-    <lastmod>2020-11-25T00:44:02.996Z</lastmod>
+    <lastmod>2020-11-25T01:59:45.155Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/how-to-create-faq-bot/</loc>
     
-    <lastmod>2020-11-25T00:44:02.944Z</lastmod>
+    <lastmod>2020-11-25T01:59:45.069Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-portal-log-collection/</loc>
     
-    <lastmod>2020-11-25T00:44:02.898Z</lastmod>
+    <lastmod>2020-11-25T01:59:45.012Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-plan/</loc>
     
-    <lastmod>2020-11-25T00:44:02.802Z</lastmod>
+    <lastmod>2020-11-25T01:59:44.888Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-monitoring/</loc>
     
-    <lastmod>2020-11-25T00:44:02.755Z</lastmod>
+    <lastmod>2020-11-25T01:59:44.806Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-log-collection/</loc>
     
-    <lastmod>2020-11-25T00:44:02.511Z</lastmod>
+    <lastmod>2020-11-25T01:59:44.761Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-cs-performance/</loc>
     
-    <lastmod>2020-11-25T00:44:02.428Z</lastmod>
+    <lastmod>2020-11-25T01:59:44.650Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jpdsi.github.io/blog/azure-bot-service/bot-alwayson/</loc>
     
-    <lastmod>2020-11-25T00:44:02.314Z</lastmod>
+    <lastmod>2020-11-25T01:59:44.605Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/wcf-indexoutofrangeexception/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.510Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/Rapid-Fail-Protection/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.466Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/MigrationAzureSignalR/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.384Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection5/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.223Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection4/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.135Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection3/</loc>
+    
+    <lastmod>2020-11-25T01:59:44.089Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection2/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.980Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/LogCollection1/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.857Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/iis-exclude-antivirus-scanning/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.810Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/GrpcChatOnAspNetCore/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.720Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/ConfigurationEditor/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.666Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/web-apps/aspdotnet-samesitecookie/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/wpad/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.429Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/SkypeMeetingWithEdge/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.337Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/side-by-side/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.263Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/ProxySettings/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.172Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/protected-mode/</loc>
+    
+    <lastmod>2020-11-25T01:59:43.071Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/process-model/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/pac/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.874Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/new-microsoft-edge/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.748Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-Wireshark/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.620Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/New-Edge-via-WU/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.511Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/LetsSurfing-on-New-Edge/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/LAN-Settings/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.360Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IEMode/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.238Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-SecurityZones/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.172Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/</loc>
+    
+    <lastmod>2020-11-25T01:59:42.052Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/IE-Cache/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.924Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-uninstall-edge/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-deploy-edge-extensions/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-about-using-new-edge/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.699Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/HighMemoryUsage/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.574Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/flash/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.471Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/FileProtocol/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.416Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/dump/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.303Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/dotnet-framework-tls12/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.177Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/Deploy-Edge/</loc>
+    
+    <lastmod>2020-11-25T01:59:41.060Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/cross-protected-mode-cookie/</loc>
+    
+    <lastmod>2020-11-25T01:59:40.931Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jpdsi.github.io/blog/general/welcome/</loc>
+    
+    <lastmod>2020-11-25T01:59:40.856Z</lastmod>
     
   </url>
   
