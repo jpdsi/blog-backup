@@ -11,6 +11,7 @@ tags:
 <font color="red">**2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました。**</font>
 <font color="red">**2020/10/30 更新: Flash のブロックに関して追記しました。**</font>
 <font color="red">**2020/11/06 更新: 古くなった情報を削除し、最新情報を見やすくしました。よくあるお問い合わせを追記しました。**</font>
+<font color="red">**2020/12/09 更新: Adobe 社の公開情報をもとに、『Flash の既定で無効化』について追記しました。**</font>
 
 ---
 
@@ -83,6 +84,9 @@ A. [Adobe 社の公開ドキュメント (Adobe Flash Player法人向けサポ�
 
 Q. 無効化に関してサポートしてほしいのですが。
 A. [Adobe 社の公開ドキュメント (Adobe Flash Player法人向けサポート終了情報ページ)](https://www.adobe.com/jp/products/flashplayer/enterprise-end-of-life.html) の内容も含め、Adobe 社へお問い合わせいただくようお願いしています。
+
+Q. いつから無効化されますか？
+A. [Adobe 社の公開ドキュメント](https://www.adobe.com/jp/products/flashplayer/end-of-life.html) をご覧ください。
 
 ### 『Update for Removal of Adobe Flash Player』について
 Q. 今後のスケジュールについて教えてください。
