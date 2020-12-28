@@ -68,6 +68,7 @@ A. Flash の実行がブロックされた結果、画面上でどのように�
 
 Q. どうすれば回避できますか？
 A. [KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) 以上の Adobe Flash Player のセキュリティ更新プログラムを適用してください。
+なお、現在入手可能な Adobe Flash Player のセキュリティ更新プログラムは、KB4561600 を置き換える [KB4580325](https://support.microsoft.com/ja-jp/help/4580325/security-update) が最新です。KB4561600 もしくは KB4580325 のいずれかがインストールされている環境であれば、『Flash の実行ブロック』の対象外です。
 
 Q. 事前に検証できますか？
 A. 今のところできません。Flash の実行をブロックするために必要な情報を弊社管理のサーバーから取得しますが、そのデータをまだ公開していないため、PC の時刻を 2021 年 1 月以降に進めても動作を確認することはできません。
