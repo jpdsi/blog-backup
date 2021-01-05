@@ -7,19 +7,17 @@ tags:
 ---
 
 更新履歴:
-<font color="red">**2020/9/9 更新: 今後に関する最新情報を追記しました。**</font>
-<font color="red">**2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました。**</font>
-<font color="red">**2020/10/30 更新: Flash のブロックに関して追記しました。**</font>
-<font color="red">**2020/11/06 更新: 古くなった情報を削除し、最新情報を見やすくしました。よくあるお問い合わせを追記しました。**</font>
-<font color="red">**2020/12/09 更新: Adobe 社の公開情報をもとに、『Flash の既定で無効化』について追記しました。**</font>
+2020/9/9 更新: 今後に関する最新情報を追記しました。
+2020/10/28 更新: Update for Removal of Adobe Flash Player がリリースされました。
+2020/10/30 更新: Flash のブロックに関して追記しました。
+2020/11/06 更新: 古くなった情報を削除し、最新情報を見やすくしました。よくあるお問い合わせを追記しました。
+2020/12/09 更新: Adobe 社の公開情報をもとに、『Flash の既定で無効化』について追記しました。
+2021/1/5 更新 : 2020 年 12 月末をもって Adobe Flash Player のサポートを終了しました。
 
 ---
 
-サポートされるすべての Windows 上の Microsoft Edge (EdgeHTML 版、Chromium 版ともに) および Internet Explorer で Flash を実行することができなくなります。
-
-本情報はあくまでも現時点での予定となります。今後も新しい情報が公開され次第、こちらの記事にも順次追加していく予定ですが、最新情報が最速で公開されるのは [弊社開発部門のブログ](https://blogs.windows.com/msedgedev/) ですので併せてご確認ください。
-
-<span style="color: #ff0000;font-weight:bold;">なお、弊社も Adobe 社も、2020 年 12 月末をもって Flash のサポートを終了します。それ以降はお問い合わせを受け付けることができなくなりますのでご注意ください。</span>
+<span style="color: #ff0000;font-weight:bold;">弊社も Adobe 社も 2020 年 12 月末をもって Adobe Flash Player のサポート (お問い合わせの受付やセキュリティ更新の提供) を終了しました。セキュリティの観点からは 2021 年夏予定の Flash の永久削除を待つのではなく、『Update for Removal of Adobe Flash Player』を使用してできる限り早急に自発的に Flash を永久削除することをお勧めしています。
+</span>
 
 ---
 
@@ -56,7 +54,8 @@ https://www.adobe.com/jp/products/flashplayer/end-of-life.html
 ---
 
 ## よくあるお問い合わせ
-弊社サポートへよくお問い合わせいただくご質問についてまとめます。業務上やむをえない事情がある場合は、以下の『Flash の実行ブロック』および『Flash の既定で無効化』について、更新を適用しないなどの方法で 2021 年 1 月以降も Flash を実行することは可能ではあります。しかしながら、弊社も Adobe 社も 2020 年 12 月末をもってサポート (お問い合わせの受付やセキュリティ更新の提供) を終了しますので、2021 年以降の Flash の実行はお勧めできません。セキュリティの観点からは 2021 年夏予定の Flash の永久削除を待つのではなく、『Update for Removal of Adobe Flash Player』を使用して自発的に Flash を永久削除することをお勧めします。
+Flash に関して弊社のサポートは終了いたしました。
+サポート期間中に弊社サポートへよくお問い合わせいただいたご質問についてまとめておりますが、2021 年以降の Flash の実行はお勧めできません。セキュリティの観点からは 2021 年夏予定の Flash の永久削除を待つのではなく、『Update for Removal of Adobe Flash Player』を使用してできる限り早急に自発的に Flash を永久削除することをお勧めします。
 
 ### 全般
 Q. 2021 年 1 月以降、Flash を使い続けるにはどうしたらいいですか？
@@ -64,7 +63,7 @@ A. Adobe Flash Player のサポート終了は 2020 年 12 月 31 日です。�
 
 ### 『Flash の実行ブロック』について
 Q. ブロックとは具体的にどのような動作ですか？
-A. Flash の実行がブロックされた結果、画面上でどのように見えるのかなど具体的な挙動については、今後の情報公開をお待ちください。
+A. Flash の実行がブロックされた結果、画面上でどのように見えるのかなど具体的な挙動について、お伝えできることがあればここを更新する予定です。
 
 Q. どうすれば回避できますか？
 A. [KB4561600](https://support.microsoft.com/ja-jp/help/4561600/security-update-for-adobe-flash-player) 以上の Adobe Flash Player のセキュリティ更新プログラムを適用してください。
