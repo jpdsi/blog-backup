@@ -110,16 +110,18 @@ pac の URL を入力し、F6 キーで『緑』にします。
 
 ![GroupPolicyPreferences-Security](/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/GroupPolicyPreferences-Security.png)
 
-クライアント環境に対して『ユーザーが任意に変更可能な状態』でセキュリティ ゾーンの URL を配布したい場合は、基本設定の『レジストリ項目』を構成します。
-
+<p>
 <font color="red">
 ※ 管理用テンプレートにある「サイトとゾーンの割り当て一覧」を構成した場合、ユーザーが手動で設定した内容は無視され、本項目で設定した内容に強制されます。
 インターネット オプション上の当該の項目は、グレーアウトした状態でユーザーは変更できず、かつ、本項目で設定したサイト (ドメイン) のみが表示される動作となります。
 このため「サイトとゾーンの割り当て一覧」を使用するかどうかは、よく検討してください。
 </font>
 ![AdministrativeTemplates](/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/AdministrativeTemplates.png)
+</p>
 
-**前提 1 : セキュリティ ゾーンの URL が登録されるレジストリ**
+そこで、クライアント環境に対して『ユーザーが任意に変更可能な状態』でセキュリティ ゾーンの URL を配布したい場合は、基本設定の『レジストリ項目』を構成します。
+
+**前提 : セキュリティ ゾーンの URL が登録されるレジストリ**
 各セキュリティ ゾーンのレジストリは以下のように登録されます。
 
 場所 : HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\トップレベルドメイン\サブドメイン
@@ -133,26 +135,6 @@ pac の URL を入力し、F6 キーで『緑』にします。
 種類 : REG_DWORD
 値 : 2
 
-**前提 2 : Internet Explorer セキュリテ ィ強化の構成 (IE ESC)**
-サーバー　OS　には『Internet Explorer セキュリティ強化の構成 (IE ESC)』と呼ばれる機能があります。（既定は "有効" です）
-この機能の状態により、登録 / 参照するセキュリティ ゾーンのレジストリが異なります。
-
-有効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\EscDomains
-無効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains
-
-配布元 / 配布先の『IE ESC』の状態が異なる状態でセキュリティ ゾーンの URL を 配布すると、登録 / 参照先が異なるため値が反映されません。
-(後述の "レジストリ項目" の設定手順 4 で直接値を入力すると回避できます)
-
-このため、セキュリティ ゾーンの URL をグループ ポリシーで管理する場合、配布元 / 配布先 IE ESC の 状態にご注意ください。
-(クライアント OS には IE ESC が存在しないため "無効" と同等です）
-
-IE ESC機能についての詳細は以下にあります。
-
-Internet Explorer セキュリティ強化の構成による Internet Explorer のユーザー操作の変更
-https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configuration-changes-browsing-experience
-
-上記の前提を踏まえて実際の設定方法を紹介します。
-
 ---
 
 ### 基本設定のレジストリ項目の設定手順
@@ -162,7 +144,7 @@ https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configurati
 ※ 誤入力防止のために、登録されるレジストリ キーを直接指定して基本設定を構成する方法としています。
 サーバー上で設定ができない場合は、手順 5 でレジストリ ([キーのパス] / [値の名前] / [値の種類] / [値のデータ]) を直接入力します（手順6/7は不要です）。
 
-1. 配布元端末の IE 上にて配布する URL (ここでは https://www.microsoft.com) を信頼済みサイトとして設定します。
+1. サーバー上の IE を起動し、配布する URL (ここでは https://www.microsoft.com) を信頼済みサイトとして設定します。
 
 2. [グループ ポリシー管理エディター]を開きます。
 
@@ -181,12 +163,34 @@ https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configurati
 ※ この例ではレジストリ キーは以下のとおりです。
 HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\microsoft.com\www
 
+<font color="red">
+注意
+
+サーバー OS には『Internet Explorer セキュリティ強化の構成 (IE ESC)』と呼ばれる機能があります。（既定は "有効" です）
+IE ESC の有効/無効の状態により、サーバー OS 上の IE では、登録 / 参照するセキュリティ ゾーンのレジストリ パスが異なりますので、レジストリ項目ブラウザーでパスを選択する際にはご注意ください。
+
+有効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\EscDomains
+無効：HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains
+
+なお、IE ESC機能についての詳細は以下をご覧ください。
+
+Internet Explorer セキュリティ強化の構成による Internet Explorer のユーザー操作の変更
+https://support.microsoft.com/ja-jp/help/815141/ie-enhanced-security-configuration-changes-browsing-experience
+</font>
+
 7. 画面下部に表示される [名前] / [種類] / [データ] 欄の [名前] をクリック (反転します) し、[選択] ボタンを押下します。
 ![Registory03](/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory03.png)
 
 自動的に値が入力されます。
 ![Registory04](/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory04.png)
 ※ 手順 6 をせずに直接入力することも可能ですが、パスや値を間違えないように気を付けてください。
+
+<font color="red">
+注意
+
+IE ESC が有効な場合、手順 6 で "～～～ZoneMap\EscDomains" のパスを選択していると思いますが、クライアント OS には IE ESC が存在しないため、配布先のパスは "～～～ZoneMap\EscDomains" ではなく "～～～ZoneMap\Domains" にする必要があります。
+そのため、自動的に入力されたキーのパスで、EscDomains の部分を Domains に書き換えてください。
+</font>
 
 8. クライアント環境に "一度だけ" 適用したい場合は、[共通] タブにおいて [1 度だけ適用し、再適用しない] にチェックを入れます。
 ![Registory05](/articles/internet-explorer-microsoft-edge/IE-GroupPolicyPreferences/Registory05.png)
