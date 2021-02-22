@@ -41,12 +41,12 @@ IE での表示を前提として Web アプリを作成されている方では
 本機能はEdgeの既定のブラウザにおける 「Internet Explorer に Microsoft Edge でサイトを開かせる」の設定項目に依存します。  
 具体的な設定は Edge を開き、アドレスバーに edge://settings/defaultBrowser  と入力することで確認できます。  
 
-![Picture](IEtoEdgeRedirection/Internet%20Explorer%20に%20Microsoft%20Edge%20でサイトを開かせる.png)
+![Picture](/articles/internet-explorer-microsoft-edge/IEtoEdgeRedirection/Internet%20Explorer%20に%20Microsoft%20Edge%20でサイトを開かせる.png)
 
 上記のように「Internet Explorer に Microsoft Edge でサイトを開かせる」の設定で「互換性のないサイトのみ(推奨)」を選択した状態で、  
 互換性のないサイト (例： youtube.com) を IE で開こうとすると、IE上には以下のように表示され、Edgeで YouTube のサイトページが表示されます。
 
-![Picture](IEtoEdgeRedirection/アクセスしようとした%20Web%20サイトは、Internet%20Explorer%20では動作しません.jpg)
+![Picture](/articles/internet-explorer-microsoft-edge/IEtoEdgeRedirection/アクセスしようとした%20Web%20サイトは、Internet%20Explorer%20では動作しません.jpg)
 
 互換性のないサイトは以下にリスト化されており、本設定の際にはこちらに当てはまるものは Edge で開かれます。
 
@@ -62,7 +62,7 @@ https://edge.microsoft.com/neededge/v1
 IE でブラウジングをしていると、以下のようなオプトインが表示されることがありますが、  
 「Microsoft Edge に切り替える」 を選択することで、今後 全ての Web サイトがEdge で開かれるようになります。
 
-![Picture](IEtoEdgeRedirection/こんにちは%20一部のサイトが%20Internet%20explorer%20で動作しなくなったことをご存知ですか.jpg)
+![Picture](/articles/internet-explorer-microsoft-edge/IEtoEdgeRedirection/こんにちは%20一部のサイトが%20Internet%20explorer%20で動作しなくなったことをご存知ですか.jpg)
 
 # 3 :  対処法はあるのか？
 
@@ -70,7 +70,7 @@ IE でブラウジングをしていると、以下のようなオプトイン�
 
 2 の予防措置としては、上記オプトインが表示された場合は、「今は実行しない」を押して切り替えないようにすることが考えられます。
 
-![Picture](IEtoEdgeRedirection/Internet%20Explorer%20に%20Microsoft%20Edge%20でサイトを開かせる%20を%20なしにする.jpg)
+![Picture](/articles/internet-explorer-microsoft-edge/IEtoEdgeRedirection/Internet%20Explorer%20に%20Microsoft%20Edge%20でサイトを開かせる%20を%20なしにする.jpg)
  
 ## 対処策
 
