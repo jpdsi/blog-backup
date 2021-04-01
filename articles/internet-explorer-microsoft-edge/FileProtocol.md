@@ -22,14 +22,14 @@ https://support.google.com/gsa/answer/2664790?hl=en
 
 A : アドレスバーに file:// の URL を直接入力して開く場合
 外部からのアクセスではなく、ファイルを直接開く動作となります。
-そのため、リンク先のファイルを開くことが可能です。
+そのため、ファイルを開くことが可能です。
 
 B : ローカル マシンに保存している HTML ファイルを Microsoft Edge (Chromium) で開いている場合
-外部ではなくローカル ファイルからのアクセスのため、file：// のリンク先を開くことが可能です。
+外部ではなくローカル ファイルからのアクセスのため、file:// のリンク先を開くことが可能です。
 
 C : [IE モード](https://docs.microsoft.com/ja-jp/deployedge/edge-ie-mode) を利用した場合
 端末にインストールされている Internet Explorer を利用してサイトを開きます。
-Internet Explorer の単体利用時と同様に file：// のリンク先を開くことが可能です。
+Internet Explorer の単体利用時と同様に file:// のリンク先を開くことが可能です。
 
 ---
 
